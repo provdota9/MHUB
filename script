@@ -393,11 +393,9 @@ local macroMapList = {
 		'Virtual Dungeon',
 		'Ghoul City',
 		'Puppet Island',
-		'Undead Tomb'
-		'Mountain Temple'
-		
-
-
+		'Undead Tomb',
+		'Mountain Temple',
+		'Rain Village'
 	};
 
 	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Devil City', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
