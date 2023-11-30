@@ -125,7 +125,7 @@ local portalWorlds = {
 	opm_infinite = 'Alien Spaceship (Underwater)',
 	eclipse_portal = 'The Eclipse',
     port_agencgy = 'Sky Club',
-	noble_portal = 'Mountain Temple'
+	noble_portal = 'Mountain Temple',
     morioh_halloween = 'Bizzare Town (Haunted)',
     namek_halloween = 'Planet Namak (Haunted)',
     magnolia_halloween = 'Magic Town (Haunted)',
@@ -430,7 +430,7 @@ local macroMapList = {
 		'Fabled Kingdom (Cube)',
 		'The Eclipse',
         'Port Agency',
-		'Noble Portal'
+		'Noble Portal',
 		'Alien Spaceship (Final)',
 		'Puppet Island (Birdcage)'
 
