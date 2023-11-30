@@ -4469,7 +4469,7 @@ local function webhook ()
 				['color'] = 14816533,
 				["description"] = levelAndUser,
 				['footer'] = {
-					['text'] = string.format("// Made by Ultra Hub (%s)", os.date("%X")), 
+					['text'] = string.format("// Made by MHUB (%s)", os.date("%X")), 
 				},
 				['fields'] = {
 					{
