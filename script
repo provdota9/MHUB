@@ -4466,7 +4466,7 @@ local function webhook ()
 
 			{
 				["title"] = 'Anime Adventures',
-				['color'] = 11513855,
+				['color'] = 14816533,
 				["description"] = levelAndUser,
 				['footer'] = {
 					['text'] = string.format("// Made by Ultra Hub (%s)", os.date("%X")), 
