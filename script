@@ -490,7 +490,7 @@ PGUI = game.Players.LocalPlayer:WaitForChild('PlayerGui')
 
 -- MAKING GUI
 ScreenGui = Instance.new('ScreenGui', game.CoreGui)
-ScreenGui.Name = 'Ultra Hub'
+ScreenGui.Name = 'MHUB'
 ScreenGui.ResetOnSpawn = false
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
 ScreenGui.Enabled = true
