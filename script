@@ -1489,10 +1489,8 @@ local selectedSkinsDDL = MakeDDL(Main_SellSkinsSubPage, 'Select Skins', 0.517)
 -----------------------
 
 local Main_EventSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
-MakeTitle(Main_EventSubPage, 'Event', 0.195)
-local BuyCapsule1 = MakeLargeButton(Main_EventSubPage, 'Buy x1', 0.103)
-local BuyCapsule10 = MakeLargeButton(Main_EventSubPage, 'Buy x10', 0.103)
-local BuyCapsule100 = MakeLargeButton(Main_EventSubPage, 'Buy x100', 0.103)
+MakeTitle(Main_EventSubPage, 'Buy Capsule', 0.195)
+local AutoBuyCapsule = MakeCheckbox(Main_EventSubPage, 'Auto Buy Capsule', 0.162)
 -----------------------
 
 Main_HideYourself = MakeNewSubPage('Main', 'Left', 0.21, 0.05, 0.04, 0.07)
@@ -3056,6 +3054,46 @@ selectedCapsulesDDL.MouseButton1Click:Connect(function()
 
 end)
 
+
+local function AutoBuyCapsuleFunc()
+	if not IsLobby then return end
+
+	if CAndy <=150 then return end
+
+		if Candy >=150 then
+			local args = {
+				[1] = "capsule_halloween2",
+				[2] = "event",
+				[3] = "event_shop",
+				[4] = "1"
+			}
+			
+			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+		end
+		if Candy >=1500 then
+			local args = {
+				[1] = "capsule_halloween2",
+				[2] = "event",
+				[3] = "event_shop",
+				[4] = "10"
+			}
+			
+			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+		end
+		if Candy >=15000 then
+			local args = {
+				[1] = "capsule_halloween2",
+				[2] = "event",
+				[3] = "event_shop",
+				[4] = "100"
+			}
+			
+			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+		end
+	end
+end
+		
+
 DDLlabel(selectedCapsulesDDL, GetSave('Ignored Capsules'))
 
 local function AutoOpenCapsulesFunc ()
@@ -4278,9 +4316,6 @@ checkBoxFunc(OnlyFriendsPortal)
 checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
-checkBoxFunc(BuyCapsule1, BuyCapsuleFunc1)
-checkBoxFunc(BuyCapsule10, BuyCapsuleFunc10)
-checkBoxFunc(BuyCapsule100, BuyCapsuleFunc100)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
