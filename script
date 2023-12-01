@@ -905,7 +905,7 @@ local function MakeLargeButton (subPage, buttonTXT, scaleY)
 
 	local newLargeButton = Instance.new('TextButton', newLargeButtonFrame)
 	newLargeButton.AnchorPoint = Vector2.new(0.5, 0.5)
-	newLargeButton.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	newLargeButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	newLargeButton.BorderSizePixel = 0
 	newLargeButton.Size = UDim2.new(1, 0, 0.67, 0)
 	newLargeButton.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -991,7 +991,7 @@ local function MakeDDL (subPage, DDLTXT, scaleY)
 	newDDLLabel.Text = DDLTXT
 
 	local newDDLButton = Instance.new('TextButton', newDDLFrame)
-	newDDLButton.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	newDDLButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	newDDLButton.BorderSizePixel = 0
 	newDDLButton.Size = UDim2.new(1, 0, 0.408, 0)
 	newDDLButton.Position = UDim2.new(0, 0, 0.45, 0)
@@ -1053,7 +1053,7 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 
 	if not DDL then
 		DDL = Instance.new('Frame', MainContent) DDL.Name = 'List' DDL.Visible = false
-		DDL.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+		DDL.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 		DDL.BorderSizePixel = 0
 		DDL.ZIndex = 555
 		--DDL.Size = UDim2.new(0.448, 0, 0.388, 0)
@@ -1200,7 +1200,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 	TextBoxTitle.Text = TitleTXT
 
 	local TextBoxShadow = Instance.new('Frame', TextBoxFrame)
-	TextBoxShadow.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	TextBoxShadow.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	TextBoxShadow.BorderSizePixel = 0
 	TextBoxShadow.Size = UDim2.new(1, 0, 0.408, 0)
 	TextBoxShadow.Position = UDim2.new(0, 0, 0.45, 0)
@@ -1212,7 +1212,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 	TextBox.Size = UDim2.new(0.985, 0, 0.408, 0)
 	TextBox.Position = UDim2.new(0.015, 0, 0.45, 0)
 	TextBox.Font = Enum.Font.GothamBold
-	TextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+	TextBox.PlaceholderColor3 = Color3.fromRGB(255, 0, 0)
 	TextBox.PlaceholderText = PlacehodlerTXT
 	TextBox.TextScaled = true
 	TextBox.TextColor3 = Color3.fromRGB(255,255,255)
@@ -1246,7 +1246,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 	slideTitle.Text = TitleTXT
 
 	local slideBox = Instance.new('TextBox', slideFrame)
-	slideBox.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	slideBox.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	slideBox.BorderSizePixel = 0
 	slideBox.Size = UDim2.new(0.468, 0, 0.312, 0)
 	slideBox.Position = UDim2.new(0.532, 0, 0.038, 0)
@@ -1316,7 +1316,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	slideTitle.TextXAlignment = Enum.TextXAlignment.Left
 	slideTitle.Text = TitleTXT
 	slideTitle.TextStrokeTransparency = 0
-	slideTitle.TextStrokeColor3 = Color3.fromRGB(79,81,112)
+	slideTitle.TextStrokeColor3 = Color3.fromRGB(204, 0, 0)
 	slideTitle.ZIndex = 3
 
 	local slideAmount = Instance.new('TextLabel', slideFrame)
@@ -1331,7 +1331,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	slideAmount.Text = "[0/0]"
 	slideAmount.Name = "AmountLabel"
 	slideAmount.TextStrokeTransparency = 0
-	slideAmount.TextStrokeColor3 = Color3.fromRGB(79,81,112)
+	slideAmount.TextStrokeColor3 = Color3.fromRGB(204, 0, 0)
 	slideAmount.ZIndex = 3
 
 	local slider = Instance.new('Frame', slideFrame) slider.Name = "slider"
@@ -1401,7 +1401,7 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 	DoubleButtonFrame.LayoutOrder = Orders[subPage] Orders[subPage] +=1
 
 	local BiggerButton = Instance.new('TextButton', DoubleButtonFrame) BiggerButton.Name = "_bigbutton"
-	BiggerButton.BackgroundColor3 = Color3.fromRGB(75,75, 108)
+	BiggerButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	BiggerButton.Size = UDim2.new(0.69, 0, 1, 0)
 	BiggerButton.Text = ""
 	MakeUICorner(0.15, BiggerButton)
@@ -1424,7 +1424,7 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 
 	local ResetButton = Instance.new('TextButton', DoubleButtonFrame) ResetButton.Name = '_resetbutton'
 	ResetButton.AnchorPoint = Vector2.new(1, 0)
-	ResetButton.BackgroundColor3 = Color3.fromRGB(75,75,108)
+	ResetButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	ResetButton.Size = UDim2.new(0.279, 0, 1, 0)
 	ResetButton.Position = UDim2.new(1,0,0,0)
 
@@ -2166,7 +2166,7 @@ HideUHLabel.AnchorPoint = Vector2.new(0, 0.5)
 HideUHLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 local HideUHButton = Instance.new('TextButton', HideUHFrame)
-HideUHButton.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+HideUHButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 HideUHButton.TextColor3 = Color3.fromRGB(255,255,255)
 HideUHButton.BorderSizePixel = 0
 HideUHButton.AnchorPoint = Vector2.new(0, 0.5)
