@@ -1488,7 +1488,7 @@ local selectedSkinsDDL = MakeDDL(Main_SellSkinsSubPage, 'Select Skins', 0.517)
 
 -----------------------
 
-local Main_BuyCapsuleSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
+local Main_EventSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
 MakeTitle(Main_EventSubPage, 'Event', 0.195)
 local BuyCapsule1 = MakeLargeButton(Main_EventSubPage, 'Buy x1', 0.103)
 local BuyCapsule10 = MakeLargeButton(Main_EventSubPage, 'Buy x10', 0.103)
