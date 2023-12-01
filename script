@@ -3056,7 +3056,7 @@ end)
 
 
 local function AutoBuyCapsuleFunc()
-    if not IsLobby or Candy <=150 then return end
+    if not IsLobby then return end
 
     local args
     if Candy >= 15000 then
