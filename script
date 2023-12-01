@@ -926,7 +926,7 @@ local function MakeLargeButton (subPage, buttonTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', newLargeButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1000,7 +1000,7 @@ local function MakeDDL (subPage, DDLTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', newDDLButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1062,7 +1062,7 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 
 		local UIStroke = Instance.new('UIStroke', DDL)
 		UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
-		UIStroke.Color = Color3.fromRGB(255, 204, 204)
+		UIStroke.Color = Color3.fromRGB(255, 51, 51)
 		UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 		UIStroke.Thickness = 1
 
@@ -1220,7 +1220,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', TextBoxShadow)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1259,7 +1259,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', slideBox)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1272,7 +1272,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', slider)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1285,7 +1285,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 	local UIGradient = Instance.new('UIGradient', sliderBar)
 
 	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(176, 176, 239) ),
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 51, 51) ),
 		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255) ),
 	}
 
@@ -1342,7 +1342,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', slider)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1355,7 +1355,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	local UIGradient = Instance.new('UIGradient', sliderBar)
 
 	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(176, 176, 239) ),
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 51, 51) ),
 		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255) ),
 	}
 
@@ -1408,7 +1408,7 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 
 	local UIStroke = Instance.new('UIStroke', BiggerButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1430,7 +1430,7 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 
 	local UIStroke = Instance.new('UIStroke', ResetButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 204, 204)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -2179,7 +2179,7 @@ MakeUICorner(0.15, HideUHButton)
 
 local HideUHStroke = Instance.new('UIStroke', HideUHButton)
 HideUHStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-HideUHStroke.Color = Color3.fromRGB(255, 204, 204)
+HideUHStroke.Color = Color3.fromRGB(255, 51, 51)
 HideUHStroke.LineJoinMode = Enum.LineJoinMode.Round
 HideUHStroke.Thickness = 1
 
