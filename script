@@ -66,8 +66,8 @@ local DefaultFiles = {
 		['PortalUSE Difficulties Ignore'] = {};
 		['PortalUSE Worlds Ignore'] = {};
 		['PortalUSE Bonus Ignore'] = {};
-		['PortalUSE Start After Time'] = 1;
-		['PortalUSE Star After Players'] = 1;
+		['PortalUSE Start After Time'] = 10;
+		['PortalUSE Star After Players'] = 2;
 
 		['Challenge_IgnoreWorlds'] = {};
 		['Challenge_IgnoreDifficulties'] = {};
@@ -83,7 +83,7 @@ local DefaultFiles = {
 		['StoryInf_World'] = '';
 		['StoryInf_Level'] = '';
 
-		['AutoJoinCastleMaxRoom'] = 500;
+		['AutoJoinCastleMaxRoom'] = 100;
 		['AutoLeaveOnWave'] = 1;
 		['AutoSkillWave'] = 1;
 		['AutoSkillUnits'] = {};
@@ -93,7 +93,7 @@ local DefaultFiles = {
 		['AutoPlaceUnitsWave'] = 1;
 		['AutoUpgradeWave'] = 1;
 		['Selected Macro'] = '';
-		['Step Delay'] = 0.4;
+		['Step Delay'] = 0.7;
 		['Hide Key'] = 'U';
 
 		['Selected Macro Map'] = {Tower = {}, Main = {}, Raid = {}, Portal = {}, Other = {}}
@@ -398,7 +398,7 @@ local macroMapList = {
 		'Rain Village'
 	};
 
-	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Devil City', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
+	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Devil City', 'Bizzare Town', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
 
 	['Raid'] = {
 		'Fabled Kingdom (Commandments)',
@@ -612,7 +612,7 @@ HubTitle.ZIndex = 10001
 HubTitle.Font = Enum.Font.GothamBlack
 HubTitle.TextColor3 = Color3.fromRGB(255,255,255)
 HubTitle.TextScaled = true
-HubTitle.Text = 'MHUB - BETA'
+HubTitle.Text = 'MHUB - ALPHA'
 
 
 TopBarSizes = {
@@ -2340,7 +2340,7 @@ TestWebhook.MouseButton1Click:Connect(function()
 				['fields'] = {
 					{
 						['name'] = 'Test Webhook',
-						['value'] = 'Hi! <3'
+						['value'] = '+9999999 Dio OH'
 					}
 				}
 
@@ -3682,7 +3682,7 @@ end
 
 autoUseAbilityUnitsTable = {'jotaro', 'eren_final', 'ainz_evolved', 'kisuke_evolved',
 	'yamamoto_evolved', 'dio_heaven', 'aki_evolved', 'law_2_evolved', 'brook_evolved', 'gojo_evolved', 'pucci_heaven',
-	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin', 'alucard_evolved', 'dazai_evolved', 'hidan_evolved'
+	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin', 'alucard_evolved', 'dazai_evolved', 'hidan_unit_evolved', 'kira_evolved'
 
 }
 usedAutoSkillTime = nil
