@@ -398,7 +398,7 @@ local macroMapList = {
 		'Rain Village'
 	};
 
-	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Devil City', 'Bizzare Town', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
+	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Rain Village', 'Devil City', 'Bizzare Town', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
 
 	['Raid'] = {
 		'Fabled Kingdom (Commandments)',
@@ -504,19 +504,19 @@ MainFrame.Position = UDim2.new(0.614, 0, 0.284, 0)
 MainFrame.Name = 'MainFrame'
 
 MainContent = Instance.new('Frame', MainFrame)
-MainContent.BackgroundColor3 = Color3.fromRGB(73, 73, 99)
+MainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 MainContent.Size = UDim2.new(1, 0, 1, 0)
 MakeUICorner(0.01, MainContent)
 
 lowerTop = Instance.new('Frame', MainContent)
 lowerTop.AnchorPoint = Vector2.new(0.5, 1)
-lowerTop.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+lowerTop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 lowerTop.Size = UDim2.new(1, 0, 0.019, 0)
 lowerTop.Position = UDim2.new(0.5, 0, 0.038, 0)	
 lowerTop.BorderSizePixel = 0
 
 ShadowMainContent = Instance.new('Frame', MainContent)
-ShadowMainContent.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+ShadowMainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ShadowMainContent.AnchorPoint = Vector2.new(0.5, 0.5)
 ShadowMainContent.Size = UDim2.new(1.02, 0, 1.02, 0)
 ShadowMainContent.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -524,7 +524,7 @@ ShadowMainContent.ZIndex = -1
 MakeUICorner(0.015, ShadowMainContent)
 
 additionalFrame = Instance.new('Frame', ScreenGui) additionalFrame.Name = 'Additional'
-additionalFrame.BackgroundColor3 = Color3.fromRGB(73,73,99) 
+additionalFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
 additionalFrame.Position = UDim2.new(0.15, 0, 0.005, 0)
 additionalFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 additionalFrame.Size = UDim2.new(0.195, 0, 0.062, 0)
@@ -532,7 +532,7 @@ additionalFrame.ZIndex = 1000001
 MakeUICorner(0.07, additionalFrame)
 
 additionalFrameShadow = Instance.new('Frame', additionalFrame)
-additionalFrameShadow.BackgroundColor3 = Color3.fromRGB(26,26,26)
+additionalFrameShadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 additionalFrameShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 additionalFrameShadow.Size = UDim2.new(1.05, 0, 1.1, 0)
 additionalFrameShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -583,7 +583,7 @@ task.spawn(function()
 end)
 
 Top = Instance.new('Frame', MainFrame)
-Top.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Top.AnchorPoint = Vector2.new(1, 0.5)
 Top.Size = UDim2.new(1, 0, 0.048, 0)
 Top.Position = UDim2.new(1, 0, 0.014, 0)
@@ -592,7 +592,7 @@ MakeUICorner(0.2, Top)
 
 CloseButton = Instance.new('TextButton', Top)
 CloseButton.AnchorPoint = Vector2.new(1, 0.5)
-CloseButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+CloseButton.BackgroundColor3 = Color3.fromRGB(204, 0, 0)
 CloseButton.Size = UDim2.new(0.065, 0, 0.694, 0)
 CloseButton.Position = UDim2.new(0.984, 0, 0.5, 0)
 CloseButton.ZIndex = 10001
@@ -692,7 +692,7 @@ MakeDraggable(additionalFrame, additionalFrame)
 MakeDraggable(Top, MainFrame)
 
 Pages = Instance.new('ScrollingFrame', MainContent)
-Pages.BackgroundColor3 = Color3.fromRGB(94, 94, 127)
+Pages.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Pages.Size = UDim2.new(1, 0, 0.047, 0)
 Pages.Position = UDim2.new(0, 0, 0.038, 0)
 Pages.AutomaticCanvasSize = 'Y'
@@ -2333,7 +2333,7 @@ TestWebhook.MouseButton1Click:Connect(function()
 
 			{
 				["title"] = 'Anime Adventures',
-				['color'] = 11513855,
+				['color'] = 14816533,
 				['footer'] = {
 					['text'] = string.format("// Made by MHUB (%s)", Time), 
 				},
