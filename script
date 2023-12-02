@@ -3138,7 +3138,7 @@ local function AutoDeleteSkinsFunc ()
 end
 
 local function AutoBuyCapsuleFunc()
-    if not IsLobby or Candy == nil or Candy < 150 then return end
+    if not IsLobby or Candy < 150 then return end
 
     local args
     if Candy >= 15000 then
