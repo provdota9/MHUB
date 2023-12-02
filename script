@@ -194,8 +194,6 @@ local function GetSave (valueName)
 	return value
 end
 
-
-
 ---------------------------------------------------------
 
 local RefreshedUniqueItems = {}
@@ -489,14 +487,14 @@ end
 PGUI = game.Players.LocalPlayer:WaitForChild('PlayerGui')
 
 -- MAKING GUI
-ScreenGui = Instance.new('ScreenGui', game.CoreGui)
-ScreenGui.Name = 'Skele Hub'
-ScreenGui.ResetOnSpawn = false
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
-ScreenGui.Enabled = true
+ScreenGuiSC = Instance.new('ScreenGui', game.CoreGui)
+ScreenGuiSC.Name = 'Skele Hub'
+ScreenGuiSC.ResetOnSpawn = false
+ScreenGuiSC.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGuiSC.Enabled = true
 
 
-MainFrame = Instance.new('Frame', ScreenGui)
+MainFrame = Instance.new('Frame', ScreenGuiSC)
 MainFrame.BackgroundTransparency = 1
 MainFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 MainFrame.Size = UDim2.new(0.525, 0, 0.525, 0)
@@ -613,6 +611,31 @@ HubTitle.Font = Enum.Font.GothamBlack
 HubTitle.TextColor3 = Color3.fromRGB(255,255,255)
 HubTitle.TextScaled = true
 HubTitle.Text = 'Skele Hub - ALPHA'
+--hide gui
+ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
+ScreenGuiB.Name = 'HideScriptButton'
+ScreenGuiB.ResetOnSpawn = false
+ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGuiB.Enabled = true
+
+MainFrameB = Instance.new('Frame', ScreenGuiB)
+MainFrameB.BackgroundTransparency = 1
+MainFrameB.SizeConstraint = Enum.SizeConstraint.RelativeYY
+MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
+MainFrameB.Position = UDim2.new(0.5, 0, 0.5, 0)
+MainFrameB.Name = 'MainFrame'
+
+HideScriptButton = Instance.new('TextButton', MainFrameB)
+HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
+HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
+HideScriptButton.Position = UDim2.new(-1, 0, -0.7, 0)
+HideScriptButton.ZIndex = 10001
+HideScriptButton.Font = Enum.Font.GothamBlack
+HideScriptButton.TextColor3 = Color3.fromRGB(255,0,0)
+HideScriptButton.TextScaled = true
+HideScriptButton.Text = 'Hide Script'
+MakeUICorner(0.3, CloseButton)
 
 
 TopBarSizes = {
@@ -637,6 +660,10 @@ CloseButton.MouseButton1Click:Connect(function()
 	CloseButton.Size = closeButtonSizes[MainContent.Visible]
 	Top.Size = TopBarSizes[MainContent.Visible]
 
+end)
+
+HideScriptButton.MouseButton1Click:Connect(function()
+    ScreenGuiSC.Enabled = not ScreenGuiSC.Enabled -- Инвертируем значение свойства Enabled
 end)
 
 
@@ -1487,7 +1514,9 @@ local AutoDeleteSkins = MakeCheckbox(Main_SellSkinsSubPage, 'Auto Delete Skins',
 local selectedSkinsDDL = MakeDDL(Main_SellSkinsSubPage, 'Select Skins', 0.517)
 
 -----------------------
-
+local Main_EventSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
+MakeTitle(Main_EventSubPage, 'Event', 0.195)
+local AutoBuyCapsule = MakeCheckbox(Main_EventSubPage, 'Auto Buy Event Capsule', 0.162)
 -----------------------
 
 Main_HideYourself = MakeNewSubPage('Main', 'Left', 0.21, 0.05, 0.04, 0.07)
@@ -3108,6 +3137,43 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
+local function AutoBuyCapsuleFunc ()
+
+    local Candy = player._stats._resourceCandies.Value
+
+    if not IsLobby then return end
+
+    if Candy <= 149 then return end
+
+    local args
+    if Candy >= 15000 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "100"
+        }
+    elseif Candy >= 1500 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "10"
+        }
+    elseif Candy >= 150 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "1"
+        }
+    end
+
+    if args then
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+    end
+end
+
 
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
 
@@ -4274,6 +4340,7 @@ checkBoxFunc(OnlyFriendsPortal)
 checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
+checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
