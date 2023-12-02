@@ -3144,10 +3144,9 @@ local function AutoBuyCapsuleFunc ()
 	
 		if args then
 			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
-
-		task.wait(0.05)
 		end
 	end
+end
 	
 
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
