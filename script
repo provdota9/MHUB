@@ -105,7 +105,7 @@ local DefaultFiles = {
 
 }
 
-local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', 'Noble Portal', 'Port Agency', "Demon Leader's Portal"}
+local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', "Demon Leader's Portal"}
 local DifficultiesName = {
 	double_cost = 'High Cost',
 	fast_enemies = 'Fast Enemies',
@@ -124,14 +124,6 @@ local portalWorlds = {
 	hxhant_infinite = 'Ant Kingdom (Summer)',
 	opm_infinite = 'Alien Spaceship (Underwater)',
 	eclipse_portal = 'The Eclipse',
-	port_agencgy = 'Sky Club',
-	noble_portal = 'Mountain Temple',
-    morioh_halloween = 'Bizzare Town (Haunted)',
-    namek_halloween = 'Planet Namak (Haunted)',
-    magnolia_halloween = 'Magic Town (Haunted)',
-    hage_elf_halloween = 'Clover Kingdom (Demonic)',
-    marineford_halloween = "Marine's Ford (Midnight)",
-    aot_halloween = "Shiganshinu District (Midnight)"
 }
 
 local Bonuses = {
@@ -397,7 +389,7 @@ local macroMapList = {
 
 	};
 
-	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Rain Village', 'Devil City', 'Bizzare Town', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
+	['Tower'] = {'Thriller Park', 'Entertainment District', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
 
 	['Raid'] = {
 		'Fabled Kingdom (Commandments)',
@@ -435,12 +427,6 @@ local macroMapList = {
 	};
 
 	['Other'] = {
-		'Magic Town (Haunted)',
-        'Clover Kingdom (Demonic)',
-        "Marine's Ford (Midnight)",
-        'Bizzare Town (Haunted)',
-        'Planet Namak (Haunted)',
-        'Shiganshinu District (Midnight)',
 		'Cursed Womb'
 	}
 }
@@ -936,15 +922,15 @@ function getMacroUnits(macroName, textBlocks)
 	local nameMacro = macroName
 	local unitsFromMacro = {}
 
-	local macroExist = isfile('MHUB\\Anime Advntures\\' .. nameMacro)
-	local macroExistjson = isfile('MHUB\\Anime Advntures\\' .. nameMacro .. '.json')
+	local macroExist = isfile('Ultra Hub\\Anime Adventures\\' .. nameMacro)
+	local macroExistjson = isfile('Ultra Hub\\Anime Adventures\\' .. nameMacro .. '.json')
 	if macroExistjson then nameMacro = nameMacro .. '.json' end
 
 
 	if macroExist or macroExistjson then
 
 		local sucess, response = pcall(function()
-			local MacroAbout = HttpService:JSONDecode( readfile( 'MHUB\\Anime Advntures\\' .. nameMacro) )
+			local MacroAbout = HttpService:JSONDecode( readfile( 'Ultra Hub\\Anime Adventures\\' .. nameMacro) )
 
 			for _, macroTabl in pairs(MacroAbout) do
 				if not macroTabl['type'] or macroTabl['type'] ~= 'spawn_unit' then continue end
@@ -2484,11 +2470,11 @@ local function RecordMacroFunc ()
 
 	local MacroFile = GetSave('Selected Macro')
 
-	local macroExist = isfile('MHUB\\Anime Advntures\\' .. MacroFile )
-	local macroExistJson = isfile('MHUB\\Anime Advntures\\' .. MacroFile .. '.json')
+	local macroExist = isfile('Ultra Hub\\Anime Adventures\\' .. MacroFile )
+	local macroExistJson = isfile('Ultra Hub\\Anime Adventures\\' .. MacroFile .. '.json')
 
-	if macroExistJson then MacroFile = 'MHUB\\Anime Advntures\\' .. MacroFile .. '.json'
-	elseif macroExist then MacroFile = 'MHUB\\Anime Advntures\\' .. MacroFile
+	if macroExistJson then MacroFile = 'Ultra Hub\\Anime Adventures\\' .. MacroFile .. '.json'
+	elseif macroExist then MacroFile = 'Ultra Hub\\Anime Adventures\\' .. MacroFile
 	else RecordingMacro = false RecordMacro.Parent.BackgroundColor3 = checkBoxColors[false] return
 	end
 
@@ -2644,11 +2630,11 @@ local function PlayMacroFunc ()
 	if not MacroFile then return end
 
 
-	local macroExist = isfile('MHUB\\Anime Advntures\\' .. MacroFile )
-	local macroExistJson = isfile('MHUB\\Anime Advntures\\' .. MacroFile .. '.json')
+	local macroExist = isfile('Ultra Hub\\Anime Adventures\\' .. MacroFile )
+	local macroExistJson = isfile('Ultra Hub\\Anime Adventures\\' .. MacroFile .. '.json')
 
-	if macroExistJson then MacroFile = 'MHUB\\Anime Advntures\\' .. MacroFile .. '.json'
-	elseif macroExist then MacroFile = 'MHUB\\Anime Advntures\\' .. MacroFile
+	if macroExistJson then MacroFile = 'Ultra Hub\\Anime Adventures\\' .. MacroFile .. '.json'
+	elseif macroExist then MacroFile = 'Ultra Hub\\Anime Adventures\\' .. MacroFile
 	else return
 	end
 
@@ -2971,7 +2957,7 @@ if IsLobby then getMacroUnits(GetSave('Selected Macro'), MacroUnitsTextBlocks) e
 createMacroBox.FocusLost:Connect(function(enterPressed)
 	if not enterPressed and createMacroBox.Text ~= '' then return end
 
-	writefile('MHUB\\Anime Advntures\\' .. createMacroBox.Text .. '.json', HttpService:JSONEncode({}))
+	writefile('Ultra Hub\\Anime Adventures\\' .. createMacroBox.Text .. '.json', HttpService:JSONEncode({}))
 end)
 
 deleteMacroButton.MouseButton1Click:Connect(function()
@@ -2979,13 +2965,13 @@ deleteMacroButton.MouseButton1Click:Connect(function()
 	local item = selectedMacroDDL.TextLabel.Text
 	if item == "" or item == "None" then return end
 
-	local macroExist = isfile('MHUB\\Anime Advntures\\' .. item)
-	local macroExistjson = isfile('MHUB\\Anime Advntures\\' .. item .. '.json')
+	local macroExist = isfile('Ultra Hub\\Anime Adventures\\' .. item)
+	local macroExistjson = isfile('Ultra Hub\\Anime Adventures\\' .. item .. '.json')
 	if macroExistjson then item = item .. '.json' end
 
 	if not macroExist and not macroExistjson then return end
 
-	delfile('MHUB\\Anime Advntures\\' .. item)
+	delfile('Ultra Hub\\Anime Adventures\\' .. item)
 
 	Save("Selected Macro", "")
 	DDLlabel(selectedMacroDDL, GetSave('Selected Macro'))
@@ -2999,13 +2985,13 @@ equipMacroUnitsButton.MouseButton1Click:Connect(function()
 
 	local macroSelected = GetSave('Selected Macro')
 
-	local macroExist = isfile('MHUB\\Anime Advntures\\' .. macroSelected)
-	local macroExistjson = isfile('MHUB\\Anime Advntures\\' .. macroSelected .. '.json')
+	local macroExist = isfile('Ultra Hub\\Anime Adventures\\' .. macroSelected)
+	local macroExistjson = isfile('Ultra Hub\\Anime Adventures\\' .. macroSelected .. '.json')
 	if macroExistjson then macroSelected = macroSelected .. '.json' end
 
 	if not macroExist and not macroExistjson then equippingMacroUnits = false return end
 
-	local MacroAbout = HttpService:JSONDecode( readfile( 'MHUB\\Anime Advntures\\' .. macroSelected) )
+	local MacroAbout = HttpService:JSONDecode( readfile( 'Ultra Hub\\Anime Adventures\\' .. macroSelected) )
 	Event['unequip_all']:InvokeServer()
 
 	local alrEquipped = {}
