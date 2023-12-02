@@ -195,10 +195,6 @@ local function GetSave (valueName)
 end
 
 -----------------------HIDE UI---------------------------
-local function onButtonClicked()
-    print("You use HideButton")
-end
-
 ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
 ScreenGuiB.Name = 'HideButton'
 ScreenGuiB.ResetOnSpawn = false
@@ -219,9 +215,8 @@ HideScriptB.BackgroundTransparency = 1
 HideScriptB.Size = UDim2.new(0, 100, 0, 40)
 HideScriptB.Position = UDim2.new(0.984, 0, 1.5, 0)
 HideScriptB.ZIndex = 10001
-HideScriptB.Image = "rbxassetid://YOUR_IMAGE_ID" 
+HideScriptB.Image = "rbxassetid://14185799617" -- картинка типа пон 
 HideScriptB.AutoButtonColor = false
-MakeUICorner2(0.3, HideScriptB)
 
 
 ---------------------------------------------------------
@@ -486,12 +481,6 @@ local function MakeUICorner (scale, newParent)
 	newCorner.CornerRadius = UDim.new(scale, 0)
 	newCorner.Parent = newParent
 
-end
-
-function MakeUICorner2(radius, uiElement)
-    local UICorner = Instance.new("UICorner")
-    UICorner.CornerRadius = UDim.new(0, radius)
-    UICorner.Parent = uiElement
 end
 
 local function MakeUIPadding (bottom, left, right, top, newParent)
