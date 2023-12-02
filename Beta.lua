@@ -630,9 +630,9 @@ HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
 HideScriptButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 HideScriptButton.BackgroundTransparency = 1
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
-HideScriptButton.Position = UDim2.new(0.984, 0, 0.5, 0) -- Исправлено значение Y-позиции
+HideScriptButton.Position = UDim2.new(-1, 0, -0.7, 0)
 HideScriptButton.ZIndex = 10001
-HideScriptButton.Image = "rbxassetid://15521926433" -- Замените YOUR_IMAGE_ID на фактический идентификатор ресурса
+HideScriptButton.Image = "rbxassetid://15521926433" --имаге пон
 HideScriptButton.AutoButtonColor = false
 MakeUICorner(0.3, HideScriptButton)
 
