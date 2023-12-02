@@ -105,7 +105,7 @@ local DefaultFiles = {
 
 }
 
-local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', "Demon Leader's Portal"}
+local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', 'Noble Portal', 'Port Agency', "Demon Leader's Portal"}
 local DifficultiesName = {
 	double_cost = 'High Cost',
 	fast_enemies = 'Fast Enemies',
@@ -124,6 +124,14 @@ local portalWorlds = {
 	hxhant_infinite = 'Ant Kingdom (Summer)',
 	opm_infinite = 'Alien Spaceship (Underwater)',
 	eclipse_portal = 'The Eclipse',
+	port_agencgy = 'Sky Club',
+	noble_portal = 'Mountain Temple',
+    morioh_halloween = 'Bizzare Town (Haunted)',
+    namek_halloween = 'Planet Namak (Haunted)',
+    magnolia_halloween = 'Magic Town (Haunted)',
+    hage_elf_halloween = 'Clover Kingdom (Demonic)',
+    marineford_halloween = "Marine's Ford (Midnight)",
+    aot_halloween = "Shiganshinu District (Midnight)"
 }
 
 local Bonuses = {
@@ -389,7 +397,7 @@ local macroMapList = {
 
 	};
 
-	['Tower'] = {'Thriller Park', 'Entertainment District', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
+	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Rain Village', 'Devil City', 'Bizzare Town', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
 
 	['Raid'] = {
 		'Fabled Kingdom (Commandments)',
@@ -427,6 +435,12 @@ local macroMapList = {
 	};
 
 	['Other'] = {
+		'Magic Town (Haunted)',
+        'Clover Kingdom (Demonic)',
+        "Marine's Ford (Midnight)",
+        'Bizzare Town (Haunted)',
+        'Planet Namak (Haunted)',
+        'Shiganshinu District (Midnight)',
 		'Cursed Womb'
 	}
 }
