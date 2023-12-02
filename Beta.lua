@@ -215,7 +215,7 @@ HideScriptB.BackgroundTransparency = 1
 HideScriptB.Size = UDim2.new(0, 100, 0, 40)
 HideScriptB.Position = UDim2.new(0.984, 0, 1.5, 0)
 HideScriptB.ZIndex = 10001
-HideScriptB.Image = "rbxassetid://14185799617" -- картинка типа пон 
+HideScriptB.Image = "rbxassetid://15521926433" -- картинка типа пон 
 HideScriptB.AutoButtonColor = false
 
 
