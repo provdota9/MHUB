@@ -625,17 +625,16 @@ MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
 MainFrameB.Position = UDim2.new(0.5, 0, 0.5, 0)
 MainFrameB.Name = 'MainFrame'
 
-HideScriptButton = Instance.new('TextButton', MainFrameB)
+local HideScriptB = Instance.new('ImageButton', MainFrameB)
 HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
-HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HideScriptButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HideScriptButton.BackgroundTransparency = 1
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
-HideScriptButton.Position = UDim2.new(-1, 0, -0.7, 0)
+HideScriptButton.Position = UDim2.new(0.984, 0, 0.5, 0) -- Исправлено значение Y-позиции
 HideScriptButton.ZIndex = 10001
-HideScriptButton.Font = Enum.Font.GothamBlack
-HideScriptButton.TextColor3 = Color3.fromRGB(255,0,0)
-HideScriptButton.TextScaled = true
-HideScriptButton.Text = 'Hide Script'
-MakeUICorner(0.3, CloseButton)
+HideScriptButton.Image = "rbxassetid://15521926433" -- Замените YOUR_IMAGE_ID на фактический идентификатор ресурса
+HideScriptButton.AutoButtonColor = false
+MakeUICorner(0.3, HideScriptButton)
 
 
 TopBarSizes = {
