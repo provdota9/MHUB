@@ -662,7 +662,7 @@ CloseButton.MouseButton1Click:Connect(function()
 
 end)
 
-HideScriptB.MouseButton1Click:Connect(function()
+HideScriptButton.MouseButton1Click:Connect(function()
     ScreenGuiSC.Enabled = not ScreenGuiSC.Enabled -- Инвертируем значение свойства Enabled
 end)
 
