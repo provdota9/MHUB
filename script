@@ -3140,7 +3140,7 @@ end
 local function AutoBuyCapsuleFunc()
     if not IsLobby then return end
 
-	if Candy <= 149 then return end
+    if Candy <= 149 then return end
 
     local args
     if Candy >= 15000 then
@@ -4310,7 +4310,7 @@ checkBoxFunc(OnlyFriendsPortal)
 checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
-checkBoxFunc(AutoButCapsule, AutoBuyCapsuleFunc)
+checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
