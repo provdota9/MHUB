@@ -196,33 +196,33 @@ end
 
 -----------------------HIDE UI---------------------------
 local function onButtonClicked()
-    print("Кнопка была нажата!")
+    print("You use HideButton")
 end
 
-local screenGui = Instance.new('HideScriptUI', game.CoreGui)
+ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
+ScreenGuiB.Name = 'HideButton'
+ScreenGuiB.ResetOnSpawn = false
+ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGuiB.Enabled = true
 
-local hidebutton = Instance.new('HideButton')
-hidebutton.Text = 'Hide Script'
-hidebutton.Size = UDim2.new(0, 200, 0, 50)
-hidebutton.Position = UDim2.new(0.5, -100, 0.5, -25)
-hidebutton.Parent = screenGui
+MainFrameB = Instance.new('Frame', ScreenGui)
+MainFrameB.BackgroundTransparency = 1
+MainFrameB.SizeConstraint = Enum.SizeConstraint.RelativeYY
+MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
+MainFrameB.Position = UDim2.new(0.614, 0, 0.284, 0)
+MainFrameB.Name = 'MainFrame'
 
--- Установка клавишей-привязки для кнопки (например, клавиша "E")
-local keybind = HideUHButton.Text
-local keybindString = UIS:GetStringForKeyCode(keybind)
-hidebutton.Text = 'Hide Script'
+HideScriptB = Instance.new('ImageButton', MainFrame) 
+HideScriptB.AnchorPoint = Vector2.new(1, 0.5)
+HideScriptB.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+HideScriptB.BackgroundTransparency = 1 
+HideScriptB.Size = UDim2.new(0.065, 0, 0.694, 0)
+HideScriptB.Position = UDim2.new(0.984, 0, 0.5, 0)
+HideScriptB.ZIndex = 10001
+HideScriptB.Image = "rbxassetid://YOUR_IMAGE_ID" 
+HideScriptB.AutoButtonColor = false
+MakeUICorner(0.3, HideScriptB)
 
--- Функция, которая реагирует на нажатие клавиши
-local function onKeyDown(input, gameProcessedEvent)
-    if input.KeyCode == keybind and not gameProcessedEvent then
-        onButtonClicked()
-    end
-end
-
--- Подключение функции к событию нажатия клавиши
-UIS.InputBegan:Connect(function(input, gameProcessedEvent)
-    onKeyDown(input, gameProcessedEvent)
-end)
 
 ---------------------------------------------------------
 
@@ -656,6 +656,28 @@ HubTitlePoses = {
 	[false] = UDim2.new(0.45, 0, 0.5, 0),
 	[true] = UDim2.new(0.5, 0, 0.5, 0)
 }
+TopBarSizes2 = {
+	[false] = UDim2.new(0.5, 0,0.048, 0),
+	[true] = UDim2.new(1,0,0.048,0)
+}
+closeButtonSizes2 = {
+	[false] = UDim2.new(0.13, 0, 0.694, 0),
+	[true] = UDim2.new(0.065, 0, 0.694, 0)
+}
+
+HubTitlePoses2 = {
+	[false] = UDim2.new(0.45, 0, 0.5, 0),
+	[true] = UDim2.new(0.5, 0, 0.5, 0)
+}
+
+HideScriptB.MouseButton1Click:Connect(function() -- закрытие меню
+	MainContent.Visible = not MainContent.Visible 
+
+	HideScriptBTitle.Position = HubTitlePoses2[MainContent.Visible]
+	HideScriptB.Size = closeButtonSizes2[MainContent.Visible]
+	HideScriptBTop.Size = TopBarSizes2[MainContent.Visible]
+
+end)
 
 
 CloseButton.MouseButton1Click:Connect(function() 
