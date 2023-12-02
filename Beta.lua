@@ -487,31 +487,6 @@ end
 PGUI = game.Players.LocalPlayer:WaitForChild('PlayerGui')
 
 -- MAKING GUI
-ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
-ScreenGuiB.Name = 'HideScriptButton'
-ScreenGuiB.ResetOnSpawn = false
-ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
-ScreenGuiB.Enabled = true
-
-MainFrameB = Instance.new('Frame', ScreenGui)
-MainFrameB.BackgroundTransparency = 1
-MainFrameB.SizeConstraint = Enum.SizeConstraint.RelativeYY
-MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
-MainFrameB.Position = UDim2.new(0.5, 0, 0.5, 0)
-MainFrameB.Name = 'MainFrame'
-
-HideScriptButton = Instance.new('TextButton', Frame)
-HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
-HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
-HideScriptButton.Position = UDim2.new(0.5, 0, 0.5, 0)
-HideScriptButton.ZIndex = 10001
-HideScriptButton.Font = Enum.Font.GothamBlack
-HideScriptButton.TextColor3 = Color3.fromRGB(255,0,0)
-HideScriptButton.TextScaled = true
-HideScriptButton.Text = 'Hide Script'
-MakeUICorner(0.3, CloseButton)
-
 ScreenGuiSC = Instance.new('ScreenGui', game.CoreGui)
 ScreenGuiSC.Name = 'Skele Hub'
 ScreenGuiSC.ResetOnSpawn = false
@@ -636,6 +611,31 @@ HubTitle.Font = Enum.Font.GothamBlack
 HubTitle.TextColor3 = Color3.fromRGB(255,255,255)
 HubTitle.TextScaled = true
 HubTitle.Text = 'Skele Hub - ALPHA'
+--hide gui
+ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
+ScreenGuiB.Name = 'HideScriptButton'
+ScreenGuiB.ResetOnSpawn = false
+ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGuiB.Enabled = true
+
+MainFrameB = Instance.new('Frame', ScreenGui)
+MainFrameB.BackgroundTransparency = 1
+MainFrameB.SizeConstraint = Enum.SizeConstraint.RelativeYY
+MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
+MainFrameB.Position = UDim2.new(0.5, 0, 0.5, 0)
+MainFrameB.Name = 'MainFrame'
+
+HideScriptButton = Instance.new('TextButton', Frame)
+HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
+HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
+HideScriptButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+HideScriptButton.ZIndex = 10001
+HideScriptButton.Font = Enum.Font.GothamBlack
+HideScriptButton.TextColor3 = Color3.fromRGB(255,0,0)
+HideScriptButton.TextScaled = true
+HideScriptButton.Text = 'Hide Script'
+MakeUICorner(0.3, CloseButton)
 
 
 TopBarSizes = {
