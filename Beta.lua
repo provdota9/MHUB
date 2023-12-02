@@ -216,7 +216,7 @@ HideScriptB = Instance.new('ImageButton', MainFrame)
 HideScriptB.AnchorPoint = Vector2.new(1, 0.5)
 HideScriptB.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
 HideScriptB.BackgroundTransparency = 1 
-HideScriptB.Size = UDim2.new(0.065, 0, 0.694, 0)
+HideScriptB.Size = UDim2.new(0, 100, 0, 40)
 HideScriptB.Position = UDim2.new(0.984, 0, 0.5, 0)
 HideScriptB.ZIndex = 10001
 HideScriptB.Image = "rbxassetid://YOUR_IMAGE_ID" 
@@ -517,11 +517,11 @@ end
 PGUI = game.Players.LocalPlayer:WaitForChild('PlayerGui')
 
 -- MAKING GUI
-ScreenGui = Instance.new('ScreenGui', game.CoreGui)
-ScreenGui.Name = 'Skele Hub'
-ScreenGui.ResetOnSpawn = false
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Global
-ScreenGui.Enabled = true
+ScreenGuiSC = Instance.new('ScreenGui', game.CoreGui)
+ScreenGuiSC.Name = 'Skele Hub'
+ScreenGuiSC.ResetOnSpawn = false
+ScreenGuiSC.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGuiSC.Enabled = true
 
 
 MainFrame = Instance.new('Frame', ScreenGui)
@@ -656,28 +656,6 @@ HubTitlePoses = {
 	[false] = UDim2.new(0.45, 0, 0.5, 0),
 	[true] = UDim2.new(0.5, 0, 0.5, 0)
 }
-TopBarSizes2 = {
-	[false] = UDim2.new(0.5, 0,0.048, 0),
-	[true] = UDim2.new(1,0,0.048,0)
-}
-closeButtonSizes2 = {
-	[false] = UDim2.new(0.13, 0, 0.694, 0),
-	[true] = UDim2.new(0.065, 0, 0.694, 0)
-}
-
-HubTitlePoses2 = {
-	[false] = UDim2.new(0.45, 0, 0.5, 0),
-	[true] = UDim2.new(0.5, 0, 0.5, 0)
-}
-
-HideScriptB.MouseButton1Click:Connect(function() -- закрытие меню
-	MainContent.Visible = not MainContent.Visible 
-
-	HideScriptBTitle.Position = HubTitlePoses2[MainContent.Visible]
-	HideScriptB.Size = closeButtonSizes2[MainContent.Visible]
-	HideScriptBTop.Size = TopBarSizes2[MainContent.Visible]
-
-end)
 
 
 CloseButton.MouseButton1Click:Connect(function() 
@@ -687,6 +665,10 @@ CloseButton.MouseButton1Click:Connect(function()
 	CloseButton.Size = closeButtonSizes[MainContent.Visible]
 	Top.Size = TopBarSizes[MainContent.Visible]
 
+end)
+
+HideScriptB.MouseButton1Click:Connect(function()
+    ScreenGuiSC.Enabled = not ScreenGuiSC.Enabled -- Инвертируем значение свойства Enabled
 end)
 
 
