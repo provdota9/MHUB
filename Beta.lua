@@ -17,9 +17,6 @@ local RS = game:GetService('ReplicatedStorage')
 local TS = game:GetService('TweenService')
 local PS = game:GetService('PhysicsService')
 
--- GUI
-local gui = player.PlayerGui
-
 -- VARIABLES
 
 local player = game.Players.LocalPlayer
@@ -198,12 +195,14 @@ local function GetSave (valueName)
 end
 
 -----------------------HIDE UI---------------------------
+local function onButtonClicked()
+    print("Кнопка была нажата!")
+end
 
-local screenGui = Instance.new("ScreenGui")
-screenGui.Parent = gui
+local screenGui = Instance.new('HideScriptUI', game.CoreGui)
 
-local hidebutton = Instance.new("TextButton")
-hidebutton.Text = "Hide Script"
+local hidebutton = Instance.new('HideButton')
+hidebutton.Text = 'Hide Script'
 hidebutton.Size = UDim2.new(0, 200, 0, 50)
 hidebutton.Position = UDim2.new(0.5, -100, 0.5, -25)
 hidebutton.Parent = screenGui
@@ -211,7 +210,7 @@ hidebutton.Parent = screenGui
 -- Установка клавишей-привязки для кнопки (например, клавиша "E")
 local keybind = HideUHButton.Text
 local keybindString = UIS:GetStringForKeyCode(keybind)
-hidebutton.Text = "Hide Script"
+hidebutton.Text = 'Hide Script'
 
 -- Функция, которая реагирует на нажатие клавиши
 local function onKeyDown(input, gameProcessedEvent)
@@ -3139,8 +3138,7 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc()
-    -- Your existing AutoBuyCapsuleFunc code here
+local function AutoBuyCapsuleFunc ()
 
     local Candy = player._stats._resourceCandies.Value
 
