@@ -17,6 +17,9 @@ local RS = game:GetService('ReplicatedStorage')
 local TS = game:GetService('TweenService')
 local PS = game:GetService('PhysicsService')
 
+-- GUI
+local gui = player.PlayerGui
+
 -- VARIABLES
 
 local player = game.Players.LocalPlayer
@@ -194,7 +197,33 @@ local function GetSave (valueName)
 	return value
 end
 
+-----------------------HIDE UI---------------------------
 
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = gui
+
+local hidebutton = Instance.new("TextButton")
+hidebutton.Text = "Hide Script"
+hidebutton.Size = UDim2.new(0, 200, 0, 50)
+hidebutton.Position = UDim2.new(0.5, -100, 0.5, -25)
+hidebutton.Parent = screenGui
+
+-- Установка клавишей-привязки для кнопки (например, клавиша "E")
+local keybind = HideUHButton.Text
+local keybindString = UIS:GetStringForKeyCode(keybind)
+hidebutton.Text = "Hide Script"
+
+-- Функция, которая реагирует на нажатие клавиши
+local function onKeyDown(input, gameProcessedEvent)
+    if input.KeyCode == keybind and not gameProcessedEvent then
+        onButtonClicked()
+    end
+end
+
+-- Подключение функции к событию нажатия клавиши
+UIS.InputBegan:Connect(function(input, gameProcessedEvent)
+    onKeyDown(input, gameProcessedEvent)
+end)
 
 ---------------------------------------------------------
 
@@ -3110,44 +3139,44 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc ()
-	local Candy = player._stats._resourceCandies.Value
+local function AutoBuyCapsuleFunc()
+    -- Your existing AutoBuyCapsuleFunc code here
+
+    local Candy = player._stats._resourceCandies.Value
 
     if not IsLobby then return end
 
-	if Candy <= 149 then return end
+    if Candy <= 149 then return end
 
-	while GetSave(AutoBuyCapsule)
-		local args
-		if Candy >= 15000 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "100"
-			}
-		elseif Candy >= 1500 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "10"
-			}
-		elseif Candy >= 150 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "1"
-			}
-		end
-	
-		if args then
-			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
-		end
-	end
+    local args
+    if Candy >= 15000 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "100"
+        }
+    elseif Candy >= 1500 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "10"
+        }
+    elseif Candy >= 150 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "1"
+        }
+    end
+
+    if args then
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+    end
 end
-	
+
 
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
 
