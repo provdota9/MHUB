@@ -66,8 +66,8 @@ local DefaultFiles = {
 		['PortalUSE Difficulties Ignore'] = {};
 		['PortalUSE Worlds Ignore'] = {};
 		['PortalUSE Bonus Ignore'] = {};
-		['PortalUSE Start After Time'] = 1;
-		['PortalUSE Star After Players'] = 1;
+		['PortalUSE Start After Time'] = 10;
+		['PortalUSE Star After Players'] = 2;
 
 		['Challenge_IgnoreWorlds'] = {};
 		['Challenge_IgnoreDifficulties'] = {};
@@ -83,7 +83,7 @@ local DefaultFiles = {
 		['StoryInf_World'] = '';
 		['StoryInf_Level'] = '';
 
-		['AutoJoinCastleMaxRoom'] = 500;
+		['AutoJoinCastleMaxRoom'] = 100;
 		['AutoLeaveOnWave'] = 1;
 		['AutoSkillWave'] = 1;
 		['AutoSkillUnits'] = {};
@@ -93,7 +93,7 @@ local DefaultFiles = {
 		['AutoPlaceUnitsWave'] = 1;
 		['AutoUpgradeWave'] = 1;
 		['Selected Macro'] = '';
-		['Step Delay'] = 0.4;
+		['Step Delay'] = 0.7;
 		['Hide Key'] = 'U';
 
 		['Selected Macro Map'] = {Tower = {}, Main = {}, Raid = {}, Portal = {}, Other = {}}
@@ -105,7 +105,7 @@ local DefaultFiles = {
 
 }
 
-local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', "Demon Leader's Portal"}
+local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', 'Noble Portal', 'Port Agency', "Demon Leader's Portal"}
 local DifficultiesName = {
 	double_cost = 'High Cost',
 	fast_enemies = 'Fast Enemies',
@@ -124,6 +124,15 @@ local portalWorlds = {
 	hxhant_infinite = 'Ant Kingdom (Summer)',
 	opm_infinite = 'Alien Spaceship (Underwater)',
 	eclipse_portal = 'The Eclipse',
+    port_agencgy = 'Sky Club',
+	noble_portal = 'Mountain Temple',
+    morioh_halloween = 'Bizzare Town (Haunted)',
+    namek_halloween = 'Planet Namak (Haunted)',
+    magnolia_halloween = 'Magic Town (Haunted)',
+    hage_elf_halloween = 'Clover Kingdom (Demonic)',
+    marineford_halloween = "Marine's Ford (Midnight)",
+    aot_halloween = "Shiganshinu District (Midnight)"
+    
 }
 
 local Bonuses = {
@@ -384,12 +393,12 @@ local macroMapList = {
 		'Virtual Dungeon',
 		'Ghoul City',
 		'Puppet Island',
-		'Undead Tomb'
-
-
+		'Undead Tomb',
+		'Mountain Temple',
+		'Rain Village'
 	};
 
-	['Tower'] = {'Thriller Park', 'Entertainment District', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
+	['Tower'] = {'Thriller Park', 'Entertainment District', 'West City', 'Rain Village', 'Devil City', 'Bizzare Town', 'Karakora Town', 'Storm Hideout', 'Infinity Train',};
 
 	['Raid'] = {
 		'Fabled Kingdom (Commandments)',
@@ -404,7 +413,6 @@ local macroMapList = {
 		'Storm Hideout (Final)',
 		'West City',
 		'Bizzare Town',
-
 		'Hidden Sand Village',
 		'Shiganshinu District',
 		'Undead Tomb'
@@ -421,12 +429,20 @@ local macroMapList = {
 		'Cursed Academy (Summer)',
 		'Fabled Kingdom (Cube)',
 		'The Eclipse',
+        'Port Agency',
+		'Noble Portal',
 		'Alien Spaceship (Final)',
 		'Puppet Island (Birdcage)'
 
 	};
 
 	['Other'] = {
+        'Magic Town (Haunted)',
+        'Clover Kingdom (Demonic)',
+        "Marine's Ford (Midnight)",
+        'Bizzare Town (Haunted)',
+        'Planet Namak (Haunted)',
+        'Shiganshinu District (Midnight)',
 		'Cursed Womb'
 	}
 }
@@ -488,19 +504,19 @@ MainFrame.Position = UDim2.new(0.614, 0, 0.284, 0)
 MainFrame.Name = 'MainFrame'
 
 MainContent = Instance.new('Frame', MainFrame)
-MainContent.BackgroundColor3 = Color3.fromRGB(73, 73, 99)
+MainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 MainContent.Size = UDim2.new(1, 0, 1, 0)
 MakeUICorner(0.01, MainContent)
 
 lowerTop = Instance.new('Frame', MainContent)
 lowerTop.AnchorPoint = Vector2.new(0.5, 1)
-lowerTop.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+lowerTop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 lowerTop.Size = UDim2.new(1, 0, 0.019, 0)
 lowerTop.Position = UDim2.new(0.5, 0, 0.038, 0)	
 lowerTop.BorderSizePixel = 0
 
 ShadowMainContent = Instance.new('Frame', MainContent)
-ShadowMainContent.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+ShadowMainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 ShadowMainContent.AnchorPoint = Vector2.new(0.5, 0.5)
 ShadowMainContent.Size = UDim2.new(1.02, 0, 1.02, 0)
 ShadowMainContent.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -508,7 +524,7 @@ ShadowMainContent.ZIndex = -1
 MakeUICorner(0.015, ShadowMainContent)
 
 additionalFrame = Instance.new('Frame', ScreenGui) additionalFrame.Name = 'Additional'
-additionalFrame.BackgroundColor3 = Color3.fromRGB(73,73,99) 
+additionalFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0) 
 additionalFrame.Position = UDim2.new(0.15, 0, 0.005, 0)
 additionalFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 additionalFrame.Size = UDim2.new(0.195, 0, 0.062, 0)
@@ -516,7 +532,7 @@ additionalFrame.ZIndex = 1000001
 MakeUICorner(0.07, additionalFrame)
 
 additionalFrameShadow = Instance.new('Frame', additionalFrame)
-additionalFrameShadow.BackgroundColor3 = Color3.fromRGB(26,26,26)
+additionalFrameShadow.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 additionalFrameShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 additionalFrameShadow.Size = UDim2.new(1.05, 0, 1.1, 0)
 additionalFrameShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -556,7 +572,7 @@ DiscordLabel.Font = Enum.Font.GothamBlack
 DiscordLabel.TextColor3 = Color3.fromRGB(255,255,255)
 DiscordLabel.TextScaled = true
 DiscordLabel.TextXAlignment = Enum.TextXAlignment.Left
-DiscordLabel.Text = "Discord: zMc8bTmQXh"
+DiscordLabel.Text = "Discord: 32rvCfAmGC"
 
 task.spawn(function()
 	while true do
@@ -567,7 +583,7 @@ task.spawn(function()
 end)
 
 Top = Instance.new('Frame', MainFrame)
-Top.BackgroundColor3 = Color3.fromRGB(26, 26, 26)
+Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Top.AnchorPoint = Vector2.new(1, 0.5)
 Top.Size = UDim2.new(1, 0, 0.048, 0)
 Top.Position = UDim2.new(1, 0, 0.014, 0)
@@ -576,7 +592,7 @@ MakeUICorner(0.2, Top)
 
 CloseButton = Instance.new('TextButton', Top)
 CloseButton.AnchorPoint = Vector2.new(1, 0.5)
-CloseButton.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+CloseButton.BackgroundColor3 = Color3.fromRGB(204, 0, 0)
 CloseButton.Size = UDim2.new(0.065, 0, 0.694, 0)
 CloseButton.Position = UDim2.new(0.984, 0, 0.5, 0)
 CloseButton.ZIndex = 10001
@@ -596,7 +612,7 @@ HubTitle.ZIndex = 10001
 HubTitle.Font = Enum.Font.GothamBlack
 HubTitle.TextColor3 = Color3.fromRGB(255,255,255)
 HubTitle.TextScaled = true
-HubTitle.Text = 'ULTRA HUB - BETA'
+HubTitle.Text = 'Ultra Hub - ALPHA'
 
 
 TopBarSizes = {
@@ -676,7 +692,7 @@ MakeDraggable(additionalFrame, additionalFrame)
 MakeDraggable(Top, MainFrame)
 
 Pages = Instance.new('ScrollingFrame', MainContent)
-Pages.BackgroundColor3 = Color3.fromRGB(94, 94, 127)
+Pages.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 Pages.Size = UDim2.new(1, 0, 0.047, 0)
 Pages.Position = UDim2.new(0, 0, 0.038, 0)
 Pages.AutomaticCanvasSize = 'Y'
@@ -803,7 +819,7 @@ local function MakeNewSubPage (pageName, side, scaleY, cornerScale, UIPaddingTop
 	local page = ScrollingContent[pageName][side]
 
 	local newSubPage = Instance.new('Frame', page)
-	newSubPage.BackgroundColor3 = Color3.fromRGB(48, 48, 69)
+	newSubPage.BackgroundColor3 = Color3.fromRGB(102, 0, 0)
 	newSubPage.BorderSizePixel = 0
 	newSubPage.Size = UDim2.new(0.95, 0, scaleY, 0)
 	MakeUICorner(cornerScale, newSubPage)
@@ -832,8 +848,8 @@ local function MakeTitle (subPage, TitleTXT, scaleY)
 end
 
 local checkBoxColors = {
-	[true] = Color3.fromRGB(175, 175, 255);
-	[false] = Color3.fromRGB(37, 37, 54)
+	[true] = Color3.fromRGB(255, 0, 0);
+	[false] = Color3.fromRGB(0, 0, 0)
 }
 
 local function MakeCheckbox (subPage, checkBoxTXT, scaleY)
@@ -846,7 +862,7 @@ local function MakeCheckbox (subPage, checkBoxTXT, scaleY)
 
 	local newCheckBox = Instance.new('Frame', newCheckBoxFrame)
 	newCheckBox.AnchorPoint = Vector2.new(0, 0.5)
-	newCheckBox.BackgroundColor3 = Color3.fromRGB(37, 37, 54)
+	newCheckBox.BackgroundColor3 = Color3.fromRGB(51, 0, 0)
 	newCheckBox.Size = UDim2.new(0.049, 0, 0.73, 0)
 	newCheckBox.Position = UDim2.new(0, 0, 0.5, 0)
 	newCheckBox.BorderSizePixel = 0
@@ -889,7 +905,7 @@ local function MakeLargeButton (subPage, buttonTXT, scaleY)
 
 	local newLargeButton = Instance.new('TextButton', newLargeButtonFrame)
 	newLargeButton.AnchorPoint = Vector2.new(0.5, 0.5)
-	newLargeButton.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	newLargeButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	newLargeButton.BorderSizePixel = 0
 	newLargeButton.Size = UDim2.new(1, 0, 0.67, 0)
 	newLargeButton.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -910,7 +926,7 @@ local function MakeLargeButton (subPage, buttonTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', newLargeButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189, 189, 255)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -975,7 +991,7 @@ local function MakeDDL (subPage, DDLTXT, scaleY)
 	newDDLLabel.Text = DDLTXT
 
 	local newDDLButton = Instance.new('TextButton', newDDLFrame)
-	newDDLButton.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	newDDLButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	newDDLButton.BorderSizePixel = 0
 	newDDLButton.Size = UDim2.new(1, 0, 0.408, 0)
 	newDDLButton.Position = UDim2.new(0, 0, 0.45, 0)
@@ -984,7 +1000,7 @@ local function MakeDDL (subPage, DDLTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', newDDLButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189, 189, 255)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1028,7 +1044,7 @@ end
 
 local DDLColors = {
 	[true] = Color3.fromRGB(0, 176, 109);
-	[false] = Color3.fromRGB(138, 138, 199)
+	[false] = Color3.fromRGB(255, 51, 51)
 }
 
 local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabName)
@@ -1037,7 +1053,7 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 
 	if not DDL then
 		DDL = Instance.new('Frame', MainContent) DDL.Name = 'List' DDL.Visible = false
-		DDL.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+		DDL.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 		DDL.BorderSizePixel = 0
 		DDL.ZIndex = 555
 		--DDL.Size = UDim2.new(0.448, 0, 0.388, 0)
@@ -1046,7 +1062,7 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 
 		local UIStroke = Instance.new('UIStroke', DDL)
 		UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
-		UIStroke.Color = Color3.fromRGB(189, 189, 255)
+		UIStroke.Color = Color3.fromRGB(255, 51, 51)
 		UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 		UIStroke.Thickness = 1
 
@@ -1064,7 +1080,7 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 		makeUIList(0.03, ScrollingItems)
 
 		local TemplateButton = Instance.new('TextButton', ScrollingItems) TemplateButton.Name = 'Template' TemplateButton.Visible = false
-		TemplateButton.BackgroundColor3 = Color3.fromRGB(138, 138, 199)
+		TemplateButton.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
 		TemplateButton.BorderSizePixel = 0
 		TemplateButton.Size = UDim2.new(1, 0, 0.08, 0)
 		TemplateButton.ZIndex = 556
@@ -1184,7 +1200,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 	TextBoxTitle.Text = TitleTXT
 
 	local TextBoxShadow = Instance.new('Frame', TextBoxFrame)
-	TextBoxShadow.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	TextBoxShadow.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	TextBoxShadow.BorderSizePixel = 0
 	TextBoxShadow.Size = UDim2.new(1, 0, 0.408, 0)
 	TextBoxShadow.Position = UDim2.new(0, 0, 0.45, 0)
@@ -1196,7 +1212,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 	TextBox.Size = UDim2.new(0.985, 0, 0.408, 0)
 	TextBox.Position = UDim2.new(0.015, 0, 0.45, 0)
 	TextBox.Font = Enum.Font.GothamBold
-	TextBox.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+	TextBox.PlaceholderColor3 = Color3.fromRGB(255, 0, 0)
 	TextBox.PlaceholderText = PlacehodlerTXT
 	TextBox.TextScaled = true
 	TextBox.TextColor3 = Color3.fromRGB(255,255,255)
@@ -1204,7 +1220,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', TextBoxShadow)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189, 189, 255)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1230,7 +1246,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 	slideTitle.Text = TitleTXT
 
 	local slideBox = Instance.new('TextBox', slideFrame)
-	slideBox.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+	slideBox.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 	slideBox.BorderSizePixel = 0
 	slideBox.Size = UDim2.new(0.468, 0, 0.312, 0)
 	slideBox.Position = UDim2.new(0.532, 0, 0.038, 0)
@@ -1243,12 +1259,12 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', slideBox)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189, 189, 255)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
 	local slider = Instance.new('Frame', slideFrame) slider.Name = "slider"
-	slider.BackgroundColor3 = Color3.fromRGB(27, 27, 39)
+	slider.BackgroundColor3 = Color3.fromRGB(51, 0, 0)
 	slider.BorderSizePixel = 0
 	slider.Size = UDim2.new(1, 0, 0.35, 0)
 	slider.Position = UDim2.new(0, 0, 0.508, 0)
@@ -1256,7 +1272,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', slider)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189, 189, 255)
+	UIStroke.Color = Color3.fromRGB(77, 9, 9)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1269,7 +1285,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 	local UIGradient = Instance.new('UIGradient', sliderBar)
 
 	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(176, 176, 239) ),
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 51, 51) ),
 		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255) ),
 	}
 
@@ -1300,7 +1316,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	slideTitle.TextXAlignment = Enum.TextXAlignment.Left
 	slideTitle.Text = TitleTXT
 	slideTitle.TextStrokeTransparency = 0
-	slideTitle.TextStrokeColor3 = Color3.fromRGB(79,81,112)
+	slideTitle.TextStrokeColor3 = Color3.fromRGB(204,0,0)
 	slideTitle.ZIndex = 3
 
 	local slideAmount = Instance.new('TextLabel', slideFrame)
@@ -1315,18 +1331,18 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	slideAmount.Text = "[0/0]"
 	slideAmount.Name = "AmountLabel"
 	slideAmount.TextStrokeTransparency = 0
-	slideAmount.TextStrokeColor3 = Color3.fromRGB(79,81,112)
+	slideAmount.TextStrokeColor3 = Color3.fromRGB(204,0,0)
 	slideAmount.ZIndex = 3
 
 	local slider = Instance.new('Frame', slideFrame) slider.Name = "slider"
-	slider.BackgroundColor3 = Color3.fromRGB(27, 27, 39)
+	slider.BackgroundColor3 = Color3.fromRGB(77, 9, 9)
 	slider.BorderSizePixel = 0
 	slider.Size = UDim2.new(1, 0, 1, 0)
 	MakeUICorner(0.2, slider)
 
 	local UIStroke = Instance.new('UIStroke', slider)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189, 189, 255)
+	UIStroke.Color = Color3.fromRGB(255, 51, 51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1339,7 +1355,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	local UIGradient = Instance.new('UIGradient', sliderBar)
 
 	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(176, 176, 239) ),
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 51, 51) ),
 		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255) ),
 	}
 
@@ -1355,7 +1371,7 @@ end
 local function MakeTextBlock (subPage, DefaultTXT, ScaleY)
 
 	local TxtBlockFrame = Instance.new('Frame', subPage)
-	TxtBlockFrame.BackgroundColor3 = Color3.fromRGB(31, 31, 44)
+	TxtBlockFrame.BackgroundColor3 = Color3.fromRGB(51, 0, 0)
 	TxtBlockFrame.BorderSizePixel = 0
 	TxtBlockFrame.Size = UDim2.new(1, 0, ScaleY, 0)
 	TxtBlockFrame.LayoutOrder = Orders[subPage]
@@ -1385,14 +1401,14 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 	DoubleButtonFrame.LayoutOrder = Orders[subPage] Orders[subPage] +=1
 
 	local BiggerButton = Instance.new('TextButton', DoubleButtonFrame) BiggerButton.Name = "_bigbutton"
-	BiggerButton.BackgroundColor3 = Color3.fromRGB(75,75, 108)
+	BiggerButton.BackgroundColor3 = Color3.fromRGB(153,0, 0)
 	BiggerButton.Size = UDim2.new(0.69, 0, 1, 0)
 	BiggerButton.Text = ""
 	MakeUICorner(0.15, BiggerButton)
 
 	local UIStroke = Instance.new('UIStroke', BiggerButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189,189,255)
+	UIStroke.Color = Color3.fromRGB(255,51,51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1408,13 +1424,13 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 
 	local ResetButton = Instance.new('TextButton', DoubleButtonFrame) ResetButton.Name = '_resetbutton'
 	ResetButton.AnchorPoint = Vector2.new(1, 0)
-	ResetButton.BackgroundColor3 = Color3.fromRGB(75,75,108)
+	ResetButton.BackgroundColor3 = Color3.fromRGB(153,0,0)
 	ResetButton.Size = UDim2.new(0.279, 0, 1, 0)
 	ResetButton.Position = UDim2.new(1,0,0,0)
 
 	local UIStroke = Instance.new('UIStroke', ResetButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(189,189,255)
+	UIStroke.Color = Color3.fromRGB(255,51,51)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -2150,7 +2166,7 @@ HideUHLabel.AnchorPoint = Vector2.new(0, 0.5)
 HideUHLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 local HideUHButton = Instance.new('TextButton', HideUHFrame)
-HideUHButton.BackgroundColor3 = Color3.fromRGB(75, 75, 108)
+HideUHButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
 HideUHButton.TextColor3 = Color3.fromRGB(255,255,255)
 HideUHButton.BorderSizePixel = 0
 HideUHButton.AnchorPoint = Vector2.new(0, 0.5)
@@ -2163,7 +2179,7 @@ MakeUICorner(0.15, HideUHButton)
 
 local HideUHStroke = Instance.new('UIStroke', HideUHButton)
 HideUHStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-HideUHStroke.Color = Color3.fromRGB(189, 189, 255)
+HideUHStroke.Color = Color3.fromRGB(255, 51, 51)
 HideUHStroke.LineJoinMode = Enum.LineJoinMode.Round
 HideUHStroke.Thickness = 1
 
@@ -2324,7 +2340,7 @@ TestWebhook.MouseButton1Click:Connect(function()
 				['fields'] = {
 					{
 						['name'] = 'Test Webhook',
-						['value'] = '```+999 DIO OH``` \n ```+999 Gohan (Future)```'
+						['value'] = '+999 Dio OH'
 					}
 				}
 
@@ -2987,11 +3003,11 @@ equipMacroUnitsButton.MouseButton1Click:Connect(function()
 
 	local macroExist = isfile('Ultra Hub\\Anime Adventures\\' .. macroSelected)
 	local macroExistjson = isfile('Ultra Hub\\Anime Adventures\\' .. macroSelected .. '.json')
-	if macroExistjson then macroSelected = macroSelected .. '.json' end
+	if macroExistjson then macroSelected = macroSelected end
 
 	if not macroExist and not macroExistjson then equippingMacroUnits = false return end
 
-	local MacroAbout = HttpService:JSONDecode( readfile( 'Ultra Hub\\Anime Adventures\\' .. macroSelected) )
+	local MacroAbout = HttpService:JSONDecode( readfile( 'Ultra Hub\\Anime Adventures\\' .. macroSelected .. '.json') )
 	Event['unequip_all']:InvokeServer()
 
 	local alrEquipped = {}
@@ -3032,7 +3048,7 @@ selectedCapsulesDDL.MouseButton1Click:Connect(function()
 	GetDDL(selectedCapsulesDDL, items, true, 'Ignored Capsules')
 
 end)
-
+		
 DDLlabel(selectedCapsulesDDL, GetSave('Ignored Capsules'))
 
 local function AutoOpenCapsulesFunc ()
@@ -3666,7 +3682,7 @@ end
 
 autoUseAbilityUnitsTable = {'jotaro', 'eren_final', 'ainz_evolved', 'kisuke_evolved',
 	'yamamoto_evolved', 'dio_heaven', 'aki_evolved', 'law_2_evolved', 'brook_evolved', 'gojo_evolved', 'pucci_heaven',
-	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin'
+	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin', 'alucard_evolved', 'dazai_evolved', 'hidan_unit_evolved', 'kira_evolved'
 
 }
 usedAutoSkillTime = nil
@@ -3813,7 +3829,7 @@ end
 
 function HideTabFunc (enabled)
 
-	local userNameNew = 'Ultra Hub'
+	local userNameNew = 'Ultra Hub ON TOP'
 	if not enabled then userNameNew = player.DisplayName end
 
 	pcall(function()
@@ -4332,12 +4348,12 @@ end)
 
 if GetSave('Hide Map') then Hide_Map(true) HideMap.Parent.BackgroundColor3 = checkBoxColors[true] end
 
-local RareDrop = {"Sea God's Portal"}
+local RareDrop = {"Zid"}
 
 local oldPlayerStats = {
 	Gems = player._stats.gem_amount.Value,
 	Gold = player._stats.gold_amount.Value,
-	Pearls = player._stats._resourceSummerPearls.Value,
+	Candy = player._stats._resourceCandies.Value,
 	PlayerXP = player._stats.player_xp.Value,
 }
 
@@ -4361,7 +4377,7 @@ local function webhook ()
 		{name = 'XP', amount = player._stats.player_xp.Value - oldPlayerStats.PlayerXP},
 		{name = 'Gems', amount = player._stats.gem_amount.Value - oldPlayerStats.Gems},
 		{name = 'Gold', amount = player._stats.gold_amount.Value - oldPlayerStats.Gold},
-		{name = 'Summer Pearls', amount = player._stats._resourceSummerPearls.Value - oldPlayerStats.Pearls},
+		{name = 'Candy', amount = player._stats._resourceCandies.Value - oldPlayerStats.Candy},
 
 	}
 
@@ -4390,7 +4406,7 @@ local function webhook ()
 	local newGems = ""
 	local TotalGems = makeComma(player._stats.gem_amount.Value)
 	local TotalGold = makeComma(player._stats.gold_amount.Value)
-	local TotalPearl = makeComma(player._stats._resourceSummerPearls.Value)
+	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
 	local BattlePass = ''
 	local reachedTier = 0
 	local reachedTierExp = 0
@@ -4458,7 +4474,7 @@ local function webhook ()
 				['fields'] = {
 					{
 						['name'] = "Player Stats",
-						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Pearls:1148369019137708193> %s\n:tickets: Tier: %s", TotalGems, TotalGold, TotalPearl, BattlePass),
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s", TotalGems, TotalGold, TotalCandy, BattlePass),
 						['inline'] = true
 					},
 
@@ -4494,7 +4510,7 @@ task.spawn(function()
 	pcall(function()
 
 		if queue_on_teleport then
-			local UltraHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/ultrahub7/Ultra-Hub/main/Main.lua"))()'
+			local UltraHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/Ultra Hub/main/script"))()'
 			queue_on_teleport(UltraHubSCRIPT)
 		end
 
