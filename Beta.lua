@@ -494,7 +494,7 @@ ScreenGuiSC.ZIndexBehavior = Enum.ZIndexBehavior.Global
 ScreenGuiSC.Enabled = true
 
 
-MainFrame = Instance.new('Frame', ScreenGui)
+MainFrame = Instance.new('Frame', ScreenGuiSC)
 MainFrame.BackgroundTransparency = 1
 MainFrame.SizeConstraint = Enum.SizeConstraint.RelativeYY
 MainFrame.Size = UDim2.new(0.525, 0, 0.525, 0)
@@ -618,14 +618,14 @@ ScreenGuiB.ResetOnSpawn = false
 ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
 ScreenGuiB.Enabled = true
 
-MainFrameB = Instance.new('Frame', ScreenGui)
+MainFrameB = Instance.new('Frame', ScreenGuiB)
 MainFrameB.BackgroundTransparency = 1
 MainFrameB.SizeConstraint = Enum.SizeConstraint.RelativeYY
 MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
 MainFrameB.Position = UDim2.new(0.5, 0, 0.5, 0)
 MainFrameB.Name = 'MainFrame'
 
-HideScriptButton = Instance.new('TextButton', Frame)
+HideScriptButton = Instance.new('TextButton', MainFrameB)
 HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
 HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
