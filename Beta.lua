@@ -194,31 +194,6 @@ local function GetSave (valueName)
 	return value
 end
 
------------------------HIDE UI---------------------------
-ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
-ScreenGuiB.Name = 'HideButton'
-ScreenGuiB.ResetOnSpawn = false
-ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
-ScreenGuiB.Enabled = true
-
-MainFrameB = Instance.new('Frame', ScreenGui)
-MainFrameB.BackgroundTransparency = 1
-MainFrameB.SizeConstraint = Enum.SizeConstraint.RelativeYY
-MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
-MainFrameB.Position = UDim2.new(0.614, 0, 0.284, 0)
-MainFrameB.Name = 'MainFrame'
-
-HideScriptB = Instance.new('ImageButton', MainFrame) 
-HideScriptB.AnchorPoint = Vector2.new(1, 0.5)
-HideScriptB.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
-HideScriptB.BackgroundTransparency = 1 
-HideScriptB.Size = UDim2.new(0, 100, 0, 40)
-HideScriptB.Position = UDim2.new(0.984, 0, 1.5, 0)
-HideScriptB.ZIndex = 10001
-HideScriptB.Image = "rbxassetid://15521926433" -- картинка типа пон 
-HideScriptB.AutoButtonColor = false
-
-
 ---------------------------------------------------------
 
 local RefreshedUniqueItems = {}
@@ -512,6 +487,31 @@ end
 PGUI = game.Players.LocalPlayer:WaitForChild('PlayerGui')
 
 -- MAKING GUI
+ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
+ScreenGuiB.Name = 'HideScriptButton'
+ScreenGuiB.ResetOnSpawn = false
+ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGuiB.Enabled = true
+
+MainFrameB = Instance.new('Frame', ScreenGui)
+MainFrameB.BackgroundTransparency = 1
+MainFrameB.SizeConstraint = Enum.SizeConstraint.RelativeYY
+MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
+MainFrameB.Position = UDim2.new(0.5, 0, 0.5, 0)
+MainFrameB.Name = 'MainFrame'
+
+HideScriptButton = Instance.new('TextButton', Frame)
+HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
+HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
+HideScriptButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+HideScriptButton.ZIndex = 10001
+HideScriptButton.Font = Enum.Font.GothamBlack
+HideScriptButton.TextColor3 = Color3.fromRGB(255,0,0)
+HideScriptButton.TextScaled = true
+HideScriptButton.Text = 'Hide Script'
+MakeUICorner(0.3, CloseButton)
+
 ScreenGuiSC = Instance.new('ScreenGui', game.CoreGui)
 ScreenGuiSC.Name = 'Skele Hub'
 ScreenGuiSC.ResetOnSpawn = false
