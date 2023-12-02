@@ -217,7 +217,7 @@ HideScriptB.AnchorPoint = Vector2.new(1, 0.5)
 HideScriptB.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
 HideScriptB.BackgroundTransparency = 1 
 HideScriptB.Size = UDim2.new(0, 100, 0, 40)
-HideScriptB.Position = UDim2.new(0.984, 0, 0.5, 0)
+HideScriptB.Position = UDim2.new(0.984, 0, 1.5, 0)
 HideScriptB.ZIndex = 10001
 HideScriptB.Image = "rbxassetid://YOUR_IMAGE_ID" 
 HideScriptB.AutoButtonColor = false
@@ -481,6 +481,14 @@ end
 
 ---------------------------------------------------------
 local function MakeUICorner (scale, newParent)
+
+	local newCorner = Instance.new('UICorner')
+	newCorner.CornerRadius = UDim.new(scale, 0)
+	newCorner.Parent = newParent
+
+end
+
+local function MakeUICorner2 (scale, newParent)
 
 	local newCorner = Instance.new('UICorner')
 	newCorner.CornerRadius = UDim.new(scale, 0)
