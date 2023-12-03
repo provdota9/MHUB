@@ -2334,7 +2334,7 @@ TestWebhook.MouseButton1Click:Connect(function()
 				['fields'] = {
 					{
 						['name'] = 'Test Webhook',
-						['value'] = '```diff\n +Dio OH```'
+						['value'] = '```+Dio OH```'
 					}
 				}
 			}
@@ -4482,7 +4482,7 @@ local function webhook ()
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount += 1 local comma = "" if currentItemCount ~= newItemsCount then comma = "\n" end
 
-		newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount) .. comma
+		newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount, .. ' Total Items: ' newItemsCount .. ')') .. comma
 
 	end
 
