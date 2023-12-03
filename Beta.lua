@@ -583,10 +583,9 @@ end)
 Top = Instance.new('Frame', MainFrame)
 Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Top.AnchorPoint = Vector2.new(1, 0.5)
-Top.Size = UDim2.new(1, 0, 0.048, 0)
-Top.Position = UDim2.new(1, 0, 0.014, 0)
+Top.Size = UDim2.new(1.0150, 0, 0.09, 0)
+Top.Position = UDim2.new(1, 0, -0.014, 0)
 Top.ZIndex = 10000
-MakeUICorner(0.2, Top)
 
 CloseButton = Instance.new('TextButton', Top)
 CloseButton.AnchorPoint = Vector2.new(1, 0.5)
@@ -629,14 +628,13 @@ HideScriptButton = Instance.new('TextButton', MainFrameB)
 HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
 HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
-HideScriptButton.Position = UDim2.new(-1, 0, -0.7, 0)
+HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
 HideScriptButton.Font = Enum.Font.GothamBlack
 HideScriptButton.TextColor3 = Color3.fromRGB(255,0,0)
 HideScriptButton.TextScaled = true
 HideScriptButton.Text = 'Hide Script'
 MakeUICorner(0.3, CloseButton)
-
 
 TopBarSizes = {
 	[false] = UDim2.new(0.5, 0,0.048, 0),
