@@ -635,7 +635,7 @@ HideScriptButton.ScaleType = Enum.ScaleType.Fit
 HideScriptButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 HideScriptButton.TextScaled = true
 HideScriptButton.Text = ''
-MakeUICorner(0.8)
+MakeUICorner(0.8, HideScriptButton)
 
 TopBarSizes = {
 	[false] = UDim2.new(0.5, 0,0.048, 0),
