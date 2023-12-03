@@ -2425,7 +2425,7 @@ for tabName, mapsList in pairs(macroMapList) do
 	tabTxtLabel.AnchorPoint = Vector2.new(0.5, 0.5)
 	tabTxtLabel.Size = UDim2.new(1, 0, 0.8, 0)
 	tabTxtLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
-	tabTxtLabel.Font = Enum.Font.GothamBlack
+	tabTxtLabel.Font = Enum.Font.Bangers
 	tabTxtLabel.TextScaled = true
 	tabTxtLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 	tabTxtLabel.Text = tabName
