@@ -4483,11 +4483,9 @@ local function webhook ()
         currentItemCount = currentItemCount + 1
         local comma = (currentItemCount ~= newItemsCount) and "\n" or ""
     
-        if newItemsData[itemName] then
-            newItems = newItems .. string.format('+%s (%s), Total Items: (x%s, Inventory: x%s)', itemName, itemAmount, get_inventory_items()['itemName']['Amount'],) .. comma
-        else
-            newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount) .. comma
-        end
+        local inventoryAmount = get_inventory_items()[itemName] and get_inventory_items()[itemName]['Amount'] or 0
+    
+        newItems = newItems .. string.format('+%s (%s), Total Items: (x%s, Inventory: x%s)', itemName, itemAmount, newItemsData[itemName]['Amount'], inventoryAmount) .. comma
     end
 
 	if not ping then userID = "" end
