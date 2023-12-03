@@ -2322,24 +2322,22 @@ TestWebhook.MouseButton1Click:Connect(function()
 	local data = {
 		["content"] = userID,
 		["embeds"] = {
-
 			{
 				["title"] = 'Script Adventures',
 				['color'] = 6684927,
 				['footer'] = {
 					['text'] = string.format("// By Skele HUB (%s)", Time), 
 				},
+				['image'] = {
+					['url'] = 'https://i.ytimg.com/vi/vQFr7fqXqIE/maxresdefault.jpg'
+				},
 				['fields'] = {
 					{
 						['name'] = 'Test Webhook',
-						['value'] = '+999 Dio OH'
+						['value'] = '```diff\n +Dio OH```'
 					}
 				}
-
 			}
-
-
-
 		}
 	}
 
