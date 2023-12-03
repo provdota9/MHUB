@@ -603,8 +603,8 @@ MakeUICorner(0.3, CloseButton)
 HubTitle = Instance.new('TextLabel', Top)
 HubTitle.BackgroundTransparency = 1
 HubTitle.AnchorPoint = Vector2.new(0.5, 0.5)
-HubTitle.Size = UDim2.new(0.85, 0, 0.8, 0)
-HubTitle.Position = UDim2.new(0.5, 0, 0.5, 0)
+HubTitle.Size = UDim2.new(1.0150, 0, 0.09, 0)
+HubTitle.Position = UDim2.new(1, 0, -0.014, 0)
 HubTitle.ZIndex = 10001
 HubTitle.Font = Enum.Font.GothamBlack
 HubTitle.TextColor3 = Color3.fromRGB(255,255,255)
@@ -624,21 +624,22 @@ MainFrameB.Size = UDim2.new(0.525, 0, 0.525, 0)
 MainFrameB.Position = UDim2.new(0.5, 0, 0.5, 0)
 MainFrameB.Name = 'MainFrame'
 
-HideScriptButton = Instance.new('TextButton', MainFrameB)
+HideScriptButton = Instance.new('ImageButton', MainFrameB) -- Заменяем 'TextButton' на 'ImageButton'
 HideScriptButton.AnchorPoint = Vector2.new(1, 0.5)
 HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
 HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
-HideScriptButton.Font = Enum.Font.GothamBlack
-HideScriptButton.TextColor3 = Color3.fromRGB(255,0,0)
+HideScriptButton.Image = 'rbxassetid://15521926433'  -- Установите фактический Asset ID вашего изображения или путь к изображению
+HideScriptButton.ScaleType = Enum.ScaleType.Fit
+HideScriptButton.TextColor3 = Color3.fromRGB(255, 0, 0)
 HideScriptButton.TextScaled = true
-HideScriptButton.Text = 'Hide Script'
-MakeUICorner(0.3, CloseButton)
+HideScriptButton.Text = ''
+MakeUICorner(0.8)
 
 TopBarSizes = {
 	[false] = UDim2.new(0.5, 0,0.048, 0),
-	[true] = UDim2.new(1,0,0.048,0)
+	[true] = UDim2.new(1.0150, 0, 0.09, 0)
 }
 closeButtonSizes = {
 	[false] = UDim2.new(0.13, 0, 0.694, 0),
