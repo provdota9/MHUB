@@ -4479,12 +4479,16 @@ local function webhook ()
 	end
 
 	local currentItemCount = 0
-	for itemName, itemAmount in pairs(newItemsTable) do
-		currentItemCount += 1 local comma = "" if currentItemCount ~= newItemsCount then comma = "\n" end
-
-        newItems = newItems .. string.format('+%s (%s), Total Items: (x%s)', itemName, itemAmount, newItemsData[itemName]['Amount']) .. comma
-
-	end
+    for itemName, itemAmount in pairs(newItemsTable) do
+        currentItemCount = currentItemCount + 1
+        local comma = (currentItemCount ~= newItemsCount) and "\n" or ""
+    
+        if newItemsData[itemName] then
+            newItems = newItems .. string.format('+%s (%s), Total Items: (x%s)', itemName, itemAmount, newItemsData[itemName]['Amount']) .. comma
+        else
+            newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount) .. comma
+        end
+    end
 
 	if not ping then userID = "" end
 
