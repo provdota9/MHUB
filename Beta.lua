@@ -504,14 +504,8 @@ MainFrame.Name = 'MainFrame'
 MainContent = Instance.new('Frame', MainFrame)
 MainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 MainContent.Size = UDim2.new(1, 0, 1, 0)
-MakeUICorner(0.01, MainContent)
-
-lowerTop = Instance.new('Frame', MainContent)
-lowerTop.AnchorPoint = Vector2.new(0.5, 1)
-lowerTop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-lowerTop.Size = UDim2.new(1, 0, 0.019, 0)
-lowerTop.Position = UDim2.new(0.5, 0, 0.038, 0)	
-lowerTop.BorderSizePixel = 0
+MainContent.Name = 'Background'
+MakeUICorner(0.3, MainContent)
 
 ShadowMainContent = Instance.new('Frame', MainContent)
 ShadowMainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -579,36 +573,6 @@ task.spawn(function()
 		task.wait(1)
 	end
 end)
-
-Top = Instance.new('Frame', MainFrame)
-Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Top.AnchorPoint = Vector2.new(1, 0.5)
-Top.Size = UDim2.new(1.0150, 0, 0.09, 0)
-Top.Position = UDim2.new(1, 0, -0.014, 0)
-Top.ZIndex = 10000
-
-CloseButton = Instance.new('TextButton', Top)
-CloseButton.AnchorPoint = Vector2.new(1, 0.5)
-CloseButton.BackgroundColor3 = Color3.fromRGB(204, 0, 0)
-CloseButton.Size = UDim2.new(0.065, 0, 0.694, 0)
-CloseButton.Position = UDim2.new(0.984, 0, 0.5, 0)
-CloseButton.ZIndex = 10001
-CloseButton.Font = Enum.Font.GothamBlack
-CloseButton.TextColor3 = Color3.fromRGB(255,255,255)
-CloseButton.TextScaled = true
-CloseButton.Text = '-'
-MakeUICorner(0.3, CloseButton)
-
-
-HubTitle = Instance.new('ImageLabel', Top)
-HubTitle.BackgroundTransparency = 1
-HubTitle.AnchorPoint = Vector2.new(0.5, 0.5)
-HubTitle.Size = UDim2.new(1.0150, 0, 0.09, 0)
-HubTitle.Position = UDim2.new(1, 0, -0.014, 0)
-HubTitle.ZIndex = 10001
-HubTitle.Image = 'rbxassetid://15532572787'  -- Замените на фактический Asset ID вашего изображения
-HubTitle.ScaleType = Enum.ScaleType.Fit
-MakeUICorner(0.3, HubTitle)
 --hide gui
 ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
 ScreenGuiB.Name = 'HideScriptButton'
@@ -632,30 +596,6 @@ HideScriptButton.ZIndex = 10001
 HideScriptButton.Image = 'rbxassetid://15521926433'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Fit
 MakeUICorner(0.8, HideScriptButton)
-
-TopBarSizes = {
-	[false] = UDim2.new(0.5, 0,0.048, 0),
-	[true] = UDim2.new(1.0150, 0, 0.09, 0)
-}
-closeButtonSizes = {
-	[false] = UDim2.new(0.13, 0, 0.694, 0),
-	[true] = UDim2.new(0.065, 0, 0.694, 0)
-}
-
-HubTitlePoses = {
-	[false] = UDim2.new(0.45, 0, 0.5, 0),
-	[true] = UDim2.new(0.5, 0, 0.5, 0)
-}
-
-
-CloseButton.MouseButton1Click:Connect(function() 
-	MainContent.Visible = not MainContent.Visible 
-
-	HubTitle.Position = HubTitlePoses[MainContent.Visible]
-	CloseButton.Size = closeButtonSizes[MainContent.Visible]
-	Top.Size = TopBarSizes[MainContent.Visible]
-
-end)
 
 HideScriptButton.MouseButton1Click:Connect(function()
     ScreenGuiSC.Enabled = not ScreenGuiSC.Enabled -- Инвертируем значение свойства Enabled
