@@ -632,9 +632,6 @@ HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
 HideScriptButton.Image = 'rbxassetid://15521926433'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Fit
-HideScriptButton.TextColor3 = Color3.fromRGB(255, 0, 0)
-HideScriptButton.TextScaled = true
-HideScriptButton.Text = ''
 MakeUICorner(0.8, HideScriptButton)
 
 TopBarSizes = {
