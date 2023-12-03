@@ -504,8 +504,14 @@ MainFrame.Name = 'MainFrame'
 MainContent = Instance.new('Frame', MainFrame)
 MainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 MainContent.Size = UDim2.new(1, 0, 1, 0)
-MainContent.Name = 'Background'
-MakeUICorner(0.3, MainContent)
+MakeUICorner(0.01, MainContent)
+
+lowerTop = Instance.new('Frame', MainContent)
+lowerTop.AnchorPoint = Vector2.new(0.5, 1)
+lowerTop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+lowerTop.Size = UDim2.new(1, 0, 0.019, 0)
+lowerTop.Position = UDim2.new(0.5, 0, 0.038, 0)	
+lowerTop.BorderSizePixel = 0
 
 ShadowMainContent = Instance.new('Frame', MainContent)
 ShadowMainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
@@ -573,12 +579,14 @@ task.spawn(function()
 		task.wait(1)
 	end
 end)
---hide gui
-ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
-ScreenGuiB.Name = 'HideScriptButton'
-ScreenGuiB.ResetOnSpawn = false
-ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
-ScreenGuiB.Enabled = true
+
+Top = Instance.new('Frame', MainFrame)
+Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Top.AnchorPoint = Vector2.new(1, 0.5)
+Top.Size = UDim2.new(1.015, 0, 0.09, 0)
+Top.Position = UDim2.new(1.005, 0, -0.035, 0)
+Top.ZIndex = 10000
+MakeUICorner(0.3, Top)
 
 MainFrameB = Instance.new('Frame', ScreenGuiB)
 MainFrameB.BackgroundTransparency = 1
@@ -650,8 +658,8 @@ local function MakeDraggable (dragGui, dragwith)
 	end)
 
 end
-MakeDraggable(additionalFrame, additionalFrame,)
-MakeDraggable(MainFrame, MainContent)
+MakeDraggable(additionalFrame, additionalFrame)
+MakeDraggable(Top, MainFrame)
 
 Pages = Instance.new('ScrollingFrame', MainContent)
 Pages.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
