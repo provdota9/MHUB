@@ -603,12 +603,12 @@ MakeUICorner(0.3, CloseButton)
 HubTitle = Instance.new('ImageLabel', Top)
 HubTitle.BackgroundTransparency = 1
 HubTitle.AnchorPoint = Vector2.new(0.5, 0.5)
-HubTitle.Size = UDim2.new(0.85, 0, 0.8, 0)
-HubTitle.Position = UDim2.new(0.5, 0, 0.5, 0)
+HubTitle.Size = UDim2.new(1.0150, 0, 0.09, 0)
+HubTitle.Position = UDim2.new(1, 0, -0.014, 0)
 HubTitle.ZIndex = 10001
 HubTitle.Image = 'rbxassetid://15532572787'  -- Замените на фактический Asset ID вашего изображения
 HubTitle.ScaleType = Enum.ScaleType.Fit
-MakeUICorner(0.3, CloseButton)
+MakeUICorner(0.3, HubTitle)
 --hide gui
 ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
 ScreenGuiB.Name = 'HideScriptButton'
