@@ -728,7 +728,7 @@ local function MakeNewPage (pageName, pageButtonX)
 	newPageButtonTitle.BackgroundTransparency = 1
 	newPageButtonTitle.Size = UDim2.new(1, 0, 0.8, 0)
 	newPageButtonTitle.Position = UDim2.new(0.5, 0, 0.5, 0)
-	newPageButtonTitle.Font = Enum.Font.GothamBlack
+	newPageButtonTitle.Font = Enum.Font.Bangers
 	newPageButtonTitle.TextScaled = true
 	newPageButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	newPageButtonTitle.Text = string.upper(pageName)
@@ -1412,7 +1412,7 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 
 	local ResetButton = Instance.new('TextButton', DoubleButtonFrame) ResetButton.Name = '_resetbutton'
 	ResetButton.AnchorPoint = Vector2.new(1, 0)
-	ResetButton.BackgroundColor3 = Color3.fromRGB(153,0,0)
+	ResetButton.BackgroundColor3 = Color3.fromRGB(153,51,255)
 	ResetButton.Size = UDim2.new(0.279, 0, 1, 0)
 	ResetButton.Position = UDim2.new(1,0,0,0)
 
