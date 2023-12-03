@@ -585,7 +585,7 @@ Top = Instance.new('Frame', MainFrame)
 Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Top.AnchorPoint = Vector2.new(1, 0.5)
 Top.Size = UDim2.new(1.015, 0, 0.2, 0)
-Top.Position = UDim2.new(1.005, 0, -0.070, 0)
+Top.Position = UDim2.new(1.01, 0, -0.070, 0)
 Top.ZIndex = 10000
 MakeUICorner(0.3, Top)
 
@@ -619,7 +619,7 @@ HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
 HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
 HideScriptButton.Image = 'rbxassetid://15533941365'  -- Установите фактический Asset ID вашего изображения или путь к изображению
-HideScriptButton.ScaleType = Enum.ScaleType.Fit
+HideScriptButton.ScaleType = Enum.ScaleType.Crop
 HideScriptButton.Name = 'HideButtonImage'
 MakeUICorner(0.8, HideScriptButton)
 
