@@ -504,6 +504,7 @@ MainFrame.Name = 'MainFrame'
 MainContent = Instance.new('Frame', MainFrame)
 MainContent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 MainContent.Size = UDim2.new(1, 0, 1, 0)
+MainContent.Name = 'Background'
 MakeUICorner(0.01, MainContent)
 
 lowerTop = Instance.new('Frame', MainContent)
@@ -583,10 +584,26 @@ end)
 Top = Instance.new('Frame', MainFrame)
 Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Top.AnchorPoint = Vector2.new(1, 0.5)
-Top.Size = UDim2.new(1.015, 0, 0.09, 0)
-Top.Position = UDim2.new(1.005, 0, -0.035, 0)
+Top.Size = UDim2.new(1.015, 0, 0.2, 0)
+Top.Position = UDim2.new(1.005, 0, -0.070, 0)
 Top.ZIndex = 10000
 MakeUICorner(0.3, Top)
+
+HubTitle = Instance.new('ImageLabel', Top)
+HubTitle.BackgroundTransparency = 1
+HubTitle.AnchorPoint = Vector2.new(0.5, 0.5)
+HubTitle.Size = UDim2.new(0.85, 0, 0.8, 0)
+HubTitle.Position = UDim2.new(0.5, 0, 0.5, 0)
+HubTitle.ZIndex = 10001
+HubTitle.Image = 'rbxassetid://15533277908'  -- Замените на фактический Asset ID вашего изображения
+HubTitle.ScaleType = Enum.ScaleType.Fit
+HubTitle.Name = 'SkeleHubImage'
+--hide gui
+ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
+ScreenGuiB.Name = 'HideScriptButton'
+ScreenGuiB.ResetOnSpawn = false
+ScreenGuiB.ZIndexBehavior = Enum.ZIndexBehavior.Global
+ScreenGuiB.Enabled = true
 
 MainFrameB = Instance.new('Frame', ScreenGuiB)
 MainFrameB.BackgroundTransparency = 1
@@ -604,6 +621,30 @@ HideScriptButton.ZIndex = 10001
 HideScriptButton.Image = 'rbxassetid://15521926433'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Fit
 MakeUICorner(0.8, HideScriptButton)
+
+TopBarSizes = {
+	[false] = UDim2.new(0.5, 0,0.048, 0),
+	[true] = UDim2.new(1.0150, 0, 0.09, 0)
+}
+closeButtonSizes = {
+	[false] = UDim2.new(0.13, 0, 0.694, 0),
+	[true] = UDim2.new(0.065, 0, 0.694, 0)
+}
+
+HubTitlePoses = {
+	[false] = UDim2.new(0.45, 0, 0.5, 0),
+	[true] = UDim2.new(0.5, 0, 0.5, 0)
+}
+
+
+CloseButton.MouseButton1Click:Connect(function() 
+	MainContent.Visible = not MainContent.Visible 
+
+	HubTitle.Position = HubTitlePoses[MainContent.Visible]
+	CloseButton.Size = closeButtonSizes[MainContent.Visible]
+	Top.Size = TopBarSizes[MainContent.Visible]
+
+end)
 
 HideScriptButton.MouseButton1Click:Connect(function()
     ScreenGuiSC.Enabled = not ScreenGuiSC.Enabled -- Инвертируем значение свойства Enabled
