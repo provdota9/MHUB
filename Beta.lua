@@ -105,7 +105,7 @@ local DefaultFiles = {
 
 }
 
-local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', 'Noble Portal', 'Port Agency Portal', "Demon Leader's Portal"}
+local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', 'Noble Portal', 'Port Agency', "Demon Leader's Portal"}
 local DifficultiesName = {
 	double_cost = 'High Cost',
 	fast_enemies = 'Fast Enemies',
@@ -4482,7 +4482,7 @@ local function webhook ()
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount += 1 local comma = "" if currentItemCount ~= newItemsCount then comma = "\n" end
 
-		newItems = newItems .. string.format('+%s (%s) Total Items: (x%s)', itemName, itemAmount, itemData.Amount) .. comma
+		newItems = newItems .. string.format('+%s (%s) Total Items: (x%s)', itemName, itemAmount, currentItemCount) .. comma
 
 	end
 
