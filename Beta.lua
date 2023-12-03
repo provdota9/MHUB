@@ -622,30 +622,6 @@ HideScriptButton.Image = 'rbxassetid://15521926433'  -- Установите ф�
 HideScriptButton.ScaleType = Enum.ScaleType.Fit
 MakeUICorner(0.8, HideScriptButton)
 
-TopBarSizes = {
-	[false] = UDim2.new(0.5, 0,0.048, 0),
-	[true] = UDim2.new(1.0150, 0, 0.09, 0)
-}
-closeButtonSizes = {
-	[false] = UDim2.new(0.13, 0, 0.694, 0),
-	[true] = UDim2.new(0.065, 0, 0.694, 0)
-}
-
-HubTitlePoses = {
-	[false] = UDim2.new(0.45, 0, 0.5, 0),
-	[true] = UDim2.new(0.5, 0, 0.5, 0)
-}
-
-
-CloseButton.MouseButton1Click:Connect(function() 
-	MainContent.Visible = not MainContent.Visible 
-
-	HubTitle.Position = HubTitlePoses[MainContent.Visible]
-	CloseButton.Size = closeButtonSizes[MainContent.Visible]
-	Top.Size = TopBarSizes[MainContent.Visible]
-
-end)
-
 HideScriptButton.MouseButton1Click:Connect(function()
     ScreenGuiSC.Enabled = not ScreenGuiSC.Enabled -- Инвертируем значение свойства Enabled
 end)
