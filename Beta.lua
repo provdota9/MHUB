@@ -584,7 +584,7 @@ end)
 Top = Instance.new('Frame', MainFrame)
 Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Top.AnchorPoint = Vector2.new(1, 0.5)
-Top.Size = UDim2.new(1.015, 0, 0.2, 0)
+Top.Size = UDim2.new(1.02, 0, 0.2, 0)
 Top.Position = UDim2.new(1.01, 0, -0.070, 0)
 Top.ZIndex = 10000
 MakeUICorner(0.3, Top)
@@ -728,7 +728,7 @@ local function MakeNewPage (pageName, pageButtonX)
 	newPageButtonTitle.BackgroundTransparency = 1
 	newPageButtonTitle.Size = UDim2.new(1, 0, 0.8, 0)
 	newPageButtonTitle.Position = UDim2.new(0.5, 0, 0.5, 0)
-	newPageButtonTitle.Font = Enum.Font.Bangers
+	newPageButtonTitle.Font = Enum.Font.GothamBlack
 	newPageButtonTitle.TextScaled = true
 	newPageButtonTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
 	newPageButtonTitle.Text = string.upper(pageName)
