@@ -618,8 +618,9 @@ HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
 HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
-HideScriptButton.Image = 'rbxassetid://15521926433'  -- Установите фактический Asset ID вашего изображения или путь к изображению
+HideScriptButton.Image = 'rbxassetid://15533941365'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Fit
+HideScriptButton.Name = 'HideButtonImage'
 MakeUICorner(0.8, HideScriptButton)
 
 HideScriptButton.MouseButton1Click:Connect(function()
@@ -806,7 +807,7 @@ local function MakeNewSubPage (pageName, side, scaleY, cornerScale, UIPaddingTop
 	local page = ScrollingContent[pageName][side]
 
 	local newSubPage = Instance.new('Frame', page)
-	newSubPage.BackgroundColor3 = Color3.fromRGB(102, 0, 0)
+	newSubPage.BackgroundColor3 = Color3.fromRGB(51, 0, 102)
 	newSubPage.BorderSizePixel = 0
 	newSubPage.Size = UDim2.new(0.95, 0, scaleY, 0)
 	MakeUICorner(cornerScale, newSubPage)
