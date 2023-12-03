@@ -596,7 +596,7 @@ HubTitle.Size = UDim2.new(0.85, 0, 0.8, 0)
 HubTitle.Position = UDim2.new(0.5, 0, 0.5, 0)
 HubTitle.ZIndex = 10001
 HubTitle.Image = 'rbxassetid://15533277908'  -- Замените на фактический Asset ID вашего изображения
-HubTitle.ScaleType = Enum.ScaleType.Fit
+HubTitle.ScaleType = Enum.ScaleType.Crop
 HubTitle.Name = 'SkeleHubImage'
 --hide gui
 ScreenGuiB = Instance.new('ScreenGui', game.CoreGui)
@@ -679,7 +679,7 @@ MakeDraggable(additionalFrame, additionalFrame)
 MakeDraggable(Top, MainFrame)
 
 Pages = Instance.new('ScrollingFrame', MainContent)
-Pages.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+Pages.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 Pages.Size = UDim2.new(1, 0, 0.047, 0)
 Pages.Position = UDim2.new(0, 0, 0.038, 0)
 Pages.AutomaticCanvasSize = 'Y'
@@ -734,7 +734,7 @@ local function MakeNewPage (pageName, pageButtonX)
 	newPageButtonTitle.ZIndex = 9875
 
 	local newPageButtonBottomLine = Instance.new('Frame', newPageButton)
-	newPageButtonBottomLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	newPageButtonBottomLine.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 	newPageButtonBottomLine.Name = 'BottomLine'
 	newPageButtonBottomLine.AnchorPoint = Vector2.new(0, 1)
 	newPageButtonBottomLine.Size = UDim2.new(1, 0, 0.05, 0)
@@ -835,7 +835,7 @@ local function MakeTitle (subPage, TitleTXT, scaleY)
 end
 
 local checkBoxColors = {
-	[true] = Color3.fromRGB(255, 0, 0);
+	[true] = Color3.fromRGB(102, 0, 255);
 	[false] = Color3.fromRGB(0, 0, 0)
 }
 
@@ -849,7 +849,7 @@ local function MakeCheckbox (subPage, checkBoxTXT, scaleY)
 
 	local newCheckBox = Instance.new('Frame', newCheckBoxFrame)
 	newCheckBox.AnchorPoint = Vector2.new(0, 0.5)
-	newCheckBox.BackgroundColor3 = Color3.fromRGB(51, 0, 0)
+	newCheckBox.BackgroundColor3 = Color3.fromRGB(51, 0, 102)
 	newCheckBox.Size = UDim2.new(0.049, 0, 0.73, 0)
 	newCheckBox.Position = UDim2.new(0, 0, 0.5, 0)
 	newCheckBox.BorderSizePixel = 0
@@ -892,7 +892,7 @@ local function MakeLargeButton (subPage, buttonTXT, scaleY)
 
 	local newLargeButton = Instance.new('TextButton', newLargeButtonFrame)
 	newLargeButton.AnchorPoint = Vector2.new(0.5, 0.5)
-	newLargeButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
+	newLargeButton.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 	newLargeButton.BorderSizePixel = 0
 	newLargeButton.Size = UDim2.new(1, 0, 0.67, 0)
 	newLargeButton.Position = UDim2.new(0.5, 0, 0.5, 0)
@@ -913,7 +913,7 @@ local function MakeLargeButton (subPage, buttonTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', newLargeButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 51, 51)
+	UIStroke.Color = Color3.fromRGB(178, 102, 255)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -978,7 +978,7 @@ local function MakeDDL (subPage, DDLTXT, scaleY)
 	newDDLLabel.Text = DDLTXT
 
 	local newDDLButton = Instance.new('TextButton', newDDLFrame)
-	newDDLButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
+	newDDLButton.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 	newDDLButton.BorderSizePixel = 0
 	newDDLButton.Size = UDim2.new(1, 0, 0.408, 0)
 	newDDLButton.Position = UDim2.new(0, 0, 0.45, 0)
@@ -987,7 +987,7 @@ local function MakeDDL (subPage, DDLTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', newDDLButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 51, 51)
+	UIStroke.Color = Color3.fromRGB(178, 102, 255)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1031,7 +1031,7 @@ end
 
 local DDLColors = {
 	[true] = Color3.fromRGB(0, 176, 109);
-	[false] = Color3.fromRGB(255, 51, 51)
+	[false] = Color3.fromRGB(178, 102, 255)
 }
 
 local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabName)
@@ -1040,7 +1040,7 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 
 	if not DDL then
 		DDL = Instance.new('Frame', MainContent) DDL.Name = 'List' DDL.Visible = false
-		DDL.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
+		DDL.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 		DDL.BorderSizePixel = 0
 		DDL.ZIndex = 555
 		--DDL.Size = UDim2.new(0.448, 0, 0.388, 0)
@@ -1049,7 +1049,7 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 
 		local UIStroke = Instance.new('UIStroke', DDL)
 		UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Contextual
-		UIStroke.Color = Color3.fromRGB(255, 51, 51)
+		UIStroke.Color = Color3.fromRGB(178, 102, 255)
 		UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 		UIStroke.Thickness = 1
 
@@ -1060,14 +1060,14 @@ local function GetDDL (ddlButton, items, multiple, keyName, secondKeyName, tabNa
 		ScrollingItems.ZIndex = 556
 		ScrollingItems.AutomaticCanvasSize = 'Y'
 		ScrollingItems.CanvasSize = UDim2.new(0,0,0,0)
-		ScrollingItems.ScrollBarImageColor3 = Color3.fromRGB(255,255,255)
+		ScrollingItems.ScrollBarImageColor3 = Color3.fromRGB(102,0,255)
 		ScrollingItems.ScrollBarThickness = 3
 		ScrollingItems.BorderSizePixel = 0
 		ScrollingItems.ScrollingDirection = Enum.ScrollingDirection.Y
 		makeUIList(0.03, ScrollingItems)
 
 		local TemplateButton = Instance.new('TextButton', ScrollingItems) TemplateButton.Name = 'Template' TemplateButton.Visible = false
-		TemplateButton.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
+		TemplateButton.BackgroundColor3 = Color3.fromRGB(178, 102, 255)
 		TemplateButton.BorderSizePixel = 0
 		TemplateButton.Size = UDim2.new(1, 0, 0.08, 0)
 		TemplateButton.ZIndex = 556
@@ -1187,7 +1187,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 	TextBoxTitle.Text = TitleTXT
 
 	local TextBoxShadow = Instance.new('Frame', TextBoxFrame)
-	TextBoxShadow.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
+	TextBoxShadow.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 	TextBoxShadow.BorderSizePixel = 0
 	TextBoxShadow.Size = UDim2.new(1, 0, 0.408, 0)
 	TextBoxShadow.Position = UDim2.new(0, 0, 0.45, 0)
@@ -1199,7 +1199,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 	TextBox.Size = UDim2.new(0.985, 0, 0.408, 0)
 	TextBox.Position = UDim2.new(0.015, 0, 0.45, 0)
 	TextBox.Font = Enum.Font.GothamBold
-	TextBox.PlaceholderColor3 = Color3.fromRGB(255, 0, 0)
+	TextBox.PlaceholderColor3 = Color3.fromRGB(102, 0, 255)
 	TextBox.PlaceholderText = PlacehodlerTXT
 	TextBox.TextScaled = true
 	TextBox.TextColor3 = Color3.fromRGB(255,255,255)
@@ -1207,7 +1207,7 @@ local function MakeTextBox (subPage, PlacehodlerTXT, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', TextBoxShadow)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 51, 51)
+	UIStroke.Color = Color3.fromRGB(178, 102, 255)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1233,7 +1233,7 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 	slideTitle.Text = TitleTXT
 
 	local slideBox = Instance.new('TextBox', slideFrame)
-	slideBox.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
+	slideBox.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 	slideBox.BorderSizePixel = 0
 	slideBox.Size = UDim2.new(0.468, 0, 0.312, 0)
 	slideBox.Position = UDim2.new(0.532, 0, 0.038, 0)
@@ -1246,12 +1246,12 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', slideBox)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 51, 51)
+	UIStroke.Color = Color3.fromRGB(178, 102, 255)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
 	local slider = Instance.new('Frame', slideFrame) slider.Name = "slider"
-	slider.BackgroundColor3 = Color3.fromRGB(51, 0, 0)
+	slider.BackgroundColor3 = Color3.fromRGB(25, 0, 51)
 	slider.BorderSizePixel = 0
 	slider.Size = UDim2.new(1, 0, 0.35, 0)
 	slider.Position = UDim2.new(0, 0, 0.508, 0)
@@ -1259,12 +1259,12 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 
 	local UIStroke = Instance.new('UIStroke', slider)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(77, 9, 9)
+	UIStroke.Color = Color3.fromRGB(50, 9, 77)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
 	local sliderBar = Instance.new('Frame', slider)
-	sliderBar.BackgroundColor3 = Color3.fromRGB(255,255,255)
+	sliderBar.BackgroundColor3 = Color3.fromRGB(102,0,255)
 	sliderBar.BorderSizePixel = 0
 	sliderBar.Size = UDim2.new(1,0,1,0)
 	MakeUICorner(0.2, sliderBar)
@@ -1272,8 +1272,8 @@ local function MakeSlider (subPage, TitleTXT, scaleY)
 	local UIGradient = Instance.new('UIGradient', sliderBar)
 
 	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 51, 51) ),
-		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255) ),
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(51, 0, 102) ),
+		ColorSequenceKeypoint.new(1, Color3.fromRGB(102, 0, 255) ),
 	}
 
 	local sliderButton = Instance.new('TextButton', slider) sliderButton.Name = "SliderButton"
@@ -1303,7 +1303,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	slideTitle.TextXAlignment = Enum.TextXAlignment.Left
 	slideTitle.Text = TitleTXT
 	slideTitle.TextStrokeTransparency = 0
-	slideTitle.TextStrokeColor3 = Color3.fromRGB(204,0,0)
+	slideTitle.TextStrokeColor3 = Color3.fromRGB(102, 0, 204)
 	slideTitle.ZIndex = 3
 
 	local slideAmount = Instance.new('TextLabel', slideFrame)
@@ -1318,23 +1318,23 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	slideAmount.Text = "[0/0]"
 	slideAmount.Name = "AmountLabel"
 	slideAmount.TextStrokeTransparency = 0
-	slideAmount.TextStrokeColor3 = Color3.fromRGB(204,0,0)
+	slideAmount.TextStrokeColor3 = Color3.fromRGB(102, 0, 204)
 	slideAmount.ZIndex = 3
 
 	local slider = Instance.new('Frame', slideFrame) slider.Name = "slider"
-	slider.BackgroundColor3 = Color3.fromRGB(77, 9, 9)
+	slider.BackgroundColor3 = Color3.fromRGB(50, 9, 77)
 	slider.BorderSizePixel = 0
 	slider.Size = UDim2.new(1, 0, 1, 0)
 	MakeUICorner(0.2, slider)
 
 	local UIStroke = Instance.new('UIStroke', slider)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255, 51, 51)
+	UIStroke.Color = Color3.fromRGB(178, 102, 255)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
 	local sliderBar = Instance.new('Frame', slider)
-	sliderBar.BackgroundColor3 = Color3.fromRGB(255,255,255)
+	sliderBar.BackgroundColor3 = Color3.fromRGB(102,0,255)
 	sliderBar.BorderSizePixel = 0
 	sliderBar.Size = UDim2.new(1,0,1,0)
 	MakeUICorner(0.2, sliderBar)
@@ -1342,7 +1342,7 @@ local function MakeSliderV2 (subPage, TitleTXT, scaleY)
 	local UIGradient = Instance.new('UIGradient', sliderBar)
 
 	UIGradient.Color = ColorSequence.new{
-		ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 51, 51) ),
+		ColorSequenceKeypoint.new(0, Color3.fromRGB(178, 102, 255) ),
 		ColorSequenceKeypoint.new(1, Color3.fromRGB(255, 255, 255) ),
 	}
 
@@ -1358,7 +1358,7 @@ end
 local function MakeTextBlock (subPage, DefaultTXT, ScaleY)
 
 	local TxtBlockFrame = Instance.new('Frame', subPage)
-	TxtBlockFrame.BackgroundColor3 = Color3.fromRGB(51, 0, 0)
+	TxtBlockFrame.BackgroundColor3 = Color3.fromRGB(51)
 	TxtBlockFrame.BorderSizePixel = 0
 	TxtBlockFrame.Size = UDim2.new(1, 0, ScaleY, 0)
 	TxtBlockFrame.LayoutOrder = Orders[subPage]
@@ -1388,14 +1388,14 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 	DoubleButtonFrame.LayoutOrder = Orders[subPage] Orders[subPage] +=1
 
 	local BiggerButton = Instance.new('TextButton', DoubleButtonFrame) BiggerButton.Name = "_bigbutton"
-	BiggerButton.BackgroundColor3 = Color3.fromRGB(153,0, 0)
+	BiggerButton.BackgroundColor3 = Color3.fromRGB(76,0, 153)
 	BiggerButton.Size = UDim2.new(0.69, 0, 1, 0)
 	BiggerButton.Text = ""
 	MakeUICorner(0.15, BiggerButton)
 
 	local UIStroke = Instance.new('UIStroke', BiggerButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255,51,51)
+	UIStroke.Color = Color3.fromRGB(153,51,255)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -1417,7 +1417,7 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 
 	local UIStroke = Instance.new('UIStroke', ResetButton)
 	UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-	UIStroke.Color = Color3.fromRGB(255,51,51)
+	UIStroke.Color = Color3.fromRGB(153, 51, 255)
 	UIStroke.LineJoinMode = Enum.LineJoinMode.Round
 	UIStroke.Thickness = 1
 
@@ -2157,7 +2157,7 @@ HideUHLabel.AnchorPoint = Vector2.new(0, 0.5)
 HideUHLabel.TextXAlignment = Enum.TextXAlignment.Left
 
 local HideUHButton = Instance.new('TextButton', HideUHFrame)
-HideUHButton.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
+HideUHButton.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 HideUHButton.TextColor3 = Color3.fromRGB(255,255,255)
 HideUHButton.BorderSizePixel = 0
 HideUHButton.AnchorPoint = Vector2.new(0, 0.5)
@@ -2170,7 +2170,7 @@ MakeUICorner(0.15, HideUHButton)
 
 local HideUHStroke = Instance.new('UIStroke', HideUHButton)
 HideUHStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
-HideUHStroke.Color = Color3.fromRGB(255, 51, 51)
+HideUHStroke.Color = Color3.fromRGB(178, 102, 255)
 HideUHStroke.LineJoinMode = Enum.LineJoinMode.Round
 HideUHStroke.Thickness = 1
 
@@ -2324,9 +2324,9 @@ TestWebhook.MouseButton1Click:Connect(function()
 
 			{
 				["title"] = 'Anime Adventures',
-				['color'] = 14816533,
+				['color'] = 6684927,
 				['footer'] = {
-					['text'] = string.format("// Made by Skele Hub (%s)", Time), 
+					['text'] = string.format("// By Skele HUB (%s)", Time), 
 				},
 				['fields'] = {
 					{
@@ -2412,7 +2412,7 @@ for tabName, mapsList in pairs(macroMapList) do
 	end)
 
 	local bottomLine = Instance.new('Frame', newTab) bottomLine.Name = 'bottomLine'
-	bottomLine.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	bottomLine.BackgroundColor3 = Color3.fromRGB(102, 0, 255)
 	bottomLine.BorderSizePixel = 0
 	bottomLine.Size = UDim2.new(1, 0, 0.05, 0)
 	bottomLine.AnchorPoint = Vector2.new(0, 1)
@@ -4496,7 +4496,7 @@ local function webhook ()
 
 			{
 				["title"] = 'Anime Adventures',
-				['color'] = 14816533,
+				['color'] = 6684927,
 				["description"] = levelAndUser,
 				['footer'] = {
 					['text'] = string.format("// Made by Skele Hub (%s)", os.date("%X")), 
