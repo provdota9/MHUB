@@ -4482,7 +4482,7 @@ local function webhook ()
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount += 1 local comma = "" if currentItemCount ~= newItemsCount then comma = "\n" end
 
-		newItems = newItems .. string.format('+%s (%s) Total Items: (x%s)', itemName, itemAmount, currentItemCount) .. comma
+		newItems = newItems .. string.format('+%s (%s) Total Items: (x%s)', itemName, itemAmount, newItemsData[itemID]) .. comma
 
 	end
 
