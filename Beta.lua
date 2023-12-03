@@ -650,8 +650,7 @@ local function MakeDraggable (dragGui, dragwith)
 	end)
 
 end
-MakeDraggable(additionalFrame, additionalFrame)
-MakeDraggable(Top, MainFrame)
+MakeDraggable(additionalFrame, additionalFrame, MainContent)
 
 Pages = Instance.new('ScrollingFrame', MainContent)
 Pages.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
