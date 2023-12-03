@@ -2324,7 +2324,7 @@ TestWebhook.MouseButton1Click:Connect(function()
 		["embeds"] = {
 
 			{
-				["title"] = 'Anime Adventures',
+				["title"] = 'Script Adventures',
 				['color'] = 6684927,
 				['footer'] = {
 					['text'] = string.format("// By Skele HUB (%s)", Time), 
