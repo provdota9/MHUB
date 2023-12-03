@@ -4482,7 +4482,7 @@ local function webhook ()
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount += 1 local comma = "" if currentItemCount ~= newItemsCount then comma = "\n" end
 
-		newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount, .. ' Total Items: ' newItemsCount .. ')') .. comma
+		newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount, .. ' Total Items: ' .. newItemsCount .. ')') .. comma
 
 	end
 
@@ -4539,7 +4539,7 @@ task.spawn(function()
 	pcall(function()
 
 		if queue_on_teleport then
-			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/Skele Hub/main/script"))()'
+			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/MHUB/main/Beta.lua"))()'
 			queue_on_teleport(SkeleHubSCRIPT)
 		end
 
