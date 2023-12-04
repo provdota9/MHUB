@@ -4478,14 +4478,14 @@ local function webhook ()
 		newItems = newItems .. string.format("+%s %s\n", math.floor(newResourcesTable.amount), newResourcesTable.name)
 	end
 
-	local uniqueItemCount = 0
+	local totalPitems = ItemInventoryServiceClient["session"]["inventory"]['inventory_profile_data']['normal_items']['Amount'] elseif ItemInventoryServiceClient["session"]['inventory']['inventory_profile_data']['unique_items']['Amount']
 	local currentItemCount = 0
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, uniqueItemCount) .. comma
+		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, totalPitems) .. comma
 	end
 
 	if not ping then userID = "" end
