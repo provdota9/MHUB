@@ -4390,7 +4390,7 @@ local contentNewSecretItem = ""
 
 local function newSecretItemFunc (itemName, Amount)
 	if contentNewSecretItem == "" then
-		contentNewSecretItem = string.format("You have got %s (%s)", itemName, Amount)
+		contentNewSecretItem = string.format("You have got ```diff\n+%s (%s)```", itemName, Amount)
 	else
 		contentNewSecretItem = contentNewSecretItem .. string.format(", %s (%s)", itemName, Amount)
 
@@ -4486,7 +4486,7 @@ local function webhook ()
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, totalItemCount) .. comma
+		newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount) .. comma
 	end
 
 	if not ping then userID = "" end
