@@ -4478,7 +4478,9 @@ local function webhook ()
 		newItems = newItems .. string.format("+%s %s\n", math.floor(newResourcesTable.amount), newResourcesTable.name)
 	end
 
-	local totalPitems = ItemInventoryServiceClient["session"]["inventory"]['inventory_profile_data']['normal_items']['Amount']
+	local normalItemsData = ItemInventoryServiceClient["session"]["inventory"]['inventory_profile_data']['normal_items']
+	local totalPitems = normalItemsData and normalItemsData['Amount'] or 'Error lel'
+
 	local currentItemCount = 0
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
