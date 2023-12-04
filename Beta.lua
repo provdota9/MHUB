@@ -4480,7 +4480,7 @@ local function webhook ()
 
 	local currentItemCount = 0
 
-	local totalAmount = newResourcesTable[itemName] and newResourcesTable[itemName].amount or 'Cant Find this item'
+	local totalAmount = newResourcesTable[itemName] and newResourcesTable[itemName].amount or 0
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
 		local comma = ""
