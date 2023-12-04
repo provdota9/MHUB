@@ -105,7 +105,7 @@ local DefaultFiles = {
 
 }
 
-local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', 'Noble Portal', 'Port Agency', "Demon Leader's Portal"}
+local PortalsList = {'Alien Portal', 'Summer Portal', 'Eclipse Portal', 'Puppet Portal', 'Noble Portal', 'Port Agency Portal', "Demon Leader's Portal"}
 local DifficultiesName = {
 	double_cost = 'High Cost',
 	fast_enemies = 'Fast Enemies',
@@ -124,7 +124,7 @@ local portalWorlds = {
 	hxhant_infinite = 'Ant Kingdom (Summer)',
 	opm_infinite = 'Alien Spaceship (Underwater)',
 	eclipse_portal = 'The Eclipse',
-    port_agencgy = 'Sky Club',
+    port_agencgy_portal = 'Sky Club',
 	noble_portal = 'Mountain Temple',
     morioh_halloween = 'Bizzare Town (Haunted)',
     namek_halloween = 'Planet Namak (Haunted)',
@@ -427,7 +427,7 @@ local macroMapList = {
 		'Cursed Academy (Summer)',
 		'Fabled Kingdom (Cube)',
 		'The Eclipse',
-        'Port Agency',
+        'Port Agency Portal',
 		'Noble Portal',
 		'Alien Spaceship (Final)',
 		'Puppet Island (Birdcage)'
@@ -4479,14 +4479,12 @@ local function webhook ()
 	end
 
 	local currentItemCount = 0
-
-	local totalAmount = newResourcesTable[itemName].amount or 0
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, totalAmount) .. comma
+		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, newResourcesTable[itemName].amount) .. comma
 	end
 
 	if not ping then userID = "" end
