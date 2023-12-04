@@ -4477,8 +4477,6 @@ local function webhook ()
 		if newResourcesTable.amount <=0 then continue end
 		newItems = newItems .. string.format("+%s %s\n", math.floor(newResourcesTable.amount), newResourcesTable.name)
 	end
-	local playerInventoryCount = getInventoryItemCount(itemName)
-    local totalItemCount = itemAmount + playerInventoryCount
 
 	local currentItemCount = 0
 	for itemName, itemAmount in pairs(newItemsTable) do
