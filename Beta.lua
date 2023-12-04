@@ -4484,7 +4484,7 @@ local function webhook ()
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, itemData.Amount) .. comma
+		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, itemData[itemId].Amount) .. comma
 	end
 
 	if not ping then userID = "" end
