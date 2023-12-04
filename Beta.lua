@@ -4482,9 +4482,10 @@ local function webhook ()
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
 		local comma = ""
+		local itemTotal = oldItemsData[itemId].Amount + ItemAmount
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, itemData.Amount) .. comma
+		newItems = newItems .. string.format('+%s (%s), Total: (%s)', itemName, itemAmount, itemTotal) .. comma
 	end
 
 	if not ping then userID = "" end
