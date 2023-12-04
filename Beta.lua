@@ -4477,9 +4477,8 @@ local function webhook ()
 		if newResourcesTable.amount <=0 then continue end
 		newItems = newItems .. string.format("+%s %s\n", math.floor(newResourcesTable.amount), newResourcesTable.name)
 	end
-
-	local normalItemsData = ItemInventoryServiceClient["session"]["inventory"]['inventory_profile_data']['normal_items']
-	local totalPitems = normalItemsData and normalItemsData['Amount'] or 'Error lel'
+	local playerInventoryCount = getInventoryItemCount(itemName)
+    local totalItemCount = itemAmount + playerInventoryCount
 
 	local currentItemCount = 0
 	for itemName, itemAmount in pairs(newItemsTable) do
@@ -4487,7 +4486,7 @@ local function webhook ()
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, totalPitems) .. comma
+		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, totalItemCount) .. comma
 	end
 
 	if not ping then userID = "" end
