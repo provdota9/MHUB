@@ -4479,12 +4479,14 @@ local function webhook ()
 	end
 
 	local currentItemCount = 0
+
+	local totalAmount = newResourcesTable[itemName].amount or 'Cant Find this item'
 	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, newResourcesTable[itemName].amount) .. comma
+		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, totalAmount) .. comma
 	end
 
 	if not ping then userID = "" end
