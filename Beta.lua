@@ -3516,7 +3516,7 @@ if not IsLobby then
 end
 
 local cannotBePlacedAnywhere = {}
-local farmUnits = {'speedwagon', 'bulma', 'nami_evolved'}
+local farmUnits = {'speedwagon', 'bulma', 'nami_evolved', 'hoshino_2_evolved', 'hoshino_evolved'}
 local function getNextMoveAUTOGAME ()
 	local playerMoney = player._stats.resource.Value
 	local focusFarm = GetSave(FocusOnFarmAutoPlace.Name)
@@ -4484,7 +4484,7 @@ local function webhook ()
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s)', itemName, itemAmount) .. comma
+		newItems = newItems .. string.format('+%s (%s), Total: (x%s)', itemName, itemAmount, itemData.Amount) .. comma
 	end
 
 	if not ping then userID = "" end
