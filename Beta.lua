@@ -4479,7 +4479,7 @@ local function webhook ()
 	end
 
 	local currentItemCount = 0
-	for itemName, itemAmount, itemData.Amount in pairs(newItemsTable) do
+	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
