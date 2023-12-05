@@ -3098,7 +3098,7 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc()
+local function AutoBuyCapsuleFunc ()
     local Candy = player._stats._resourceCandies.Value
 
     if not IsLobby then return end
