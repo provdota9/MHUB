@@ -4514,7 +4514,7 @@ local function webhook ()
 
 					{
 						['name'] = "Rewards",
-						['value'] = '``` ' .. newItems .. ' ```',
+						['value'] = newItems,
 						['inline'] = true
 					},
 
