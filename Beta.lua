@@ -4484,6 +4484,7 @@ local function webhook ()
 		for itemName, itemAmount in pairs(newItemsTable) do
 			currentItemCount = currentItemCount + 1
 			local comma = ""
+			TotalDamage = math.floor(TotalDamage + 0.5)
 	
 			if itemData.Name == itemName then
 				newItems = newItems .. string.format("+%s (%s), Total: (x%s) \n", itemName, itemAmount, itemData.Amount) .. comma
@@ -4508,7 +4509,7 @@ local function webhook ()
 				['fields'] = {
 					{
 						['name'] = "Player Stats",
-						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :crossed_swords:Damage: %s\n :broken_heart:Kills: %s", TotalGems, TotalGold, TotalCandy, BattlePass, math.floor(TotalDamage), TotalKills)
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :crossed_swords:Damage: %s\n :broken_heart:Kills: %s", TotalGems, TotalGold, TotalCandy, BattlePass, TotalDamage, TotalKills)
 						['inline'] = true
 					},
 
