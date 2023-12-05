@@ -1474,11 +1474,6 @@ local Main_SellSkinsSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05,
 MakeTitle(Main_SellSkinsSubPage, 'Auto Sell Skins', 0.195)
 local AutoDeleteSkins = MakeCheckbox(Main_SellSkinsSubPage, 'Auto Delete Skins', 0.162)
 local selectedSkinsDDL = MakeDDL(Main_SellSkinsSubPage, 'Select Skins', 0.517)
-
------------------------
-local Main_EventSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
-MakeTitle(Main_EventSubPage, 'Event', 0.195)
-local AutoBuyCapsule = MakeCheckbox(Main_EventSubPage, 'Auto Buy Event Capsule', 0.162)
 -----------------------
 
 Main_HideYourself = MakeNewSubPage('Main', 'Left', 0.21, 0.05, 0.04, 0.07)
@@ -3098,44 +3093,6 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc()
-    local Candy = player._stats._resourceCandies.Value
-
-    if not IsLobby then return end
-
-    if Candy <= 149 then return end
-
-    local args
-    if Candy >= 15000 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "100"
-        }
-    elseif Candy >= 1500 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "10"
-        }
-    elseif Candy >= 150 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "1"
-        }
-    end
-
-    if args then
-        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
-    end
-end
-
-
-
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
 
 local function AutoDeleteSkinsFunc ()
@@ -4301,7 +4258,6 @@ checkBoxFunc(OnlyFriendsPortal)
 checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
-checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
