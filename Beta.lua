@@ -3098,8 +3098,7 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc ()
-
+local function AutoBuyCapsuleFunc()
     local Candy = player._stats._resourceCandies.Value
 
     if not IsLobby then return end
@@ -3136,17 +3135,14 @@ local function AutoBuyCapsuleFunc ()
 end
 
 AutoBuyCapsule.MouseButton1Click:Connect(function()
+    local enabled = not GetSave(AutoBuyCapsule.Name)
+    Save(AutoBuyCapsule.Name, enabled)
+    AutoBuyCapsule.Parent.BackgroundColor3 = checkBoxColors[enabled]
 
-	local enabled = not GetSave(AutoBuyCapsule.Name)
-	Save(AutoBuyCapsule.Name, enabled)
-
-	AutoBuyCapsule.Parent.BackgroundColor3 = checkBoxColors[enabled]
-
-	AutoBuyCapsuleFunc(enabled)
-
-	if AutoBuyCapsuleFunc(enabled) then 
-		task.wait(0.5) and AutoBuyCapsuleFunc ()
-
+    if enabled then
+        AutoBuyCapsuleFunc()
+        task.wait(0.5)
+    end
 end)
 
 
