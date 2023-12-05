@@ -4541,33 +4541,6 @@ local function webhook ()
 	pcall(function() request(dataSend) end)
 
 end
-task.spawn(function()
-
-    local s, e = pcall(function()
-        game:GetService('GuiService').ErrorMessageChanged:Connect(function()
-            task.wait(0.1) 
-            game.Players.LocalPlayer:Kick("(By menshaha) Rejoining...")
-            task.wait()
-            game:GetService("TeleportService"):Teleport(game.PlaceId)
-        end)
-
-        game.CoreGui.RobloxPromptGui.promptOverlay.DescendantAdded:Connect(function(child)
-            if child == 'ErrorPrompt' or game.CoreGui.RobloxPromptGui.promptOverlay:FindFirstChild('ErrorPrompt') then
-                game.Players.LocalPlayer:Kick("(By menshaha) Rejoining ...");
-                task.wait()
-                game:GetService('TeleportService'):Teleport(game.PlaceId)
-            end
-        end)
-
-        for i = 1, 10 do
-            warn('auto rejoin after disconnect active now')
-        end
-    end)
-
-    if not s then
-        warn(e)
-    end
-end)
 
 task.spawn(function() 
 	pcall(function()
