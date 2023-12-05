@@ -618,7 +618,6 @@ HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
 HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
-HideScriptButton.AlwaysOnTop = true
 HideScriptButton.Image = 'rbxassetid://15533941365'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Crop
 HideScriptButton.Name = 'HideButtonImage'
@@ -1696,7 +1695,6 @@ local Misc_MiscSubPage = MakeNewSubPage('Misc', 'Right', 0.344, 0.03, 0.02, 0.02
 MakeTitle(Misc_MiscSubPage, 'Misc', 0.13)
 makeUHBigger = MakeCheckbox(Misc_MiscSubPage, 'Large Window', 0.095)
 local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Frame", 0.095)
-local 3dRenderOff = MakeCheckbox(Misc_MiscSubPage, "Disable 3d rendering (white screen)", 0.095)
 
 ---------------------------------------------------------------------
 
@@ -3098,44 +3096,42 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc()
+local function AutoBuyCapsuleFunc ()
+
     local Candy = player._stats._resourceCandies.Value
 
     if not IsLobby then return end
 
     if Candy <= 149 then return end
 
-	while Candy >149 do
-		local args
-		if Candy >= 15000 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "100"
-			}
-		elseif Candy >= 1500 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "10"
-			}
-		elseif Candy >= 150 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "1"
-			}
-		end
-	
-		if args then
-			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
-		end
-	end
-end
+    local args
+    if Candy >= 15000 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "100"
+        }
+    elseif Candy >= 1500 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "10"
+        }
+    elseif Candy >= 150 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "1"
+        }
+    end
 
+    if args then
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+    end
+end
 
 
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
@@ -4346,7 +4342,6 @@ local function getMapName (result)
 	return mapName
 end
 
-
 local function Hide_Map (enabled)
 	if IsLobby then return end
 
@@ -4547,13 +4542,12 @@ task.spawn(function()
 	pcall(function()
 
 		if queue_on_teleport then
-			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/MHUB/main/Beta.lua"))()'
+			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/MHUB/main/script"))()'
 			queue_on_teleport(SkeleHubSCRIPT)
 		end
 
 	end)	
 end)
-
 
 if GameFinished and not IsLobby then
 	game:GetService("ReplicatedStorage").endpoints.client_to_server.vote_start:InvokeServer()
