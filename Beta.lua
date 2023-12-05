@@ -618,6 +618,7 @@ HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
 HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
+HideScriptButton.AlwaysOnTop = true
 HideScriptButton.Image = 'rbxassetid://15533941365'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Crop
 HideScriptButton.Name = 'HideButtonImage'
@@ -1458,7 +1459,6 @@ local AutoNextLevel = MakeCheckbox(Main_MainSubPage, 'Auto Next Level', 0.056)
 local AutoNextPortal = MakeCheckbox(Main_MainSubPage, 'Auto Next Portal', 0.056)
 local PlaceInRedZones = MakeCheckbox(Main_MainSubPage, 'Place In Red Zones', 0.056)
 local HideMap = MakeCheckbox(Main_MainSubPage, 'Hide Map', 0.056)
-local FpsBoost = MakeCheckbox(Main_MainSubPage, 'Fps Boost', 0.056)
 local TPToLobby = MakeLargeButton(Main_MainSubPage, 'Teleport To Lobby', 0.103)
 
 -----------------------
@@ -1696,6 +1696,7 @@ local Misc_MiscSubPage = MakeNewSubPage('Misc', 'Right', 0.344, 0.03, 0.02, 0.02
 MakeTitle(Misc_MiscSubPage, 'Misc', 0.13)
 makeUHBigger = MakeCheckbox(Misc_MiscSubPage, 'Large Window', 0.095)
 local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Frame", 0.095)
+local 3dRenderOff = MakeCheckbox(Misc_MiscSubPage, "Disable 3d rendering (white screen)", 0.095)
 
 ---------------------------------------------------------------------
 
@@ -3134,6 +3135,20 @@ local function AutoBuyCapsuleFunc ()
     end
 end
 
+AutoBuyCapsule.MouseButton1Click:Connect(function()
+
+	local enabled = not GetSave(AutoBuyCapsule.Name)
+	Save(AutoBuyCapsule.Name, enabled)
+
+	AutoBuyCapsule.Parent.BackgroundColor3 = checkBoxColors[enabled]
+
+	AutoBuyCapsuleFunc(enabled)
+
+	if AutoBuyCapsuleFunc(enabled) then 
+		task.wait(0.5) and AutoBuyCapsuleFunc ()
+
+end)
+
 
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
 
@@ -4279,7 +4294,6 @@ checkBoxFunc(InfCastleAutoJoin)
 checkBoxFunc(InfCastleHardDifficulty)
 checkBoxFunc(AutoChallenge)
 checkBoxFunc(HideName, HideNameFunc)
-checkBoxFunc(FpsBoost, FPSBOOST)
 checkBoxFunc(AutoSkillOnBoss)
 checkBoxFunc(AutoUseSkill, AutoUseSkillFunc)
 checkBoxFunc(AutoSellFarms)
