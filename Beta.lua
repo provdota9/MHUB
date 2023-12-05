@@ -618,7 +618,6 @@ HideScriptButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 HideScriptButton.Size = UDim2.new(0, 100, 0, 40)
 HideScriptButton.Position = UDim2.new(1.8, 0, -0.8, 0)
 HideScriptButton.ZIndex = 10001
-HideScriptButton.AlwaysOnTop = true
 HideScriptButton.Image = 'rbxassetid://15533941365'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Crop
 HideScriptButton.Name = 'HideButtonImage'
@@ -1474,6 +1473,11 @@ local Main_SellSkinsSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05,
 MakeTitle(Main_SellSkinsSubPage, 'Auto Sell Skins', 0.195)
 local AutoDeleteSkins = MakeCheckbox(Main_SellSkinsSubPage, 'Auto Delete Skins', 0.162)
 local selectedSkinsDDL = MakeDDL(Main_SellSkinsSubPage, 'Select Skins', 0.517)
+
+-----------------------
+local Main_EventSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
+MakeTitle(Main_EventSubPage, 'Event', 0.195)
+local AutoBuyCapsule = MakeCheckbox(Main_EventSubPage, 'Auto Buy Event Capsule', 0.162)
 -----------------------
 
 Main_HideYourself = MakeNewSubPage('Main', 'Left', 0.21, 0.05, 0.04, 0.07)
@@ -1691,7 +1695,6 @@ local Misc_MiscSubPage = MakeNewSubPage('Misc', 'Right', 0.344, 0.03, 0.02, 0.02
 MakeTitle(Misc_MiscSubPage, 'Misc', 0.13)
 makeUHBigger = MakeCheckbox(Misc_MiscSubPage, 'Large Window', 0.095)
 local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Frame", 0.095)
-local 3dRenderOff = MakeCheckbox(Misc_MiscSubPage, "Disable 3d rendering (white screen)", 0.095)
 
 ---------------------------------------------------------------------
 
@@ -3093,6 +3096,44 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
+local function AutoBuyCapsuleFunc ()
+
+    local Candy = player._stats._resourceCandies.Value
+
+    if not IsLobby then return end
+
+    if Candy <= 149 then return end
+
+    local args
+    if Candy >= 15000 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "100"
+        }
+    elseif Candy >= 1500 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "10"
+        }
+    elseif Candy >= 150 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "1"
+        }
+    end
+
+    if args then
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+    end
+end
+
+
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
 
 local function AutoDeleteSkinsFunc ()
@@ -4258,6 +4299,7 @@ checkBoxFunc(OnlyFriendsPortal)
 checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
+checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
@@ -4299,7 +4341,6 @@ local function getMapName (result)
 
 	return mapName
 end
-
 
 local function Hide_Map (enabled)
 	if IsLobby then return end
@@ -4394,7 +4435,7 @@ local function webhook ()
 	local TotalGems = makeComma(player._stats.gem_amount.Value)
 	local TotalGold = makeComma(player._stats.gold_amount.Value)
 	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
-	local TotalDamage = makeComma(player._stats.damage_dealt.claimed.Value)
+	local TotalDamage = makeComma(player._stats.damage_dealt_claimed.Value)
 	local TotalKills = makeComma(player._stats.kills.Value)
 	local BattlePass = ''
 	local reachedTier = 0
@@ -4467,7 +4508,7 @@ local function webhook ()
 				['fields'] = {
 					{
 						['name'] = "Player Stats",
-						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s", TotalGems, TotalGold, TotalCandy, BattlePass),
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :crossed_swords:Damage: %s\n :broken_heart:Kills %s", TotalGems, TotalGold, TotalCandy, BattlePass, TotalDamage, TotalKills),
 						['inline'] = true
 					},
 
@@ -4499,7 +4540,6 @@ local function webhook ()
 	pcall(function() request(dataSend) end)
 
 end
-
 task.spawn(function() 
 	pcall(function()
 
