@@ -621,7 +621,7 @@ HideScriptButton.ZIndex = 10001
 HideScriptButton.Image = 'rbxassetid://15533941365'  -- Установите фактический Asset ID вашего изображения или путь к изображению
 HideScriptButton.ScaleType = Enum.ScaleType.Crop
 HideScriptButton.Name = 'HideButtonImage'
-MakeUICorner(0.8, HideScriptButton)
+MakeUICorner(0.5, HideScriptButton)
 
 HideScriptButton.MouseButton1Click:Connect(function()
     ScreenGuiSC.Enabled = not ScreenGuiSC.Enabled -- Инвертируем значение свойства Enabled
@@ -4508,7 +4508,7 @@ local function webhook ()
 				['fields'] = {
 					{
 						['name'] = "Player Stats",
-						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :crossed_swords:Damage: %s\n :broken_heart:Kills %s", TotalGems, TotalGold, TotalCandy, BattlePass, TotalDamage, TotalKills),
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n " .. math.floor":crossed_swords:Damage: %s\n :broken_heart:Kills %s", TotalGems, TotalGold, TotalCandy, BattlePass, TotalDamage, TotalKills),
 						['inline'] = true
 					},
 
