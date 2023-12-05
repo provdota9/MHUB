@@ -4508,7 +4508,7 @@ local function webhook ()
 				['fields'] = {
 					{
 						['name'] = "Player Stats",
-						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n " .. math.floor":crossed_swords:Damage: %s\n :broken_heart:Kills %s", TotalGems, TotalGold, TotalCandy, BattlePass, TotalDamage, TotalKills),
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :crossed_swords:Damage: %d\n :broken_heart:Kills: %s"), TotalGems, TotalGold, TotalCandy, BattlePass, math.floor(TotalDamage), TotalKills),
 						['inline'] = true
 					},
 
