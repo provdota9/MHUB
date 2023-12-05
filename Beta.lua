@@ -4485,7 +4485,9 @@ local function webhook ()
 			local comma = ""
 			if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-			newItems = newItems .. string.format('+%s (%s) [Total: %s]', itemName, itemAmount, itemData.Amount) .. comma
+			if itemData.Name == itemName then
+				newItems = newItems .. string.format('+%s (%s) [Total: %s]', itemName, itemAmount, itemData.Amount) .. comma
+			end
 		end
 	end
 
