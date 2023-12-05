@@ -4413,6 +4413,7 @@ local function webhook ()
 	local newItemsData = getItemsData()
 	local newItemsCount = 0
 	local newItemsTable = {}
+	local totalItems = itemData.Amount
 
 	for itemId, itemData in pairs(newItemsData) do
 		if not oldItemsData[itemId] then 
@@ -4478,14 +4479,13 @@ local function webhook ()
 		newItems = newItems .. string.format("+%s %s\n", math.floor(newResourcesTable.amount), newResourcesTable.name)
 	end
 
-	local itemTotal = itemData.Amount
 	local currentItemCount = 0
-	for itemName, itemAmount, itemTotal in pairs(newItemsTable) do
+	for itemName, itemAmount in pairs(newItemsTable) do
 		currentItemCount = currentItemCount + 1
 		local comma = ""
 		if currentItemCount ~= newItemsCount then comma = "\n" end
 	
-		newItems = newItems .. string.format('+%s (%s), Total: (%s)', itemName, itemAmount, itemTotal) .. comma
+		newItems = newItems .. string.format('+%s (%s) [Total: %s]', itemName, itemAmount, totalItems) .. comma
 	end
 
 	if not ping then userID = "" end
