@@ -3098,43 +3098,44 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc ()
+local function AutoBuyCapsuleFunc()
     local Candy = player._stats._resourceCandies.Value
 
     if not IsLobby then return end
 
-    while GetSave(AutoBuyCapsules.Name) do
-        if Candy <= 149 then return end
+    if Candy <= 149 then return end
 
-        local args
-        if Candy >= 15000 then
-            args = {
-                [1] = "capsule_halloween2",
-                [2] = "event",
-                [3] = "event_shop",
-                [4] = "100"
-            }
-        elseif Candy >= 1500 then
-            args = {
-                [1] = "capsule_halloween2",
-                [2] = "event",
-                [3] = "event_shop",
-                [4] = "10"
-            }
-        elseif Candy >= 150 then
-            args = {
-                [1] = "capsule_halloween2",
-                [2] = "event",
-                [3] = "event_shop",
-                [4] = "1"
-            }
-        end
-    
-        if args then
-            game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
-        end
-    end
+	while Candy >149 do
+		local args
+		if Candy >= 15000 then
+			args = {
+				[1] = "capsule_halloween2",
+				[2] = "event",
+				[3] = "event_shop",
+				[4] = "100"
+			}
+		elseif Candy >= 1500 then
+			args = {
+				[1] = "capsule_halloween2",
+				[2] = "event",
+				[3] = "event_shop",
+				[4] = "10"
+			}
+		elseif Candy >= 150 then
+			args = {
+				[1] = "capsule_halloween2",
+				[2] = "event",
+				[3] = "event_shop",
+				[4] = "1"
+			}
+		end
+	
+		if args then
+			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+		end
+	end
 end
+
 
 
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
