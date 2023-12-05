@@ -4482,7 +4482,6 @@ local function webhook ()
 		local currentItemCount = 0
 		for itemName, itemAmount in pairs(newItemsTable) do
 			currentItemCount = currentItemCount + 1
-			if currentItemCount ~= newItemsCount end
 	
 			if itemData.Name == itemName then
 				newItems = newItems .. string.format("+%s (%s), Total: (x%s) \n", itemName, itemAmount, itemData.Amount)
