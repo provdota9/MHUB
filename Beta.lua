@@ -4437,6 +4437,7 @@ local function webhook ()
 	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
 	local TotalDamage = makeComma(player._stats.damage_dealt_claimed.Value)
 	local TotalKills = makeComma(player._stats.kills.Value)
+	TotalDamage = math.floor(TotalDamage + 0.5)
 	local BattlePass = ''
 	local reachedTier = 0
 	local reachedTierExp = 0
@@ -4484,7 +4485,6 @@ local function webhook ()
 		for itemName, itemAmount in pairs(newItemsTable) do
 			currentItemCount = currentItemCount + 1
 			local comma = ""
-			TotalDamage = math.floor(TotalDamage + 0.5)
 	
 			if itemData.Name == itemName then
 				newItems = newItems .. string.format("+%s (%s), Total: (x%s) \n", itemName, itemAmount, itemData.Amount) .. comma
