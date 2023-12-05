@@ -3103,47 +3103,38 @@ local function AutoBuyCapsuleFunc()
 
     if not IsLobby then return end
 
-    if Candy <= 149 then return end
+    while GetSave(AutoBuyCapsules.Name) do
+        if Candy <= 149 then return end
 
-    local args
-    if Candy >= 15000 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "100"
-        }
-    elseif Candy >= 1500 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "10"
-        }
-    elseif Candy >= 150 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "1"
-        }
-    end
-
-    if args then
-        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+        local args
+        if Candy >= 15000 then
+            args = {
+                [1] = "capsule_halloween2",
+                [2] = "event",
+                [3] = "event_shop",
+                [4] = "100"
+            }
+        elseif Candy >= 1500 then
+            args = {
+                [1] = "capsule_halloween2",
+                [2] = "event",
+                [3] = "event_shop",
+                [4] = "10"
+            }
+        elseif Candy >= 150 then
+            args = {
+                [1] = "capsule_halloween2",
+                [2] = "event",
+                [3] = "event_shop",
+                [4] = "1"
+            }
+        end
+    
+        if args then
+            game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+        end
     end
 end
-
-AutoBuyCapsule.MouseButton1Click:Connect(function()
-    local enabled = not GetSave(AutoBuyCapsule.Name)
-    Save(AutoBuyCapsule.Name, enabled)
-    AutoBuyCapsule.Parent.BackgroundColor3 = checkBoxColors[enabled]
-
-    if enabled then
-        AutoBuyCapsuleFunc()
-        task.wait(0.5)
-    end
-end)
 
 
 DDLlabel(selectedSkinsDDL, GetSave('Delete Skins'))
