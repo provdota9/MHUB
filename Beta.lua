@@ -4436,7 +4436,7 @@ local function webhook ()
 	local TotalGold = makeComma(player._stats.gold_amount.Value)
 	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
 	local TotalKills = makeComma(player._stats.kills.Value)
-	local TotalDamage = math.floor(makeComma(player._stats.damage_dealt.Value + 0.5))
+	local TotalDamage = makeComma(math.floor(player._stats.damage_dealt.Value + 0.5))
 	local BattlePass = ''
 	local reachedTier = 0
 	local reachedTierExp = 0
