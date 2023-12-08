@@ -3102,35 +3102,35 @@ local function AutoBuyCapsuleFunc ()
 
     if not IsLobby then return end
 
-    while Candy > 149 do
-		local args
-		if Candy >= 15000 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "100"
-			}
-		elseif Candy >= 1500 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "10"
-			}
-		elseif Candy >= 150 then
-			args = {
-				[1] = "capsule_halloween2",
-				[2] = "event",
-				[3] = "event_shop",
-				[4] = "1"
-			}
-		end
-	
-		if args then
-			game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
-		end
-	end
+    if Candy <= 149 then return end
+
+    local args
+    if Candy >= 15000 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "100"
+        }
+    elseif Candy >= 1500 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "10"
+        }
+    elseif Candy >= 150 then
+        args = {
+            [1] = "capsule_halloween2",
+            [2] = "event",
+            [3] = "event_shop",
+            [4] = "1"
+        }
+    end
+
+    if args then
+        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+    end
 end
 
 
@@ -4436,7 +4436,6 @@ local function webhook ()
 	local TotalGold = makeComma(player._stats.gold_amount.Value)
 	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
 	local TotalKills = makeComma(player._stats.kills.Value)
-	local TotalDamage = makeComma(math.floor(player._stats.damage_dealt.Value + 0.5))
 	local BattlePass = ''
 	local reachedTier = 0
 	local reachedTierExp = 0
@@ -4486,7 +4485,7 @@ local function webhook ()
 			local comma = ""
 	
 			if itemData.Name == itemName then
-				newItems = newItems .. string.format("+%s (%s), Total: (x%s) \n", itemName, itemAmount, itemData.Amount) .. comma
+				newItems = newItems .. string.format("+%s (%s), Total: (Buy beta for this💲) \n", itemName, itemAmount) .. comma
 			end
 		end
 	end
@@ -4508,7 +4507,7 @@ local function webhook ()
 				['fields'] = {
 					{
 						['name'] = "Player Stats",
-						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :broken_heart:Kills: %s\n :crossed_swords:Damage: %s", TotalGems, TotalGold, TotalCandy, BattlePass, TotalKills, TotalDamage),
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :broken_heart:Kills: Buy beta for this💲\n Damage: Buy beta for this💲", TotalGems, TotalGold, TotalCandy, BattlePass),
 						['inline'] = true
 					},
 
@@ -4544,7 +4543,7 @@ task.spawn(function()
 	pcall(function()
 
 		if queue_on_teleport then
-			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/MHUB/main/Beta.lua"))()'
+			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/MHUB/main/script"))()'
 			queue_on_teleport(SkeleHubSCRIPT)
 		end
 
