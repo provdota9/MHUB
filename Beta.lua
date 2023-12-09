@@ -131,7 +131,8 @@ local portalWorlds = {
     magnolia_halloween = 'Magic Town (Haunted)',
     hage_elf_halloween = 'Clover Kingdom (Demonic)',
     marineford_halloween = "Marine's Ford (Midnight)",
-    aot_halloween = "Shiganshinu District (Midnight)"
+    aot_halloween = "Shiganshinu District (Midnight)",
+	Sacred_Planet = 'Sacred Planet'
     
 }
 
@@ -413,7 +414,8 @@ local macroMapList = {
 		'Bizzare Town',
 		'Hidden Sand Village',
 		'Shiganshinu District',
-		'Undead Tomb'
+		'Undead Tomb',
+		'Sacred Planet'
 
 	};
 
@@ -4389,7 +4391,7 @@ local contentNewSecretItem = ""
 
 local function newSecretItemFunc (itemName, Amount)
 	if contentNewSecretItem == "" then
-		contentNewSecretItem = string.format("You have got ```diff\n+%s (%s)```", itemName, Amount)
+		contentNewSecretItem = string.format("You have got +%s (x%s)```", itemName, Amount)
 	else
 		contentNewSecretItem = contentNewSecretItem .. string.format(", %s (%s)", itemName, Amount)
 
