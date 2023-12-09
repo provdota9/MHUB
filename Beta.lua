@@ -3104,9 +3104,9 @@ local function AutoBuyCapsuleFunc ()
 
     if not IsLobby then return end
 
-	while GetSave(AutoBuyCapsule.Name) do
-		if Candy <= 149 then return end
+	if Candy <= 149 then return end
 
+	while GetSave(AutoBuyCapsule.Name) do
 		local args
 		if Candy >= 15000 then
 			args = {
