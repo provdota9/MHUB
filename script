@@ -3102,14 +3102,15 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function 3drendoffFunc()
-	if IsLobby then return end
+local function rend3dOffFunc()
+    if IsLobby then return end
 
-	while GetSave(3dRenderingDisabled.Name) do
-		game.RunService:Set3dRenderingEnabled(false)
-	else
-		game.RunService:Set3dRenderingEnabled(true)
-	end
+    while GetSave(3dRenderingDisabled.Name) do
+        game.RunService:Set3dRenderingEnabled(false)
+        wait()
+    end
+
+    game.RunService:Set3dRenderingEnabled(true)
 end
 
 
@@ -4320,7 +4321,7 @@ checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
 checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
-checkBoxFunc(3drendoff, 3drendoffFunc)
+checkBoxFunc(3drendoff, rend3dOffFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
