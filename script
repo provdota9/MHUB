@@ -1700,7 +1700,7 @@ local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Fram
 
 local Other_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
 MakeTitle(Other_MiscSubPage, 'Other', 0.16)
-local 3drendoff = MakeCheckbox(Other_MiscSubPage, "Disable 3d Rendering", 0.13)
+local credints = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
 ---------------------------------------------------------------------
 
@@ -3102,16 +3102,20 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function rend3dOffFunc()
-    if IsLobby then return end
+local function copyToClipboard(text)
+    local clipboardService = game:GetService("ClipboardService")
 
-    while GetSave(3dRenderingDisabled.Name) do
-        game.RunService:Set3dRenderingEnabled(false)
-        wait()
+    if clipboardService then
+        clipboardService:SetClipboard(text)
+        print("Link Copied")
+    else
+        warn("You cant copy link :(")
     end
-
-    game.RunService:Set3dRenderingEnabled(true)
 end
+
+deleteMacroButton.MouseButton1Click:Connect(function()
+	copyToClipboard("https://discord.gg/Qvz4aGExCG")
+end)
 
 
 local function AutoBuyCapsuleFunc ()
@@ -4321,7 +4325,6 @@ checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
 checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
-checkBoxFunc(3drendoff, rend3dOffFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
