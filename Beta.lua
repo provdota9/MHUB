@@ -3995,9 +3995,9 @@ local function fakestat()
 	local FakeCD = player.PlayerGui.StatReroll.grid.UnitStats.Cooldown.Main.TextLabel.Text
 	local FakeRange = player.PlayerGui.StatReroll.grid.UnitStats.Range.Main.TextLabel.Text
 
-	FakeAttack = (FakeAttackStat.Text)
-	FakeCD = (FakeSPAStat.Text)
-	FakeRange = (FakeRangeStat.Text)
+	FakeAttack = GetSave(FakeAttackStat.Text)
+	FakeCD = GetSave(FakeSPAStat.Text)
+	FakeRange = GetSave(FakeRangeStat.Text)
 end
 
 FakeStatsButton.MouseButton1Click:Connect(function()
