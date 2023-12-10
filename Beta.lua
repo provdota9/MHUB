@@ -92,6 +92,9 @@ local DefaultFiles = {
 		['AutoSellFarmsWave'] = 1;
 		['AutoPlaceUnitsWave'] = 1;
 		['AutoUpgradeWave'] = 1;
+		['FakeAttackStat'] = 25.4;
+		['FakeRangeStat'] = 11.1;
+		['FakeSPAStat'] = 11.1;
 		['Selected Macro'] = '';
 		['Step Delay'] = 0.7;
 		['Hide Key'] = 'U';
@@ -1704,10 +1707,11 @@ local RenderingOff = MakeCheckbox(Other_MiscSubPage, 'Disable 3d Rendering', 0.1
 local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
 local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
-MakeTitle(FakeStats_MiscSubPage, 'Fake Stats', 0.16)
-local AttackTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Attack %', 'Attack', 0.24)
-local spaTextBox = MakeTextBox(FakeStats_MiscSubPage, 'SPA %', 'SPA', 0.24)
-local rangeTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Range %', 'Range', 0.24)
+MakeTitle(FakeStats_MiscSubPage, 'Fake Stats & Traits', 0.16)
+local AttackTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Attack %', 'Attack', 0.26)
+local spaTextBox = MakeTextBox(FakeStats_MiscSubPage, 'SPA %', 'SPA', 0.26)
+local rangeTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Range %', 'Range', 0.26)
+local FakeStatsButton = MakeLargeButton(FakeStats_MiscSubPage, 'Use Fake Stats', 0.155)
 
 ---------------------------------------------------------------------
 
@@ -2243,6 +2247,13 @@ webhookPingBox.FocusLost:Connect(function(enterPressed)
 
 end)
 webhookPingBox.Text = GetSave("Discord UserID")
+
+AttackTextBox.FocusLost:Connect(function()
+	if AttackTextBox.Text == '' or not tonumber(AttackTextBox.Text) then AttackTextBox.Text = GetSave('FakeAttackStat') return end
+
+	Save("FakeAttackStat", tonumber(AttackTextBox.Text) )
+end)
+AttackTextBox.Text = GetSave("FakeAttackStat")
 
 AutoUpgradeStartWave.FocusLost:Connect(function()
 	if AutoUpgradeStartWave.Text == '' or not tonumber(AutoUpgradeStartWave.Text) then AutoUpgradeStartWave.Text = GetSave('AutoUpgradeWave') return end
@@ -3978,6 +3989,21 @@ makeUHBigger.MouseButton1Click:Connect(function()
 end)
 
 if GetSave(makeUHBigger.Name) then MainFrame.Size = UDim2.new(1,0,1,0) MainFrame.Position = UDim2.new(0.614, 0, 0, 0) additionalFrame.Size = UDim2.new(0.390, 0, 0.124, 0) makeUHBigger.Parent.BackgroundColor3 = checkBoxColors[true] end
+
+local function fakestat()
+	local FakeAttack = player.PlayerGui.StatReroll.grid.UnitStats.Attack.Main.TextLabel.Text
+	local FakeCD = player.PlayerGui.StatReroll.grid.UnitStats.Cooldown.Main.TextLabel.Text
+	local FakeRange = player.PlayerGui.StatReroll.grid.UnitStats.Range.Main.TextLabel.Text
+
+	FakeAttack = (FakeAttackStat.Text)
+	FakeCD = (FakeSPAStat.Text)
+	FakeRange = (FakeRangeStat.Text)
+end
+
+FakeStatsButton.MouseButton1Click:Connect(function()
+	fakestat()
+end)
+
 
 local function TakedownMark (newParent, clrID)
 	local takedownColor = Color3.fromRGB(255,255,255)
