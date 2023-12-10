@@ -3103,13 +3103,20 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 end)
 
 local function copyToClipboard(text)
-    local clipboardService = game:GetService("ClipboardService")
+    local pluginGuiService = game:GetService("PluginGuiService")
 
-    if clipboardService then
-        clipboardService:SetClipboard(text)
-        print("Link Copied")
+    if pluginGuiService then
+        local success, error = pcall(function()
+            pluginGuiService:SetGlobalClipboard(text)
+        end)
+
+        if success then
+            print("Link Succes copied")
+        else
+            warn("Error, cant copy text", error)
+        end
     else
-        warn("You cant copy link :(")
+        warn("PluginGuiService cant used in your game")
     end
 end
 
