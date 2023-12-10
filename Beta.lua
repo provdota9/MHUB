@@ -3991,13 +3991,13 @@ end)
 if GetSave(makeUHBigger.Name) then MainFrame.Size = UDim2.new(1,0,1,0) MainFrame.Position = UDim2.new(0.614, 0, 0, 0) additionalFrame.Size = UDim2.new(0.390, 0, 0.124, 0) makeUHBigger.Parent.BackgroundColor3 = checkBoxColors[true] end
 
 local function fakestat()
-	local FakeAttack = player.PlayerGui.StatReroll.grid.UnitStats.Attack.Main.TextLabel.Text
-	local FakeCD = player.PlayerGui.StatReroll.grid.UnitStats.Cooldown.Main.TextLabel.Text
-	local FakeRange = player.PlayerGui.StatReroll.grid.UnitStats.Range.Main.TextLabel.Text
+    local FakeAttack = GetSave('FakeAttackStat')
+    local FakeCD = GetSave('FakeSPAStat')
+    local FakeRange = GetSave('FakeRangeStat')
 
-	FakeAttack = GetSave('FakeAttackStat')
-	FakeCD = GetSave('FakeSPAStat')
-	FakeRange = GetSave('FakeRangeStat')
+    player.PlayerGui.StatReroll.grid.UnitStats.Attack.Main.TextLabel.Text = FakeAttack
+    player.PlayerGui.StatReroll.grid.UnitStats.Cooldown.Main.TextLabel.Text = FakeCD
+    player.PlayerGui.StatReroll.grid.UnitStats.Range.Main.TextLabel.Text = FakeRange
 end
 
 FakeStatsButton.MouseButton1Click:Connect(function()
