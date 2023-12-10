@@ -1698,6 +1698,10 @@ MakeTitle(Misc_MiscSubPage, 'Misc', 0.13)
 makeUHBigger = MakeCheckbox(Misc_MiscSubPage, 'Large Window', 0.095)
 local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Frame", 0.095)
 
+local Other_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
+MakeTitle(Other_MiscSubPage, 'Other', 0.16)
+local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
+
 ---------------------------------------------------------------------
 
 
@@ -3097,6 +3101,11 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 	GetDDL(selectedSkinsDDL, items, true, 'Delete Skins')
 
 end)
+
+creditsButton.MouseButton1Click:Connect(function()
+	setclipboard("https://discord.gg/Qvz4aGExCG")
+end)
+
 
 local function AutoBuyCapsuleFunc ()
 
