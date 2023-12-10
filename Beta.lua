@@ -1706,12 +1706,14 @@ MakeTitle(Other_MiscSubPage, 'Other', 0.16)
 local RenderingOff = MakeCheckbox(Other_MiscSubPage, 'Disable 3d Rendering', 0.13)
 local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
-local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.669, 0.03, 0.013, 0.025)
-MakeTitle(FakeStats_MiscSubPage, 'Fake Stats & Traits', 0.063)
-local FakeStatsButton = MakeLargeButton(FakeStats_MiscSubPage, 'Use Fake Stats', 0.155)
-local AttackTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Attack %', 'Attack', 0.26)
-local spaTextBox = MakeTextBox(FakeStats_MiscSubPage, 'SPA %', 'SPA', 0.26)
-local rangeTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Range %', 'Range', 0.26)
+FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.669, 0.03, 0.013, 0.025)
+MakeTitle(FakeStats_MiscSubPage, 'Fake Stats', 0.063)
+FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Portals", 0.14)
+FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Difficulties", 0.14)
+FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Tiers", 0.14)
+FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Ignore DMG Bonus", 0.14)
+FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Ignore Worlds", 0.14)
+FakeStats_MiscSubPage = MakeCheckbox(FakeStats_MiscSubPage, "Auto Delete Portals", 0.05)
 ---------------------------------------------------------------------
 
 
