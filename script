@@ -1700,7 +1700,7 @@ local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Fram
 
 local Other_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
 MakeTitle(Other_MiscSubPage, 'Other', 0.16)
-local credints = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
+local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
 ---------------------------------------------------------------------
 
@@ -3113,7 +3113,7 @@ local function copyToClipboard(text)
     end
 end
 
-deleteMacroButton.MouseButton1Click:Connect(function()
+creditsButton.MouseButton1Click:Connect(function()
 	copyToClipboard("https://discord.gg/Qvz4aGExCG")
 end)
 
