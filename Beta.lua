@@ -1708,12 +1708,10 @@ local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.
 
 local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.532, 0.03, 0.02, 0.02)
 MakeTitle(FakeStats_MiscSubPage, 'Fake Stats', 0.082)
-local webhookUrlBox = MakeTextBox(FakeStats_MiscSubPage, 'discord url', 'Webhook', 0.2)
-local webhookPingBox = MakeTextBox(FakeStats_MiscSubPage, 'userID', 'Ping User', 0.2)
-local ResultWebhook = MakeCheckbox(FakeStats_MiscSubPage, "Result Webhook", 0.063)
-local PingUserCHB = MakeCheckbox(FakeStats_MiscSubPage, "Ping User", 0.063)
-local PingRareCHB = MakeCheckbox(FakeStats_MiscSubPage, "Ping On Secret Drop", 0.063)
-local PingDefeatCHB = MakeCheckbox(FakeStats_MiscSubPage, "Ping On Defeat", 0.063)
+local AttackTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Attack %', 'Attack', 0.17)
+local spaTextBox = MakeTextBox(FakeStats_MiscSubPage, 'SPA %', 'SPA', 0.17)
+local rangeTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Range %', 'Range', 0.17)
+local FakeStatsButton = MakeLargeButton(FakeStats_MiscSubPage, 'Use Fake Stats', 0.155)
 ---------------------------------------------------------------------
 
 
