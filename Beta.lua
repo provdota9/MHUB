@@ -1700,7 +1700,7 @@ local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Fram
 
 local Other_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
 MakeTitle(Other_MiscSubPage, 'Other', 0.16)
-local RenderingOff = MakeCheckbox(Other_MiscSubPage, "Disable 3d Rendering", 0.13)
+local RenderingOff = MakeCheckbox(Other_MiscSubPage, 'Disable 3d Rendering', 0.13)
 local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
 ---------------------------------------------------------------------
@@ -3103,28 +3103,6 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function Rend3dOffFunc (enabled)
-	if IsLobby then return end
-
-	if enabled then
-		game.RunService:Set3dRenderingEnabled(false)
-	else
-		game.RunService:Set3dRenderingEnabled(true)
-	end
-end
-
-RenderingOff.MouseButton1Click:Connect(function()
-
-	local enabled = not GetSave(RenderingOff.Name)
-	Save(RenderingOff.Name, enabled)
-
-	RenderingOff.Parent.BackgroundColor3 = checkBoxColors[enabled]
-
-	Rend3dOffFunc(enabled)
-
-end)
-
-
 creditsButton.MouseButton1Click:Connect(function()
 	setclipboard("https://discord.gg/Qvz4aGExCG")
 end)
@@ -4337,7 +4315,6 @@ checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
 checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
-checkBoxFunc(RenderingOff, Rend3dOffFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
@@ -4379,6 +4356,29 @@ local function getMapName (result)
 
 	return mapName
 end
+
+local function Rend3dOffFunc (enabled)
+	if IsLobby then return end
+
+	if enabled then
+		game.RunService:Set3dRenderingEnabled(false)
+	else
+		game.RunService:Set3dRenderingEnabled(true)
+	end
+end
+
+RenderingOff.MouseButton1Click:Connect(function()
+
+	local enabled = not GetSave(RenderingOff.Name)
+	Save(RenderingOff.Name, enabled)
+
+	RenderingOff.Parent.BackgroundColor3 = checkBoxColors[enabled]
+
+	Rend3dOffFunc(enabled)
+
+end)
+
+if GetSave('Disable 3d Rendering') then Rend3dOffFunc(true) RenderingOff.Parent.BackgroundColor3 = checkBoxColors[true] end
 
 local function Hide_Map (enabled)
 	if IsLobby then return end
