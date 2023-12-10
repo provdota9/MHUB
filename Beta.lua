@@ -1706,13 +1706,9 @@ MakeTitle(Other_MiscSubPage, 'Other', 0.16)
 local RenderingOff = MakeCheckbox(Other_MiscSubPage, 'Disable 3d Rendering', 0.13)
 local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
-local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.532, 0.08, 0.02, 0.05)
-MakeTitle(FakeStats_MiscSubPage, 'Fake Stats & Traits', 0.082)
-local AttackTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Attack %', 'Attack', 0.17)
-local spaTextBox = MakeTextBox(FakeStats_MiscSubPage, 'SPA %', 'SPA', 0.17)
-local rangeTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Range %', 'Range', 0.17)
+local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
+MakeTitle(FakeStats_MiscSubPage, 'Fake Stats & Traits', 0.16)
 local FakeStatsButton = MakeLargeButton(FakeStats_MiscSubPage, 'Use Fake Stats', 0.155)
-
 ---------------------------------------------------------------------
 
 
