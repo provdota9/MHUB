@@ -2252,10 +2252,22 @@ AttackTextBox.FocusLost:Connect(function()
 	if AttackTextBox.Text == '' or not tonumber(AttackTextBox.Text) then AttackTextBox.Text = GetSave('FakeAttackStat') return end
 
 	Save("FakeAttackStat", tonumber(AttackTextBox.Text) )
-	Save("FakeSPAStat", tonumber(AttackTextBox.Text) )
-	Save("FakeRangeStat", tonumber(AttackTextBox.Text) )
 end)
 AttackTextBox.Text = GetSave("FakeAttackStat")
+
+spaTextBox.FocusLost:Connect(function()
+	if spaTextBox.Text == '' or not tonumber(spaTextBox.Text) then spaTextBox.Text = GetSave('FakeAttackStat') return end
+
+	Save("FakeAttackStat", tonumber(spaTextBox.Text) )
+end)
+spaTextBox.Text = GetSave("FakeAttackStat")
+
+rangeTextBox.FocusLost:Connect(function()
+	if rangeTextBox.Text == '' or not tonumber(rangeTextBox.Text) then rangeTextBox.Text = GetSave('FakeAttackStat') return end
+
+	Save("FakeAttackStat", tonumber(rangeTextBox.Text) )
+end)
+rangeTextBox.Text = GetSave("FakeAttackStat")
 
 AutoUpgradeStartWave.FocusLost:Connect(function()
 	if AutoUpgradeStartWave.Text == '' or not tonumber(AutoUpgradeStartWave.Text) then AutoUpgradeStartWave.Text = GetSave('AutoUpgradeWave') return end
