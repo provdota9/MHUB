@@ -2252,6 +2252,8 @@ AttackTextBox.FocusLost:Connect(function()
 	if AttackTextBox.Text == '' or not tonumber(AttackTextBox.Text) then AttackTextBox.Text = GetSave('FakeAttackStat') return end
 
 	Save("FakeAttackStat", tonumber(AttackTextBox.Text) )
+	Save("FakeSPAStat", tonumber(AttackTextBox.Text) )
+	Save("FakeRangeStat", tonumber(AttackTextBox.Text) )
 end)
 AttackTextBox.Text = GetSave("FakeAttackStat")
 
@@ -3995,9 +3997,9 @@ local function fakestat()
     local FakeCD = GetSave('FakeSPAStat')
     local FakeRange = GetSave('FakeRangeStat')
 
-    player.PlayerGui.StatReroll.grid.UnitStats.Attack.Main.TextLabel.Text = FakeAttack
-    player.PlayerGui.StatReroll.grid.UnitStats.Cooldown.Main.TextLabel.Text = FakeCD
-    player.PlayerGui.StatReroll.grid.UnitStats.Range.Main.TextLabel.Text = FakeRange
+    player.PlayerGui.StatReroll.grid.UnitStats.Attack.Main.TextLabel.Text = FakeAttack ..'%'
+    player.PlayerGui.StatReroll.grid.UnitStats.Cooldown.Main.TextLabel.Text = FakeCD ..'%'
+    player.PlayerGui.StatReroll.grid.UnitStats.Range.Main.TextLabel.Text = FakeRange ..'%'
 end
 
 FakeStatsButton.MouseButton1Click:Connect(function()
