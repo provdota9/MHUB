@@ -1706,14 +1706,14 @@ MakeTitle(Other_MiscSubPage, 'Other', 0.16)
 local RenderingOff = MakeCheckbox(Other_MiscSubPage, 'Disable 3d Rendering', 0.13)
 local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
-FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.669, 0.03, 0.013, 0.025)
-MakeTitle(FakeStats_MiscSubPage, 'Fake Stats', 0.063)
-FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Portals", 0.14)
-FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Difficulties", 0.14)
-FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Tiers", 0.14)
-FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Ignore DMG Bonus", 0.14)
-FakeStats_MiscSubPage = MakeDDL(FakeStats_MiscSubPage, "Select Ignore Worlds", 0.14)
-FakeStats_MiscSubPage = MakeCheckbox(FakeStats_MiscSubPage, "Auto Delete Portals", 0.05)
+local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Right', 0.532, 0.03, 0.02, 0.02)
+MakeTitle(FakeStats_MiscSubPage, 'Discord Webhook', 0.082)
+local webhookUrlBox = MakeTextBox(FakeStats_MiscSubPage, 'discord url', 'Webhook', 0.2)
+local webhookPingBox = MakeTextBox(FakeStats_MiscSubPage, 'userID', 'Ping User', 0.2)
+local ResultWebhook = MakeCheckbox(FakeStats_MiscSubPage, "Result Webhook", 0.063)
+local PingUserCHB = MakeCheckbox(FakeStats_MiscSubPage, "Ping User", 0.063)
+local PingRareCHB = MakeCheckbox(FakeStats_MiscSubPage, "Ping On Secret Drop", 0.063)
+local PingDefeatCHB = MakeCheckbox(FakeStats_MiscSubPage, "Ping On Defeat", 0.063)
 ---------------------------------------------------------------------
 
 
