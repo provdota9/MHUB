@@ -1706,7 +1706,7 @@ MakeTitle(Other_MiscSubPage, 'Other', 0.16)
 local RenderingOff = MakeCheckbox(Other_MiscSubPage, 'Disable 3d Rendering', 0.13)
 local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
 
-local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
+local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.04, 0.05)
 MakeTitle(FakeStats_MiscSubPage, 'Fake Stats & Traits', 0.16)
 local AttackTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Attack %', 'Attack', 0.26)
 local spaTextBox = MakeTextBox(FakeStats_MiscSubPage, 'SPA %', 'SPA', 0.26)
@@ -2256,18 +2256,18 @@ end)
 AttackTextBox.Text = GetSave("FakeAttackStat")
 
 spaTextBox.FocusLost:Connect(function()
-	if spaTextBox.Text == '' or not tonumber(spaTextBox.Text) then spaTextBox.Text = GetSave('FakeAttackStat') return end
+	if spaTextBox.Text == '' or not tonumber(spaTextBox.Text) then spaTextBox.Text = GetSave('FakeSPAStat') return end
 
-	Save("FakeAttackStat", tonumber(spaTextBox.Text) )
+	Save("FakeSPAStat", tonumber(spaTextBox.Text) )
 end)
-spaTextBox.Text = GetSave("FakeAttackStat")
+spaTextBox.Text = GetSave("FakeSPAStat")
 
 rangeTextBox.FocusLost:Connect(function()
-	if rangeTextBox.Text == '' or not tonumber(rangeTextBox.Text) then rangeTextBox.Text = GetSave('FakeAttackStat') return end
+	if rangeTextBox.Text == '' or not tonumber(rangeTextBox.Text) then rangeTextBox.Text = GetSave('FakeRangeStat') return end
 
-	Save("FakeAttackStat", tonumber(rangeTextBox.Text) )
+	Save("FakeRangeStat", tonumber(rangeTextBox.Text) )
 end)
-rangeTextBox.Text = GetSave("FakeAttackStat")
+rangeTextBox.Text = GetSave("FakeRangeStat")
 
 AutoUpgradeStartWave.FocusLost:Connect(function()
 	if AutoUpgradeStartWave.Text == '' or not tonumber(AutoUpgradeStartWave.Text) then AutoUpgradeStartWave.Text = GetSave('AutoUpgradeWave') return end
