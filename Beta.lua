@@ -4569,7 +4569,7 @@ local function webhook ()
 			local comma = ""
 	
 			if itemData.Name == itemName then
-				newItems = newItems .. string.format("+%s (%s), Total: (x%s) \n", itemName, itemAmount, itemData.Amount) .. comma
+				newItems = newItems .. string.format("+%s (%s), [%s] Total: (x%s) \n", itemName, itemAmount, itemData.Rarity, itemData.Amount) .. comma
 			end
 		end
 	end
