@@ -1482,6 +1482,7 @@ local selectedSkinsDDL = MakeDDL(Main_SellSkinsSubPage, 'Select Skins', 0.517)
 -----------------------
 local Main_EventSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
 MakeTitle(Main_EventSubPage, 'Event', 0.195)
+local AutoJoinHalloween = MakeCheckbox(Main_EventSubPage, 'Auto Join Halloween', 0.162)
 local AutoBuyCapsule = MakeCheckbox(Main_EventSubPage, 'Auto Buy Event Capsule', 0.162)
 -----------------------
 
@@ -3137,6 +3138,20 @@ creditsButton.MouseButton1Click:Connect(function()
 	setclipboard("https://discord.gg/Qvz4aGExCG")
 end)
 
+local function AutoJoinHalloweenFunc ()
+	if not IsLobby then return end
+
+	while GetSave(AutoJoinHalloween.Name) do
+		repeat task.wait(20) until game:IsLoaded()
+
+		local args = {
+    		[1] = "_lobbytemplate_event321"
+		}
+
+	game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
+	end
+end
+
 
 local function AutoBuyCapsuleFunc ()
 
@@ -4360,6 +4375,7 @@ checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
 checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
+checkBoxFunc(AutoJoinHalloween, AutoJoinHalloweenFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
