@@ -3142,13 +3142,13 @@ local function AutoJoinHalloweenFunc ()
 	if not IsLobby then return end
 
 	while GetSave(AutoJoinHalloween.Name) do
-		repeat task.wait(20) until game:IsLoaded()
+		repeat task.wait(5) until game:IsLoaded()
 
 		local args = {
     		[1] = "_lobbytemplate_event321"
 		}
 
-	game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
+		game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
 	end
 end
 
