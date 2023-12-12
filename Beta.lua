@@ -4488,7 +4488,7 @@ local contentNewSecretItem = ""
 
 local function newSecretItemFunc (itemName, Amount)
 	if contentNewSecretItem == "" then
-		contentNewSecretItem = string.format("You have got +%s (x%s)```", itemName, Amount)
+		contentNewSecretItem = string.format("You have got %s (x%s)", itemName, Amount)
 	else
 		contentNewSecretItem = contentNewSecretItem .. string.format(", %s (%s)", itemName, Amount)
 
@@ -4504,7 +4504,7 @@ local function webhook ()
 		{name = 'XP', amount = player._stats.player_xp.Value - oldPlayerStats.PlayerXP},
 		{name = 'Gems', amount = player._stats.gem_amount.Value - oldPlayerStats.Gems},
 		{name = 'Gold', amount = player._stats.gold_amount.Value - oldPlayerStats.Gold},
-		{name = 'Candy', amount = player._stats._resourceCandies.Value - oldPlayerStats.Candy},
+		{name = 'Candies', amount = player._stats._resourceCandies.Value - oldPlayerStats.Candy},
 
 	}
 
@@ -4585,7 +4585,7 @@ local function webhook ()
 			local comma = ""
 	
 			if itemData.Name == itemName then
-				newItems = newItems .. string.format("+%s (%s), [%s] Total: (x%s) \n", itemName, itemAmount, itemData.Rarity, itemData.Amount) .. comma
+				newItems = newItems .. string.format("+%s (%s) [%s] Total: (x%s) \n", itemName, itemAmount, itemData.Rarity, itemData.Amount) .. comma
 			end
 		end
 	end
