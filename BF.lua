@@ -1056,11 +1056,8 @@ AutoRaceAWK = MakeCheckbox(Main_MainSubPage, 'Auto use V4', 0.056)
 ---------------------------------------------------------------------------
 
 local funtion AutoRaceAWKFunc()
-    local RaceEnergy = Workspace.Characters.LocalPlayer.RaceEnergy.Value
-
-    if RaceEnergy = <= 0.9 then return end
-
     while GetSave(AutoAWK.Name) do
+        wait(0.5)
         local args = {
             [1] = true
         }
@@ -1068,6 +1065,7 @@ local funtion AutoRaceAWKFunc()
         game:GetService("Players").LocalPlayer.Character.Awakening.RemoteFunction:InvokeServer(unpack(args))
     end
 end
+
 
 local function AutoRaceABLFunc()
     while GetSave(AutoRaceAB.Name) do
