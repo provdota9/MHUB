@@ -1064,8 +1064,8 @@ Pages['Main'].BottomLine.Visible = true
 
 local Main_MainSubPage = MakeNewSubPage('Main', 'Right', 0.603, 0.03, 0.01, 0.02)
 MakeTitle(Main_MainSubPage, 'Main', 0.07)
-local AutoRaceABL = MakeCheckbox(Main_MainSubPage, 'Auto Race Ability', 0.056)
 local AutoRaceAWK = MakeCheckbox(Main_MainSubPage, 'Auto V4 Ability', 0.056)
+local AutoRaceABL = MakeCheckbox(Main_MainSubPage, 'Auto Race Ability', 0.056)
 
 ----------------------------------------------FUNCTIONS-------------------------------------
 
