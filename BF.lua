@@ -1,6 +1,3 @@
-if getgenv().SkeleHubExecuted then return end
-getgenv().SkeleHubExecuted = true
-
 -- SERVICES
 local HttpService = game:GetService('HttpService')
 local UIS = game:GetService('UserInputService')
