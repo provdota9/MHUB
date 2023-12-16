@@ -1092,7 +1092,7 @@ local function checkBoxFunc (checkBox, checkBoxF, checkBoxFuncValue, CustomKey)
 end
 
 local function AutoRaceAWKFunc()
-    while GetSave(AutoAWK.Name) do
+    while GetSave(AutoRaceAWK.Name) do
         local args = {
             [1] = true
         }
@@ -1102,7 +1102,7 @@ local function AutoRaceAWKFunc()
 end
 
 local function AutoRaceABLFunc()
-    while GetSave(AutoRaceAB.Name) do
+    while GetSave(AutoRaceABL.Name) do
         local args = {
             [1] = "ActivateAbility"
         }
