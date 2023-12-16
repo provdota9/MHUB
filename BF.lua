@@ -1102,7 +1102,7 @@ local function TPLobby ()
 end
 
 checkBoxFunc(AutoRaceAWK, AutoAWK)
-checkBoxFunc(AutoRaceABL, AutoRaceAB)
+checkBoxFunc(AutoRaceABL, AutoRaceABLFunc)
 
 TPToLobby.MouseButton1Click:Connect(function()
 	TPLobby()
