@@ -1098,6 +1098,8 @@ local function AutoRaceAWKFunc()
         }
         
         game:GetService("Players").LocalPlayer.Character.Awakening.RemoteFunction:InvokeServer(unpack(args))
+
+		wait(1)
     end
 end
 
@@ -1108,6 +1110,8 @@ local function AutoRaceABLFunc()
         }
         
         game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
+
+		wait(1)
     end
 end
 
