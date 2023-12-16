@@ -1101,7 +1101,7 @@ local function TPLobby ()
 	game:GetService('TeleportService'):Teleport(8304191830, player)
 end
 
-checkBoxFunc(AutoRaceAWK, AutoAWK)
+checkBoxFunc(AutoRaceAWK, AutoRaceAWKFunc)
 checkBoxFunc(AutoRaceABL, AutoRaceABLFunc)
 
 TPToLobby.MouseButton1Click:Connect(function()
