@@ -197,14 +197,6 @@ DiscordLabel.TextScaled = true
 DiscordLabel.TextXAlignment = Enum.TextXAlignment.Left
 DiscordLabel.Text = "Discord: 32rvCfAmGC"
 
-task.spawn(function()
-	while true do
-		TimerLabel.Text = string.format("Timer: %02s:%02s:%02s", math.floor((os.time() - StartTime) / 3600), math.floor((os.time() - StartTime)%3600/60), (os.time() - StartTime) % 60 )
-		FPSLabel.Text = string.format("FPS: %s", FPS) FPS = 0
-		task.wait(1)
-	end
-end)
-
 Top = Instance.new('Frame', MainFrame)
 Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 Top.AnchorPoint = Vector2.new(1, 0.5)
