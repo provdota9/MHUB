@@ -1,3 +1,24 @@
+local CombatFrameworkOld = require(lplr.PlayerScripts.CombatFramework) 
+require(game.ReplicatedStorage.Util.CameraShaker):Stop()
+
+local CombatFramework = debug.getupvalues(CombatFrameworkOld)[2]
+game:GetService("RunService").Stepped:Connect(function()
+    CombatFramework.activeController.attacking = false
+	CombatFramework.activeController.increment = 3
+	CombatFramework.activeController.blocking = false
+	CombatFramework.activeController.timeToNextBlock = 0
+	CombatFramework.activeController.timeToNextAttack = 0
+    CombatFramework.activeController.hitboxMagnitude = 54
+end)
+
+if game.PlaceId == 2753915549 then
+    World = 1
+elseif game.PlaceId == 4442272183 then
+    World = 2
+elseif game.PlaceId == 7449423635 then
+    World = 3
+end
+
 local HttpService = game:GetService('HttpService')
 local UIS = game:GetService('UserInputService')
 local RunS = game:GetService('RunService')
@@ -1053,20 +1074,123 @@ local function MakeDoubleButton (subPage, ButtonTXT, ScaleY)
 end
 
 MakeNewPage('Main', 0.117)
-
+MakeNewPage('Farm', 0.117)
 -------------------------------
 
 pageShown = ScrollingContent['Main']
 pageShown.Visible = true
 Pages['Main'].BottomLine.Visible = true
 
--------------------------------------------
+----------------MAIN SECTION------------------------------------------------
 
 local Main_MainSubPage = MakeNewSubPage('Main', 'Right', 0.603, 0.03, 0.01, 0.02)
 MakeTitle(Main_MainSubPage, 'Main', 0.07)
 local AutoRaceAWK = MakeCheckbox(Main_MainSubPage, 'Auto V4 Ability', 0.056)
 local AutoRaceABL = MakeCheckbox(Main_MainSubPage, 'Auto Race Ability', 0.056)
 local TPToLobby = MakeLargeButton(Main_MainSubPage, 'Server Hop', 0.103)
+
+------------------FARM SECTION--------------------------
+
+Farm_AutoJoinInfStory = MakeNewSubPage('Farm', 'Left', 0.347, 0.03, 0.02, 0.02)
+MakeTitle(Farm_AutoJoinInfStory, 'Auto Farm', 0.115)
+AutoFarmLevel = MakeCheckbox(Farm_AutoJoinInfStory, 'Auto Farm Level', 0.105)
+
+-------------------------FARM FUNCTION-----------------------------------------------
+
+function StartQuest(Enemy)
+    Quest_Person, Quest_Data = QuestData.getQuest(Enemy)
+    
+    for i,v in pairs(Quest_Data) do
+        if i == "CFramePos" then
+            CFramePos = v
+        elseif typeof(v) == "CFrame" then
+            CFramePos = v
+        end
+    end
+
+    if (Vector3.new(CFramePos.X, CFramePos.Y, CFramePos.Z) - lplr.Character.HumanoidRootPart.Position).Magnitude >= 10000 and Quest_Data.Entrance then
+        game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Quest_Data.Entrance)
+        task.wait(0.4)
+     else
+        task.wait(1)
+        WalkTween(lplr.Character.HumanoidRootPart, CFramePos, 300)
+        task.wait(0.4)
+        if (Vector3.new(CFramePos.X, CFramePos.Y, CFramePos.Z) - lplr.Character.HumanoidRootPart.Position).Magnitude <= 20 then
+            game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", Quest_Data.QuestName, Quest_Data.LevelQuest)
+            task.wait(0.5)
+        end
+    end
+end
+
+function UnEquipWeapon(Weapon)
+    if game.Players.LocalPlayer.Character:FindFirstChild(Weapon) then
+        game.Players.LocalPlayer.Character:FindFirstChild(Weapon).Parent = game.Players.LocalPlayer.Backpack
+    end
+end
+    
+function EquipWeapon(ToolSe)
+    if game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe) then
+        game.Players.LocalPlayer.Character.Humanoid:EquipTool(game.Players.LocalPlayer.Backpack:FindFirstChild(ToolSe))
+    end
+end
+
+function Attack(Enemy)
+    if game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible then
+        for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
+            if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and v.Name:find(Enemy) then
+                repeat task.wait()
+                    if (v.HumanoidRootPart.Position - lplr.Character.PrimaryPart.Position).Magnitude <= 54 then
+                        CombatFramework.activeController.hitboxMagnitude = 54
+                        game:GetService("VirtualUser"):CaptureController()
+                        game:GetService("VirtualUser"):Button1Down(Vector2.new(1000, 1000))
+                    end
+                    WalkTween(lplr.Character.HumanoidRootPart, CFrame.new(v.HumanoidRootPart.Position.X, v.HumanoidRootPart.Position.Y + 50, v.HumanoidRootPart.Position.Z), 400)
+                until not v.Parent or v.Humanoid.Health <= 0
+            else
+                for i,v in pairs(game.Workspace._WorldOrigin.EnemySpawns:GetChildren()) do
+                    if v.Name:find(Enemy) then
+                        WalkTween(lplr.Character.HumanoidRootPart, v.CFrame, 300) break
+                    end
+                end
+            end
+        end
+    else
+        StartQuest(Enemy)
+    end
+end
+
+local SelectedQuest = {Quest = "", Enabled = false, AutoSelect = false, FirstSea = "", SecondSea = ""}
+
+table.insert(QuestData.FirstSea, "First Sea")
+table.insert(QuestData.SecondSea, "Second Sea")
+table.insert(QuestData.ThirdSea, "Third Sea")
+
+local function AutoFarmlvFunc()
+	while GetSave(AutoFarmLevel.Name) do
+		Callback = function(Value)
+			SelectedQuest.AutoSelect = Value
+			
+			while task.wait() do
+				if not SelectedQuest.AutoSelect then break end
+	
+				SelectedEnemy = QuestData.CalculateLevel(tonumber(game.Players.LocalPlayer.PlayerGui.Main.Level.Text:sub(5)))
+	
+				for i,v in pairs(QuestData.Quests) do
+					if v.EnemyName == SelectedEnemy then
+						if v.World == 1 and World == 1 then
+							FirstSeaD:Set(v.EnemyName)
+						elseif v.World == 2 and World == 2 then
+							SecondSeaD:Set(v.EnemyName)
+						elseif v.World == 3 and World == 3 then
+							ThirdSeaD:Set(v.EnemyName)
+						end
+					end
+				end
+				
+			end
+		end
+	end
+end
 
 ----------------------------------------------FUNCTIONS-------------------------------------
 
@@ -1121,6 +1245,7 @@ local function TPLobby ()
 end
 
 checkBoxFunc(AutoRaceAWK, AutoRaceAWKFunc)
+checkBoxFunc(AutoFarmLevel, AutoFarmlvFunc)
 checkBoxFunc(AutoRaceABL, AutoRaceABLFunc)
 
 TPToLobby.MouseButton1Click:Connect(function()
