@@ -1093,6 +1093,7 @@ end
 
 local function AutoRaceAWKFunc()
     while GetSave(AutoRaceAWK.Name) do
+		wait(1)
         local args = {
             [1] = true
         }
@@ -1105,13 +1106,13 @@ end
 
 local function AutoRaceABLFunc()
     while GetSave(AutoRaceABL.Name) do
+		wait(1)
         local args = {
             [1] = "ActivateAbility"
         }
         
         game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
 
-		wait(1)
     end
 end
 
