@@ -1,11 +1,3 @@
-if game.PlaceId == 2753915549 then
-    World = 1
-elseif game.PlaceId == 4442272183 then
-    World = 2
-elseif game.PlaceId == 7449423635 then
-    World = 3
-end
-
 local HttpService = game:GetService('HttpService')
 local UIS = game:GetService('UserInputService')
 local RunS = game:GetService('RunService')
@@ -33,6 +25,14 @@ game:GetService("RunService").Stepped:Connect(function()
 	CombatFramework.activeController.timeToNextAttack = 0
     CombatFramework.activeController.hitboxMagnitude = 54
 end)
+
+if game.PlaceId == 2753915549 then
+    World = 1
+elseif game.PlaceId == 4442272183 then
+    World = 2
+elseif game.PlaceId == 7449423635 then
+    World = 3
+end
 
 makefolder("Skele Hub")
 makefolder('Skele Hub\\BF')
