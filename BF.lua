@@ -1069,6 +1069,27 @@ local AutoRaceABL = MakeCheckbox(Main_MainSubPage, 'Auto Race Ability', 0.056)
 
 ----------------------------------------------FUNCTIONS-------------------------------------
 
+local function checkBoxFunc (checkBox, checkBoxF, checkBoxFuncValue, CustomKey)
+	local keySave = CustomKey or checkBox.Name
+
+	checkBox.MouseButton1Click:Connect(function()
+		local enabled = not GetSave(keySave)
+		Save(keySave, enabled)
+
+		checkBox.Parent.BackgroundColor3 = checkBoxColors[enabled]
+		if not enabled then return end
+
+		if checkBoxF then checkBoxF(checkBoxFuncValue, checkBox.Name) end
+	end)
+
+	if GetSave(keySave) then 
+		checkBox.Parent.BackgroundColor3 = checkBoxColors[true]
+		if checkBoxF then task.spawn(function() checkBoxF(checkBoxFuncValue, checkBox.Name) end) end
+	end
+
+
+end
+
 local function AutoRaceAWKFunc()
     while GetSave(AutoAWK.Name) do
         local args = {
