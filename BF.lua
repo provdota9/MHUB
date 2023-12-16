@@ -1072,11 +1072,40 @@ Pages['Main'].BottomLine.Visible = true
 
 local Main_MainSubPage = MakeNewSubPage('Main', 'Right', 0.603, 0.03, 0.01, 0.02)
 MakeTitle(Main_MainSubPage, 'Main', 0.07)
-AutoLeaveLATE = MakeCheckbox(Main_MainSubPage, 'Auto Leave [LATE]', 0.056)
-local AutoLeave = MakeCheckbox(Main_MainSubPage, 'Auto Leave', 0.056)
-local AutoRetry = MakeCheckbox(Main_MainSubPage, 'Auto Retry', 0.056)
-local AutoNextLevel = MakeCheckbox(Main_MainSubPage, 'Auto Next Level', 0.056)
-local AutoNextPortal = MakeCheckbox(Main_MainSubPage, 'Auto Next Portal', 0.056)
-local PlaceInRedZones = MakeCheckbox(Main_MainSubPage, 'Place In Red Zones', 0.056)
-local HideMap = MakeCheckbox(Main_MainSubPage, 'Hide Map', 0.056)
-local TPToLobby = MakeLargeButton(Main_MainSubPage, 'Teleport To Lobby', 0.103)
+local AutoLeave = MakeCheckbox(Main_MainSubPage, 'Auto Race Ability', 0.056)
+local AutoRetry = MakeCheckbox(Main_MainSubPage, 'Auto V4 (ability)', 0.056)
+
+----------------------------------------------FUNCTIONS-------------------------------------
+
+local funtion AutoRaceAWKFunc()
+    while GetSave(AutoAWK.Name) do
+		wait(0.5)
+        local args = {
+            [1] = true
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Awakening.RemoteFunction:InvokeServer(unpack(args))
+    end
+end
+
+local function AutoRaceABLFunc()
+    while GetSave(AutoRaceAB.Name) do
+        wait(0.5)
+        local args = {
+            [1] = "ActivateAbility"
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
+    end
+end
+
+local function TPLobby ()
+	game:GetService('TeleportService'):Teleport(8304191830, player)
+end
+
+checkBoxFunc(AutoRaceAWK, AutoAWK)
+checkBoxFunc(AutoRaceABL, AutoRaceAB)
+
+TPToLobby.MouseButton1Click:Connect(function()
+	TPLobby()
+end)
