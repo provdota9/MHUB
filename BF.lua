@@ -1079,7 +1079,6 @@ local AutoRetry = MakeCheckbox(Main_MainSubPage, 'Auto V4 (ability)', 0.056)
 
 local funtion AutoRaceAWKFunc()
     while GetSave(AutoAWK.Name) do
-		wait(0.5)
         local args = {
             [1] = true
         }
@@ -1090,7 +1089,6 @@ end
 
 local function AutoRaceABLFunc()
     while GetSave(AutoRaceAB.Name) do
-        wait(0.5)
         local args = {
             [1] = "ActivateAbility"
         }
