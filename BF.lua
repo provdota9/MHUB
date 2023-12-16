@@ -1,16 +1,3 @@
-local CombatFrameworkOld = require(lplr.PlayerScripts.CombatFramework) 
-require(game.ReplicatedStorage.Util.CameraShaker):Stop()
-
-local CombatFramework = debug.getupvalues(CombatFrameworkOld)[2]
-game:GetService("RunService").Stepped:Connect(function()
-    CombatFramework.activeController.attacking = false
-	CombatFramework.activeController.increment = 3
-	CombatFramework.activeController.blocking = false
-	CombatFramework.activeController.timeToNextBlock = 0
-	CombatFramework.activeController.timeToNextAttack = 0
-    CombatFramework.activeController.hitboxMagnitude = 54
-end)
-
 if game.PlaceId == 2753915549 then
     World = 1
 elseif game.PlaceId == 4442272183 then
@@ -33,6 +20,19 @@ local mouse = player:GetMouse()
 
 local DifferentColorsPoints = {Color3.fromRGB(1, 81, 255), Color3.fromRGB(255,0,0), Color3.fromRGB(0,255,0), Color3.fromRGB(255,255,0), Color3.fromRGB(255,0,255), Color3.fromRGB(0,255,255)}
 local FPS = 0
+
+local CombatFrameworkOld = require(player.PlayerScripts.CombatFramework) 
+require(game.ReplicatedStorage.Util.CameraShaker):Stop()
+
+local CombatFramework = debug.getupvalues(CombatFrameworkOld)[2]
+game:GetService("RunService").Stepped:Connect(function()
+    CombatFramework.activeController.attacking = false
+	CombatFramework.activeController.increment = 3
+	CombatFramework.activeController.blocking = false
+	CombatFramework.activeController.timeToNextBlock = 0
+	CombatFramework.activeController.timeToNextAttack = 0
+    CombatFramework.activeController.hitboxMagnitude = 54
+end)
 
 makefolder("Skele Hub")
 makefolder('Skele Hub\\BF')
@@ -1108,14 +1108,14 @@ function StartQuest(Enemy)
         end
     end
 
-    if (Vector3.new(CFramePos.X, CFramePos.Y, CFramePos.Z) - lplr.Character.HumanoidRootPart.Position).Magnitude >= 10000 and Quest_Data.Entrance then
+    if (Vector3.new(CFramePos.X, CFramePos.Y, CFramePos.Z) - player.Character.HumanoidRootPart.Position).Magnitude >= 10000 and Quest_Data.Entrance then
         game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("requestEntrance", Quest_Data.Entrance)
         task.wait(0.4)
      else
         task.wait(1)
-        WalkTween(lplr.Character.HumanoidRootPart, CFramePos, 300)
+        WalkTween(player.Character.HumanoidRootPart, CFramePos, 300)
         task.wait(0.4)
-        if (Vector3.new(CFramePos.X, CFramePos.Y, CFramePos.Z) - lplr.Character.HumanoidRootPart.Position).Magnitude <= 20 then
+        if (Vector3.new(CFramePos.X, CFramePos.Y, CFramePos.Z) - player.Character.HumanoidRootPart.Position).Magnitude <= 20 then
             game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest", Quest_Data.QuestName, Quest_Data.LevelQuest)
             task.wait(0.5)
         end
@@ -1139,17 +1139,17 @@ function Attack(Enemy)
         for i,v in pairs(game.Workspace.Enemies:GetChildren()) do
             if v:IsA("Model") and v:FindFirstChild("Humanoid") and v:FindFirstChild("HumanoidRootPart") and v.Humanoid.Health > 0 and v.Name:find(Enemy) then
                 repeat task.wait()
-                    if (v.HumanoidRootPart.Position - lplr.Character.PrimaryPart.Position).Magnitude <= 54 then
+                    if (v.HumanoidRootPart.Position - player.Character.PrimaryPart.Position).Magnitude <= 54 then
                         CombatFramework.activeController.hitboxMagnitude = 54
                         game:GetService("VirtualUser"):CaptureController()
                         game:GetService("VirtualUser"):Button1Down(Vector2.new(1000, 1000))
                     end
-                    WalkTween(lplr.Character.HumanoidRootPart, CFrame.new(v.HumanoidRootPart.Position.X, v.HumanoidRootPart.Position.Y + 50, v.HumanoidRootPart.Position.Z), 400)
+                    WalkTween(player.Character.HumanoidRootPart, CFrame.new(v.HumanoidRootPart.Position.X, v.HumanoidRootPart.Position.Y + 50, v.HumanoidRootPart.Position.Z), 400)
                 until not v.Parent or v.Humanoid.Health <= 0
             else
                 for i,v in pairs(game.Workspace._WorldOrigin.EnemySpawns:GetChildren()) do
                     if v.Name:find(Enemy) then
-                        WalkTween(lplr.Character.HumanoidRootPart, v.CFrame, 300) break
+                        WalkTween(player.Character.HumanoidRootPart, v.CFrame, 300) break
                     end
                 end
             end
