@@ -1095,7 +1095,66 @@ Farm_AutoJoinInfStory = MakeNewSubPage('Farm', 'Left', 0.347, 0.03, 0.02, 0.02)
 MakeTitle(Farm_AutoJoinInfStory, 'Auto Farm', 0.115)
 AutoFarmLevel = MakeCheckbox(Farm_AutoJoinInfStory, 'Auto Farm Level', 0.105)
 
--------------------------FARM FUNCTION-----------------------------------------------
+----------------------------------------------FUNCTIONS-------------------------------------
+
+local function checkBoxFunc (checkBox, checkBoxF, checkBoxFuncValue, CustomKey)
+	local keySave = CustomKey or checkBox.Name
+
+	checkBox.MouseButton1Click:Connect(function()
+		local enabled = not GetSave(keySave)
+		Save(keySave, enabled)
+
+		checkBox.Parent.BackgroundColor3 = checkBoxColors[enabled]
+		if not enabled then return end
+
+		if checkBoxF then checkBoxF(checkBoxFuncValue, checkBox.Name) end
+	end)
+
+	if GetSave(keySave) then 
+		checkBox.Parent.BackgroundColor3 = checkBoxColors[true]
+		if checkBoxF then task.spawn(function() checkBoxF(checkBoxFuncValue, checkBox.Name) end) end
+	end
+
+
+end
+
+local function AutoRaceAWKFunc()
+    while GetSave(AutoRaceAWK.Name) do
+		wait(1)
+        local args = {
+            [1] = true
+        }
+        
+        game:GetService("Players").LocalPlayer.Character.Awakening.RemoteFunction:InvokeServer(unpack(args))
+
+		wait(1)
+    end
+end
+
+local function AutoRaceABLFunc()
+    while GetSave(AutoRaceABL.Name) do
+		wait(1)
+        local args = {
+            [1] = "ActivateAbility"
+        }
+        
+        game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
+
+    end
+end
+
+local function TPLobby ()
+	game:GetService('TeleportService'):Teleport(8304191830, player)
+end
+
+checkBoxFunc(AutoRaceAWK, AutoRaceAWKFunc)
+checkBoxFunc(AutoRaceABL, AutoRaceABLFunc)
+
+TPToLobby.MouseButton1Click:Connect(function()
+	TPLobby()
+end)
+
+-------------------------AUTO FARM ---------------------------------
 
 function StartQuest(Enemy)
     Quest_Person, Quest_Data = QuestData.getQuest(Enemy)
@@ -1162,88 +1221,41 @@ end
 local SelectedQuest = {Quest = "", Enabled = false, AutoSelect = true, FirstSea = "", SecondSea = ""}
 
 local function AutoFarmlvFunc()
-	while GetSave(AutoFarmLevel.Name) do
-		Callback = function(Value)
-			SelectedQuest.AutoSelect = Value
-			
-			while task.wait() do
-				if not SelectedQuest.AutoSelect then break end
-	
-				SelectedEnemy = QuestData.CalculateLevel(tonumber(game.Players.LocalPlayer.PlayerGui.Main.Level.Text:sub(5)))
-	
-				for i,v in pairs(QuestData.Quests) do
-					if v.EnemyName == SelectedEnemy then
-						if v.World == 1 and World == 1 then
-							FirstSeaD:Set(v.EnemyName)
-						elseif v.World == 2 and World == 2 then
-							SecondSeaD:Set(v.EnemyName)
-						elseif v.World == 3 and World == 3 then
-							ThirdSeaD:Set(v.EnemyName)
-						end
-					end
-				end
-				
-			end
-		end
-	end
-end
-
-----------------------------------------------FUNCTIONS-------------------------------------
-
-local function checkBoxFunc (checkBox, checkBoxF, checkBoxFuncValue, CustomKey)
-	local keySave = CustomKey or checkBox.Name
-
-	checkBox.MouseButton1Click:Connect(function()
-		local enabled = not GetSave(keySave)
-		Save(keySave, enabled)
-
-		checkBox.Parent.BackgroundColor3 = checkBoxColors[enabled]
-		if not enabled then return end
-
-		if checkBoxF then checkBoxF(checkBoxFuncValue, checkBox.Name) end
-	end)
-
-	if GetSave(keySave) then 
-		checkBox.Parent.BackgroundColor3 = checkBoxColors[true]
-		if checkBoxF then task.spawn(function() checkBoxF(checkBoxFuncValue, checkBox.Name) end) end
-	end
-
-
-end
-
-local function AutoRaceAWKFunc()
-    while GetSave(AutoRaceAWK.Name) do
-		wait(1)
-        local args = {
-            [1] = true
-        }
+    Callback = function(Value)
+        SelectedQuest.AutoSelect = Value
         
-        game:GetService("Players").LocalPlayer.Character.Awakening.RemoteFunction:InvokeServer(unpack(args))
+        while task.wait() do
+            if not SelectedQuest.AutoSelect then break end
 
-		wait(1)
+            SelectedEnemy = QuestData.CalculateLevel(tonumber(game.Players.LocalPlayer.PlayerGui.Main.Level.Text:sub(5)))
+
+            for i,v in pairs(QuestData.Quests) do
+                if v.EnemyName == SelectedEnemy then
+                    if v.World == 1 and World == 1 then
+                        FirstSeaD:Set(v.EnemyName)
+                    elseif v.World == 2 and World == 2 then
+                        SecondSeaD:Set(v.EnemyName)
+                    elseif v.World == 3 and World == 3 then
+                        ThirdSeaD:Set(v.EnemyName)
+                    end
+                end
+            end
+            
+        end
     end
 end
 
-local function AutoRaceABLFunc()
-    while GetSave(AutoRaceABL.Name) do
-		wait(1)
-        local args = {
-            [1] = "ActivateAbility"
-        }
-        
-        game:GetService("ReplicatedStorage").Remotes.CommE:FireServer(unpack(args))
 
-    end
-end
 
-local function TPLobby ()
-	game:GetService('TeleportService'):Teleport(8304191830, player)
-end
+AutoFarmLevel.MouseButton1Click:Connect(function()
 
-checkBoxFunc(AutoRaceAWK, AutoRaceAWKFunc)
-checkBoxFunc(AutoFarmLevel, AutoFarmlvFunc)
-checkBoxFunc(AutoRaceABL, AutoRaceABLFunc)
+	local enabled = not GetSave(AutoFarmLevel.Name)
+	Save(AutoFarmLevel.Name, enabled)
 
-TPToLobby.MouseButton1Click:Connect(function()
-	TPLobby()
+	AutoFarmLevel.Parent.BackgroundColor3 = checkBoxColors[enabled]
+
+	AutoFarmLvFunc(enabled)
+
 end)
+
+if GetSave('Auto Farm Level') then AutoFarmLvFunc(true) AutoFarmLevel.Parent.BackgroundColor3 = checkBoxColors[true] end
