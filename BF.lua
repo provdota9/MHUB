@@ -1258,4 +1258,4 @@ AutoFarmLevel.MouseButton1Click:Connect(function()
 
 end)
 
-if GetSave('Auto Farm Level') then AutoFarmLvFunc(true) AutoFarmLevel.Parent.BackgroundColor3 = checkBoxColors[true] end
+if GetSave(AutoFarmLevel.Name) then AutoFarmlvFunc(true) AutoFarmLevel.Parent.BackgroundColor3 = checkBoxColors[true] end
