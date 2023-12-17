@@ -1220,7 +1220,7 @@ end
 
 local SelectedQuest = {Quest = "", Enabled = false, AutoSelect = true, FirstSea = "", SecondSea = ""}
 
-local function AutoFarmlvFunc()
+local function AutoFarmlvFunc (enabled)
     Callback = function(Value)
         SelectedQuest.AutoSelect = Value
         
@@ -1254,7 +1254,7 @@ AutoFarmLevel.MouseButton1Click:Connect(function()
 
 	AutoFarmLevel.Parent.BackgroundColor3 = checkBoxColors[enabled]
 
-	AutoFarmLvFunc(enabled)
+	AutoFarmlvFunc(enabled)
 
 end)
 
