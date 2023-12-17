@@ -1159,11 +1159,7 @@ function Attack(Enemy)
     end
 end
 
-local SelectedQuest = {Quest = "", Enabled = false, AutoSelect = false, FirstSea = "", SecondSea = ""}
-
-table.insert(QuestData.FirstSea, "First Sea")
-table.insert(QuestData.SecondSea, "Second Sea")
-table.insert(QuestData.ThirdSea, "Third Sea")
+local SelectedQuest = {Quest = "", Enabled = false, AutoSelect = true, FirstSea = "", SecondSea = ""}
 
 local function AutoFarmlvFunc()
 	while GetSave(AutoFarmLevel.Name) do
