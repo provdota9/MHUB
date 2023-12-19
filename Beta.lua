@@ -435,17 +435,17 @@ local macroMapList = {
         'Port Agency Portal',
 		'Noble Portal',
 		'Alien Spaceship (Final)',
-		'Puppet Island (Birdcage)'
-
-	};
-
-	['Other'] = {
-        'Magic Town (Haunted)',
+		'Magic Town (Haunted)',
         'Clover Kingdom (Demonic)',
         "Marine's Ford (Midnight)",
         'Bizzare Town (Haunted)',
         'Planet Namak (Haunted)',
         'Shiganshinu District (Midnight)',
+		'Puppet Island (Birdcage)'
+
+	};
+
+	['Other'] = {
 		'Cursed Womb'
 	}
 }
@@ -1695,8 +1695,7 @@ local PingUserCHB = MakeCheckbox(Misc_WebhookSubPage, "Ping User", 0.063)
 local PingRareCHB = MakeCheckbox(Misc_WebhookSubPage, "Ping On Secret Drop", 0.063)
 local PingDefeatCHB = MakeCheckbox(Misc_WebhookSubPage, "Ping On Defeat", 0.063)
 
-local checkstatswh = MakeLargeButton(Misc_WebhookSubPage, "Test Webhook", 0.12)
-local TestWebhook = MakeLargeButton(Misc_WebhookSubPage, "Test Webhook", 0.12)
+local checkstatswh = MakeLargeButton(Misc_WebhookSubPage, "Check stats", 0.12)
 
 local Misc_MiscSubPage = MakeNewSubPage('Misc', 'Right', 0.344, 0.03, 0.02, 0.02)
 MakeTitle(Misc_MiscSubPage, 'Misc', 0.13)
@@ -2367,50 +2366,12 @@ checkstatswh.MouseButton1Click:Connect(function()
 				["title"] = 'Anime Adventures',
 				['color'] = 6684927,
 				['footer'] = {
-					['text'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s", TotalGems, TotalGold, TotalCandy),
+					['text'] = string.format( "By Skele HUB (%s)", Time),
 				},
 				['fields'] = {
 					{
 						['name'] = 'Test Webhook',
-						['value'] = '```+Dio OH```'
-					}
-				}
-			}
-		}
-	}
-
-	data = HttpService:JSONEncode(data)
-	local headers = {["content-type"] = "application/json"}
-	local request = http_request or request or HttpPost or syn.request or http.request
-	local dataSend = {Url = discordUrl, Body = data, Method = "POST", Headers = headers}
-	warn("Sending test webhook...")
-
-	pcall(function() request(dataSend) end)
-
-end)
-
-TestWebhook.MouseButton1Click:Connect(function()
-	local Time = os.date("%X")
-	local willBePinged = GetSave(PingDefeatCHB.Name) or GetSave(PingRareCHB.Name) or GetSave(PingUserCHB.Name)
-	local userID = "" if GetSave("Discord UserID") ~= "" and willBePinged then userID = string.format("<@%s>", GetSave("Discord UserID")) end
-	local discordUrl = GetSave("Discord Url")
-
-	local data = {
-		["content"] = userID,
-		["embeds"] = {
-			{
-				["title"] = 'Script Adventures',
-				['color'] = 6684927,
-				['footer'] = {
-					['text'] = string.format("// By Skele HUB (%s)", Time), 
-				},
-				['image'] = {
-					['url'] = 'https://i.ytimg.com/vi/vQFr7fqXqIE/maxresdefault.jpg'
-				},
-				['fields'] = {
-					{
-						['name'] = 'Test Webhook',
-						['value'] = '```+Dio OH```'
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s", TotalGems, TotalGold, TotalCandy),
 					}
 				}
 			}
