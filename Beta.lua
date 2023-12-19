@@ -2352,6 +2352,7 @@ AutoPlaceWave.Text = GetSave("AutoPlaceUnitsWave")
 
 checkstatswh.MouseButton1Click:Connect(function()
 	local Time = os.date("%X")
+	local willBePinged = GetSave(PingDefeatCHB.Name) or GetSave(PingRareCHB.Name) or GetSave(PingUserCHB.Name)
 	local userID = "" if GetSave("Discord UserID") ~= "" and willBePinged then userID = string.format("<@%s>", GetSave("Discord UserID")) end
 	local discordUrl = GetSave("Discord Url")
 
