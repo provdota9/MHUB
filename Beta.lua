@@ -4436,9 +4436,6 @@ end)
 local function getMapName (result)
 	local mapName = result
 
-	if LevelData.name = 'Nightmare Hunt' then
-		mapName = 'Halloween - ' .. mapName .. '\n MAP:' .. LevelData._location_name
-
 	if LevelData._gamemode == 'infinite' then mapName = "Infinite Mode - " .. LevelData._location_name end
 
 	if LevelData._is_map_or_portal_level then
@@ -4451,7 +4448,7 @@ local function getMapName (result)
 		mapName = "Infinity Tower Mode - " .. mapName .. string.format("\n(%s - Room %s)", LevelData._location_name, LevelData.floor_num)
 
 	elseif LevelData._gamemode ~= 'infinite' then
-		mapName = LevelData.name .. ' - ' .. mapName
+		mapName = LevelData.name .. ' - ' .. mapName .. '\n MAP:' .. levelData._location_name
 	end
 
 	local minutes = math.floor( (os.time() - StartTime) / 60 )
