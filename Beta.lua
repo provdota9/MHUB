@@ -3850,6 +3850,7 @@ local function autoGamePLUS ()
 
 		if AutoL and tonumber(AutoLWave) <= workspace._wave_num.Value then
 			TPLobby()
+			webhook()
 		end
 
 		if (AutoPL or AutoUP) and not (AutoSU and tonumber(AutoSUWave) <= workspace._wave_num.Value) then
@@ -4396,6 +4397,9 @@ end)
 
 local function getMapName (result)
 	local mapName = result
+
+	if LevelData.name = 'Nightmare Hunt' then
+		mapName = 'Halloween - ' .. mapName .. '\n MAP:' .. LevelData._location_name
 
 	if LevelData._gamemode == 'infinite' then mapName = "Infinite Mode - " .. LevelData._location_name end
 
