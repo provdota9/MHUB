@@ -4448,7 +4448,7 @@ local function getMapName (result)
 		mapName = "Infinity Tower Mode - " .. mapName .. string.format("\n(%s - Room %s)", LevelData._location_name, LevelData.floor_num)
 
 	elseif LevelData._gamemode ~= 'infinite' then
-		mapName = LevelData.name .. ' - ' .. mapName .. '\n MAP:' .. levelData._location_name
+		mapName = LevelData.name .. ' - ' .. mapName .. '\n MAP:' .. LevelData._location_name
 	end
 
 	local minutes = math.floor( (os.time() - StartTime) / 60 )
