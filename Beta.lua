@@ -1911,7 +1911,6 @@ Raid_SelectWorld.MouseButton1Click:Connect(function()
 		if not worldModule:IsA('ModuleScript') then continue end
 
 		for _,worldAbout in pairs(require(worldModule)) do
-			if not worldAbout.raid then continue end
 
 			local worldName = worldAbout.name
 
@@ -4935,13 +4934,14 @@ if IsLobby then
 
 		local Raid_World = GetSave('Raid_World')
 		local Raid_Level = GetSave('Raid_Level')
+		local HardDifficulty = 'Hard'
 
 		if RaidNeed and Raid_Level ~= '' then
 
 			for _, RaidRoom in ipairs(workspace._RAID.Raid:GetChildren()) do
 				if #RaidRoom.Players:GetChildren() >0 or RaidRoom.Active.Value then continue end
 				Event['request_join_lobby']:InvokeServer(RaidRoom.Name)
-				player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(102.67790222167969, 186.07278442382812, -742.2952270507812)))
+				player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(255.16964721679688, 196.8419189453125, -820.8120727539062)))
 
 				task.wait(1)
 				Event['request_lock_level']:InvokeServer(RaidRoom.Name, Raid_Level, true, HardDifficulty)
