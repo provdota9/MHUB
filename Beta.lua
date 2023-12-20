@@ -1911,7 +1911,7 @@ Raid_SelectWorld.MouseButton1Click:Connect(function()
 		if not worldModule:IsA('ModuleScript') then continue end
 
 		for _,worldAbout in pairs(require(worldModule)) do
-			if worldAbout.infinite and worldAbout.legend_stage then continue end
+			if not worldAbout.raids then continue end
 
 			local worldName = worldAbout.name
 
