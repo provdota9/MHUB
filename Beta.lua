@@ -1911,7 +1911,7 @@ Raid_SelectWorld.MouseButton1Click:Connect(function()
 		if not worldModule:IsA('ModuleScript') then continue end
 
 		for _,worldAbout in pairs(require(worldModule)) do
-			if worldAbout.name ~= 'Sacred Planet' then continue end
+			if worldAbout.name ~= 'Sacred Planet' or 'Bizarre Town' or "Marine's Ford (Buddha)" or 'Hero City (Hero Slayer)' or 'Entertainment District' or "West City (Freezo's Invasion)" or 'Storm Hideout' or 'West City' or 'Infinity Train' or 'Hidden Sand Village' or 'Shiganshinu District' then continue end
 
 			local worldName = worldAbout.name
 
