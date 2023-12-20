@@ -4968,8 +4968,8 @@ if IsLobby then
 
 			if RaidNeed and Raid_Level ~= '' then
 
-				for _, StoryRoom in ipairs(workspace._RAID.Raid:GetChildren()) do
-					if #StoryRoom.Players:GetChildren() >0 or RaidRoom.Active.Value then continue end
+				for _, RaidRoom in ipairs(workspace._RAID.Raid:GetChildren()) do
+					if #RaidRoom.Players:GetChildren() >0 or RaidRoom.Active.Value then continue end
 					Event['request_join_lobby']:InvokeServer(RaidRoom.Name)
 					player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(255.16964721679688, 196.8419189453125, -820.8120727539062)))
 
