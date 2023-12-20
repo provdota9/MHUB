@@ -1902,73 +1902,41 @@ SelectIgnoreWorlds.MouseButton1Click:Connect(function()
 	GetDDL(SelectIgnoreWorlds, items, true, 'PortalUSE Worlds Ignore')
 
 end)
-DDLlabel(SelectIgnoreWorlds, GetSave('PortalUSE Worlds Ignore'))
+cc
+DDLlabel(Raid_SelectWorld, GetSave('Raid_World'))
 
 Raid_SelectWorld.MouseButton1Click:Connect(function()
 	local items = {}
-
+  
 	for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
-		if not worldModule:IsA('ModuleScript') then continue end
-
-		for _,worldAbout in pairs(require(worldModule)) do
-			if worldAbout.name ~= 'Sacred Planet' or 'Bizarre Town' or "Marine's Ford (Buddha)" or 'Hero City (Hero Slayer)' or 'Entertainment District' or "West City (Freezo's Invasion)" or 'Storm Hideout' or 'West City' or 'Infinity Train' or 'Hidden Sand Village' or 'Shiganshinu District' then continue end
-
+	  if not worldModule:IsA('ModuleScript') then 
+		continue 
+	  end
+  
+	  for _,worldAbout in pairs(require(worldModule)) do
+		if worldAbout.name ~= 'Sacred Planet' and 
+		   worldAbout.name ~= 'Bizarre Town' and 
+		   worldAbout.name ~= "Marine's Ford (Buddha)" and 
+		   worldAbout.name ~= 'Hero City (Hero Slayer)' and 
+		   worldAbout.name ~= 'Entertainment District' and 
+		   worldAbout.name ~= "West City (Freezo's Invasion)" and 
+		   worldAbout.name ~= 'Storm Hideout' and 
+		   worldAbout.name ~= 'West City' and 
+		   worldAbout.name ~= 'Infinity Train' and 
+		   worldAbout.name ~= 'Hidden Sand Village' and 
+		   worldAbout.name ~= 'Shiganshinu District' then continue end
+			
 			local worldName = worldAbout.name
-
 			table.insert(items, worldName)
 		end
-
+	  end
 	end
-
+  
 	GetDDL(Raid_SelectWorld, items, false, 'Raid_World')
-
 	Save('Raid_Level', '')
 	DDLlabel(Raid_SelectLevel, '')
-end)
-DDLlabel(Raid_SelectWorld, GetSave('Raid_World'))
-
-Raid_SelectLevel.MouseButton1Click:Connect(function()
-	local items = {}
-	local selectedWorld = GetSave('Raid_World')
-	if selectedWorld == '' then return end
-
-	local levelsInWorld = {}
-	for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
-		if not worldModule:IsA('ModuleScript') or #levelsInWorld > 0 then continue end
-
-		for _,worldAbout in pairs(require(worldModule)) do
-			if selectedWorld == worldAbout.name then
-				local amountOfLevels = 0
-				for _,_ in pairs(worldAbout.levels) do amountOfLevels+=1 end
-
-				for levelOrder = 1,amountOfLevels do
-					levelsInWorld[#levelsInWorld+1] = worldAbout.levels[tostring(levelOrder)].id
-				end
-
-				break 
-			end
-		end
-
-	end
-
-	for _, levelModule in ipairs(RS.src.Data.Levels:GetDescendants()) do
-		if not levelModule:IsA('ModuleScript') then continue end
-
-		local levelsModule = require(levelModule)
-
-		if not levelsModule[levelsInWorld[1]] then continue end
-
-		for _, levelId in ipairs(levelsInWorld) do
-			table.insert(items, levelsModule[levelId].name)
-		end
-
-	end
-
-
-
-	GetDDL(Raid_SelectLevel, items, false, 'Raid_Level')
-
-end)
+  end)
+  
 DDLlabel(Raid_SelectLevel, GetSave('Raid_Level'))
 
 
