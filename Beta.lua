@@ -4930,35 +4930,63 @@ if IsLobby then
 
 		end
 
-	local RaidNeed = false
+		local RaidNeed = false
 
-	if GetSave(Raid_AutoJoin.Name) and not challengeNeed and not storyInfNeed then
+		if GetSave(Raid_AutoJoin.Name) and not challengeNeed then
 
-		local Raid_World = GetSave('Raid_World')
-		local Raid_Level = GetSave('Raid_Level')
-		local HardDifficulty = 'Hard'
+			local Raid_World = GetSave('Raid_World')
+			local Raid_Level = GetSave('Raid_Level')
+			local HardDifficulty = 'Hard'
 
-		if RaidNeed and Raid_Level ~= '' then
+			if Raid_Level == 'Infinite Mode' then
 
-			for _, RaidRoom in ipairs(workspace._RAID.Raid:GetChildren()) do
-				if #RaidRoom.Players:GetChildren() >0 or RaidRoom.Active.Value then continue end
-				Event['request_join_lobby']:InvokeServer(RaidRoom.Name)
-				player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(255.16964721679688, 196.8419189453125, -820.8120727539062)))
+				for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
+					if not worldModule:IsA('ModuleScript') or RaidNeed then continue end
 
-				task.wait(1)
-				Event['request_lock_level']:InvokeServer(RaidRoom.Name, Raid_Level, true, HardDifficulty)
+					for _, worldAbout in pairs(require(worldModule)) do
+						if not worldAbout.name or worldAbout.name ~= Raid_World or not worldAbout.infinite then continue end
+						RaidNeed = true
+						break
+					end	
+				end
+			else
+				for _, levelModule in ipairs(RS.src.Data.Levels:GetDescendants()) do
+					if not levelModule:IsA('ModuleScript') or RaidNeed then continue end
 
-				task.wait(1)
-				Event['request_start_game']:InvokeServer(RaidRoom.Name)
 
-				task.wait(10)
-				break
+					for levelId, levelAbout in pairs(require(levelModule)) do
+
+						if levelAbout.name == Raid_Level then
+							Raid_Level = levelId
+							RaidNeed = true
+							break
+						end
+
+					end
+				end
 			end
 
+			if RaidNeed and Raid_Level ~= '' then
+
+				for _, StoryRoom in ipairs(workspace._RAID.Raid:GetChildren()) do
+					if #StoryRoom.Players:GetChildren() >0 or RaidRoom.Active.Value then continue end
+					Event['request_join_lobby']:InvokeServer(RaidRoom.Name)
+					player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(255.16964721679688, 196.8419189453125, -820.8120727539062)))
+
+					task.wait(1)
+					Event['request_lock_level']:InvokeServer(RaidRoom.Name, Raid_Level, true, HardDifficulty)
+
+					task.wait(1)
+					Event['request_start_game']:InvokeServer(RaidRoom.Name)
+
+					task.wait(10)
+					break
+				end
+
+			end
+
+
 		end
-
-
-	end
 
 
 		local CastleJoined = false
