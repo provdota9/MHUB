@@ -82,6 +82,8 @@ local DefaultFiles = {
 
 		['StoryInf_World'] = '';
 		['StoryInf_Level'] = '';
+		['Raid_World'] = '';
+		['Raid_Level'] = '';
 
 		['AutoJoinCastleMaxRoom'] = 100;
 		['AutoLeaveOnWave'] = 1;
@@ -1503,9 +1505,7 @@ SelectIgnoreBonusDelete = MakeDDL(Main_DeletePortalsSubPage, "Select Ignore DMG 
 SelectIgnoreWorldsDelete = MakeDDL(Main_DeletePortalsSubPage, "Select Ignore Worlds", 0.14)
 AutoDeletePortals = MakeCheckbox(Main_DeletePortalsSubPage, "Auto Delete Portals", 0.05)
 
------------------------
-
----------------------------------------------------------------------
+---------------------------------------------------------
 
 Farm_AutoJoinInfStory = MakeNewSubPage('Farm', 'Left', 0.347, 0.03, 0.02, 0.02)
 MakeTitle(Farm_AutoJoinInfStory, 'Auto Join Story / Infinite', 0.115)
@@ -1513,6 +1513,14 @@ StoryInf_SelectWorld = MakeDDL(Farm_AutoJoinInfStory, 'Selected World', 0.28)
 StoryInf_SelectLevel = MakeDDL(Farm_AutoJoinInfStory, 'Selected Level', 0.28)
 StoryInf_Hard = MakeCheckbox(Farm_AutoJoinInfStory, 'Hard Difficulty', 0.105)
 StoryInf_AutoJoin = MakeCheckbox(Farm_AutoJoinInfStory, 'Auto Join Story/INF', 0.105)
+
+-----------------------
+
+Farm_AutoJoinRaid = MakeNewSubPage('Farm', 'Left', 0.347, 0.03, 0.02, 0.02)
+MakeTitle(Farm_AutoJoinRaid, 'Auto Join Raids', 0.115)
+Raid_SelectWorld = MakeDDL(Farm_AutoJoinRaid, 'Selected Raid', 0.28)
+Raid_SelectLevel = MakeDDL(Farm_AutoJoinRaid, 'Selected Act', 0.28)
+Raid_AutoJoin = MakeCheckbox(Farm_AutoJoinRaid, 'Auto Join Raids', 0.105)
 
 -----------------------
 
@@ -1895,6 +1903,73 @@ SelectIgnoreWorlds.MouseButton1Click:Connect(function()
 
 end)
 DDLlabel(SelectIgnoreWorlds, GetSave('PortalUSE Worlds Ignore'))
+
+Raid_SelectWorld.MouseButton1Click:Connect(function()
+	local items = {}
+
+	for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
+		if not worldModule:IsA('ModuleScript') then continue end
+
+		for _,worldAbout in pairs(require(worldModule)) do
+			if not worldAbout.raid then continue end
+
+			local worldName = worldAbout.name
+
+			table.insert(items, worldName)
+		end
+
+	end
+
+	GetDDL(Raid_SelectWorld, items, false, 'Raid_World')
+
+	Save('Raid_Level', '')
+	DDLlabel(Raid_SelectLevel, '')
+end)
+DDLlabel(Raid_SelectWorld, GetSave('Raid_World'))
+
+Raid_SelectLevel.MouseButton1Click:Connect(function()
+	local items = {}
+	local selectedWorld = GetSave('Raid_World')
+	if selectedWorld == '' then return end
+
+	local levelsInWorld = {}
+	for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
+		if not worldModule:IsA('ModuleScript') or #levelsInWorld > 0 then continue end
+
+		for _,worldAbout in pairs(require(worldModule)) do
+			if selectedWorld == worldAbout.name then
+				local amountOfLevels = 0
+				for _,_ in pairs(worldAbout.levels) do amountOfLevels+=1 end
+
+				for levelOrder = 1,amountOfLevels do
+					levelsInWorld[#levelsInWorld+1] = worldAbout.levels[tostring(levelOrder)].id
+				end
+
+				break 
+			end
+		end
+
+	end
+
+	for _, levelModule in ipairs(RS.src.Data.Levels:GetDescendants()) do
+		if not levelModule:IsA('ModuleScript') then continue end
+
+		local levelsModule = require(levelModule)
+
+		if not levelsModule[levelsInWorld[1]] then continue end
+
+		for _, levelId in ipairs(levelsInWorld) do
+			table.insert(items, levelsModule[levelId].name)
+		end
+
+	end
+
+
+
+	GetDDL(Raid_SelectLevel, items, false, 'Raid_Level')
+
+end)
+DDLlabel(Raid_SelectLevel, GetSave('Raid_Level'))
 
 
 StoryInf_SelectWorld.MouseButton1Click:Connect(function()
@@ -4852,6 +4927,35 @@ if IsLobby then
 
 
 		end
+
+	local RaidNeed = false
+
+	if GetSave(Raid_AutoJoin.Name) and not challengeNeed and not storyInfNeed then
+
+		local Raid_World = GetSave('Raid_World')
+		local Raid_Level = GetSave('Raid_Level')
+
+		if RaidNeed and Raid_Level ~= '' then
+
+			for _, RaidRoom in ipairs(workspace._LOBBIES.Raid:GetChildren()) do
+				if #RaidRoom.Players:GetChildren() >0 or RaidRoom.Active.Value then continue end
+				Event['request_join_lobby']:InvokeServer(RaidRoom.Name)
+				player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(102.67790222167969, 186.07278442382812, -742.2952270507812)))
+
+				task.wait(1)
+				Event['request_lock_level']:InvokeServer(RaidRoom.Name, Raid_Level, true)
+
+				task.wait(1)
+				Event['request_start_game']:InvokeServer(RaidRoom.Name)
+
+				task.wait(10)
+				break
+			end
+
+		end
+
+
+	end
 
 
 		local CastleJoined = false
