@@ -4473,6 +4473,7 @@ AutoSkillSelectedUnits.MouseButton1Click:Connect(function()
 end)
 DDLlabel(AutoSkillSelectedUnits, GetSave('AutoSkillUnits'))
 
+checkBoxFunc(Raid_AutoJoin)
 checkBoxFunc(StoryInf_AutoJoin)
 checkBoxFunc(StoryInf_Hard, false, false, 'Hard_StoryInf')
 checkBoxFunc(InfCastleAutoJoin)
@@ -4943,7 +4944,7 @@ if IsLobby then
 				player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(102.67790222167969, 186.07278442382812, -742.2952270507812)))
 
 				task.wait(1)
-				Event['request_lock_level']:InvokeServer(RaidRoom.Name, Raid_Level, true)
+				Event['request_lock_level']:InvokeServer(RaidRoom.Name, Raid_Level, true, HardDifficulty)
 
 				task.wait(1)
 				Event['request_start_game']:InvokeServer(RaidRoom.Name)
