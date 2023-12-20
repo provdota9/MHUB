@@ -1544,6 +1544,13 @@ InfCastleMaxRoom = MakeTextBox(Farm_InfCastleSubPage, 'Room Number', 'Auto Join 
 InfCastleHardDifficulty = MakeCheckbox(Farm_InfCastleSubPage, 'Hard Difficulty', 0.137)
 InfCastleAutoJoin = MakeCheckbox(Farm_InfCastleSubPage, 'Auto Infinity Castle', 0.137)
 
+----------------------------
+
+Farm_AutoCursedSubPage = MakeNewSubPage('Farm', 'Right', 0.157, 0.1, 0.05, 0.08)
+MakeTitle(Farm_AutoCursedSubPage, 'Auto Join Cured Dungeons', 0.27)
+AutoJoinCursedWomb = MakeCheckbox(Farm_AutoCursedSubPage, 'Auto Join Cursed Womb', 0.23)
+AutoJoinCursedParade = MakeCheckbox(Farm_AutoCursedSubPage, 'Auto Join Cursed Parade', 0.23)
+
 -----------------------
 
 Farm_ChallengeSubPage = MakeNewSubPage('Farm', 'Right', 0.429, 0.03, 0.02, 0.02)
@@ -2356,6 +2363,8 @@ checkstatswh.MouseButton1Click:Connect(function()
 	local userID = "" if GetSave("Discord UserID") ~= "" and willBePinged then userID = string.format("<@%s>", GetSave("Discord UserID")) end
 	local discordUrl = GetSave("Discord Url")
 
+	local User = string.format("**User :** ||%s (@%s)||", player.Name, player.DisplayName)
+
 	local TotalGems = makeComma(player._stats.gem_amount.Value)
 	local TotalGold = makeComma(player._stats.gold_amount.Value)
 	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
@@ -2371,7 +2380,11 @@ checkstatswh.MouseButton1Click:Connect(function()
 				},
 				['fields'] = {
 					{
-						['name'] = 'Test Webhook',
+						['name'] = 'User',
+						['value'] = User
+					},
+					{
+						['name'] = 'Your stats',
 						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s", TotalGems, TotalGold, TotalCandy),
 					}
 				}
@@ -2383,7 +2396,7 @@ checkstatswh.MouseButton1Click:Connect(function()
 	local headers = {["content-type"] = "application/json"}
 	local request = http_request or request or HttpPost or syn.request or http.request
 	local dataSend = {Url = discordUrl, Body = data, Method = "POST", Headers = headers}
-	warn("Sending test webhook...")
+	warn("Sending stats...")
 
 	pcall(function() request(dataSend) end)
 
@@ -3138,6 +3151,41 @@ creditsButton.MouseButton1Click:Connect(function()
 	setclipboard("https://discord.gg/Qvz4aGExCG")
 end)
 
+local function AutoJoinCursedParadeFunc ()
+	if not IsLobby then return end
+
+	while GetSave(AutoJoinCursedParade.Name) do
+		repeat task.wait(3) until game:IsLoaded()
+
+		local args = {
+			[1] = "_lobbytemplate_event23",
+			[2] = {
+				["selected_key"] = "key_jjk_map"
+			}
+		}
+		
+		game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
+	end
+end
+
+local function AutoJoinCursedWombFunc ()
+	if not IsLobby then return end
+
+	while GetSave(AutoJoinCursedWomb.Name) do
+		repeat task.wait(3) until game:IsLoaded()
+
+		local args = {
+			[1] = "_lobbytemplate_event222",
+			[2] = {
+				["selected_key"] = "key_jjk_finger"
+			}
+		}
+		
+		game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))		
+	end
+end
+
+
 local function AutoJoinHalloweenFunc ()
 	if not IsLobby then return end
 
@@ -3772,7 +3820,7 @@ end
 
 autoUseAbilityUnitsTable = {'jotaro', 'eren_final', 'ainz_evolved', 'kisuke_evolved',
 	'yamamoto_evolved', 'dio_heaven', 'aki_evolved', 'law_2_evolved', 'brook_evolved', 'gojo_evolved', 'pucci_heaven',
-	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin', 'alucard_evolved', 'dazai_evolved', 'hidan_unit_evolved', 'kira_evolved'
+	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin', 'alucard_evolved', 'dazai_evolved', 'hidan_unit_evolved', 'kira_evolved', 'goku_ssj3_evolved','vegeta_majin_evolved'
 
 }
 usedAutoSkillTime = nil
@@ -4379,6 +4427,8 @@ checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
 checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
 checkBoxFunc(AutoJoinHalloween, AutoJoinHalloweenFunc)
+checkBoxFunc(AutoJoinCursedWomb, AutoJoinCursedWombFunc)
+checkBoxFunc(AutoJoinCursedParade, AutoJoinCursedParadeFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
@@ -4410,7 +4460,7 @@ local function getMapName (result)
 		mapName = "Infinity Tower Mode - " .. mapName .. string.format("\n(%s - Room %s)", LevelData._location_name, LevelData.floor_num)
 
 	elseif LevelData._gamemode ~= 'infinite' then
-		mapName = LevelData.name .. ' - ' .. mapName .. '\n MAP:' .. LevelData._location_name
+		mapName = LevelData.name .. ' - ' .. mapName .. '\nMAP: ' .. LevelData._location_name
 	end
 
 	local minutes = math.floor( (os.time() - StartTime) / 60 )
