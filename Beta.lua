@@ -137,7 +137,8 @@ local portalWorlds = {
     hage_elf_halloween = 'Clover Kingdom (Demonic)',
     marineford_halloween = "Marine's Ford (Midnight)",
     aot_halloween = "Shiganshinu District (Midnight)",
-	Sacred_Planet = 'Sacred Planet'
+	Sacred_Planet = 'Sacred Planet',
+	morioh = 'Bizzare Town'
     
 }
 
