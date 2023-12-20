@@ -1912,7 +1912,6 @@ Raid_SelectWorld.MouseButton1Click:Connect(function()
 
 		for _,worldAbout in pairs(require(worldModule)) do
 			if worldAbout.name ~= 'Sacred Planet' then continue end
-			if worldAbout.name ~= 'Bizzare Town' then continue end
 
 			local worldName = worldAbout.name
 
