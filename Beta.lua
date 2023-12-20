@@ -1547,7 +1547,7 @@ InfCastleAutoJoin = MakeCheckbox(Farm_InfCastleSubPage, 'Auto Infinity Castle', 
 ----------------------------
 
 Farm_AutoCursedSubPage = MakeNewSubPage('Farm', 'Right', 0.157, 0.1, 0.05, 0.08)
-MakeTitle(Farm_AutoCursedSubPage, 'Auto Join Cured Dungeons', 0.27)
+MakeTitle(Farm_AutoCursedSubPage, 'Auto Join Cursed Dungeons', 0.27)
 AutoJoinCursedWomb = MakeCheckbox(Farm_AutoCursedSubPage, 'Auto Join Cursed Womb', 0.23)
 AutoJoinCursedParade = MakeCheckbox(Farm_AutoCursedSubPage, 'Auto Join Cursed Parade', 0.23)
 
@@ -2380,7 +2380,7 @@ checkstatswh.MouseButton1Click:Connect(function()
 				},
 				['fields'] = {
 					{
-						['name'] = 'User',
+						['name'] = '',
 						['value'] = User
 					},
 					{
