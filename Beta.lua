@@ -1911,7 +1911,7 @@ Raid_SelectWorld.MouseButton1Click:Connect(function()
 		if not worldModule:IsA('ModuleScript') then continue end
 
 		for _,worldAbout in pairs(require(worldModule)) do
-			if worldAbout.name ~= 'Morioh' and worldAbout.name ~= 'Sacred Planet' then continue end
+			if worldAbout.name ~= "Marine's Ford (Buddha)" then continue end
 
 			local worldName = worldAbout.name
 
