@@ -2655,7 +2655,6 @@ local function RecordMacroFunc ()
 		local lastSpent = child._stats.total_spent.Value
 		local upgradeConnection
 		local priorityConnection
-		local abilityConnection
 
 		priorityConnection = child._stats.priority.Changed:Connect(function()
 
@@ -2686,7 +2685,7 @@ local function RecordMacroFunc ()
 			Macro_ActionTXT.Text = string.format('Action: %s', Step)
 			Macro_TypeTXT.Text = string.format("Type: %s", TypesAndMeaning['use_active_attack'])
 			Macro_UnitTXT.Text = string.format("Unit: %s", unitName)
-			Macro_WaitTXT.Text = "Waiting for: your $"
+			Macro_WaitTXT.Text = "Waiting for: 0$"
 
 			Step +=1
 
@@ -2884,6 +2883,17 @@ local function PlayMacroFunc ()
 				end
 
 				task.spawn(function() Event['spawn_unit']:InvokeServer( unitUUID, StringToCFrame( AboutAction['cframe'] ) ) end)
+
+			if AboutAction['type'] == 'use_active_attack' then
+				local unitsBefore = 0
+				for _, unitInWorkspace in ipairs(workspace._UNITS:GetChildren()) do
+					if not unitInWorkspace:FindFirstChild('_shadow') then continue end
+					if not unitInWorkspace:FindFirstChild("_stats"):FindFirstChild('id') or unitInWorkspace._stats.id.Value ~= unitName then continue end
+					if unitInWorkspace._stats:WaitForChild('player').Value ~= player or unitInWorkspace._stats:WaitForChild('uuid').Value ~= unitUUID then continue end
+					unitsBefore += 1
+				end
+
+				task.spawn(function() Event['use_active_attack']:InvokeServer( unitUUID, StringToCFrame( AboutAction['cframe'] ) ) end)
 
 				local tries = 0
 				repeat
