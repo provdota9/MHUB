@@ -2592,6 +2592,7 @@ Macro_MacroListSubPage['Main'].Visible = true
 local TypesAndMeaning = {
 	['cycle_priority'] = "Changing Priority",
 	['spawn_unit'] = "Spawning Unit",
+	['use_active_attack'] = "Using Ability"
 	['sell_unit_ingame'] = "Selling Unit",
 	['upgrade_unit_ingame'] = "Upgrading Unit"
 }
@@ -2639,9 +2640,9 @@ local function RecordMacroFunc ()
 
 		Steps[tostring(Step)] = {
 			['money'] = child._stats.total_spent.Value ;
-			['type'] = '\nspawn_unit';
-			['cframe'] = '\n' .. tostring(CFrame.new(pos.Position));
-			['unit'] = '\n' .. unitName
+			['type'] = 'spawn_unit';
+			['cframe'] = tostring(CFrame.new(pos.Position));
+			['unit'] = unitName
 		}
 
 		Macro_ActionTXT.Text = string.format('Action: %s', Step)
@@ -2659,13 +2660,30 @@ local function RecordMacroFunc ()
 
 			Steps[tostring(Step)] = {
 				['money'] = 0;
-				['type'] = '\ncycle_priority';
-				['pos'] = '\n' .. tostring(child._shadow.CFrame);
-				['unit'] = '\n' .. unitName
+				['type'] = 'cycle_priority';
+				['pos'] = tostring(child._shadow.CFrame);
+				['unit'] = unitName
 			}
 
 			Macro_ActionTXT.Text = string.format('Action: %s', Step)
 			Macro_TypeTXT.Text = string.format("Type: %s", TypesAndMeaning['cycle_priority'])
+			Macro_UnitTXT.Text = string.format("Unit: %s", unitName)
+			Macro_WaitTXT.Text = "Waiting for: 0$"
+
+			Step +=1
+		end)
+
+		abilityConnection = child._stats.last_active_cast.Changed:Connect(function()
+
+			Steps[tostring(Step)] = {
+				['money'] = 0;
+				['type'] = 'use_active_attack';
+				['pos'] = tostring(child._shadow.CFrame);
+				['unit'] = unitName
+			}
+
+			Macro_ActionTXT.Text = string.format('Action: %s', Step)
+			Macro_TypeTXT.Text = string.format("Type: %s", TypesAndMeaning['use_active_attack'])
 			Macro_UnitTXT.Text = string.format("Unit: %s", unitName)
 			Macro_WaitTXT.Text = "Waiting for: 0$"
 
@@ -2677,8 +2695,8 @@ local function RecordMacroFunc ()
 
 			Steps[tostring(Step)] = {
 				['money'] = value - lastSpent;
-				['type'] = '\nupgrade_unit_ingame';
-				['pos'] = '\n' .. tostring(child._shadow.CFrame);
+				['type'] = 'upgrade_unit_ingame';
+				['pos'] = tostring(child._shadow.CFrame);
 			}
 
 			Macro_ActionTXT.Text = string.format('Action: %s', Step)
@@ -2711,8 +2729,8 @@ local function RecordMacroFunc ()
 
 		Steps[tostring(Step)] = {
 			['money'] = player._stats.resource.Value;
-			['type'] = '\nsell_unit_ingame';
-			['pos'] = '\n' .. tostring(child._shadow.CFrame);
+			['type'] = 'sell_unit_ingame';
+			['pos'] = tostring(child._shadow.CFrame);
 		}
 
 		Macro_ActionTXT.Text = string.format('Action: %s', Step)
@@ -4773,7 +4791,7 @@ task.spawn(function()
 	pcall(function()
 
 		if queue_on_teleport then
-			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/MHUB/main/script"))()'
+			local SkeleHubSCRIPT = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/provdota9/MHUB/main/Beta.lua"))()'
 			queue_on_teleport(SkeleHubSCRIPT)
 		end
 
