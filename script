@@ -82,6 +82,8 @@ local DefaultFiles = {
 
 		['StoryInf_World'] = '';
 		['StoryInf_Level'] = '';
+		['Raid_World'] = '';
+		['Raid_Level'] = '';
 
 		['AutoJoinCastleMaxRoom'] = 100;
 		['AutoLeaveOnWave'] = 1;
@@ -92,6 +94,9 @@ local DefaultFiles = {
 		['AutoSellFarmsWave'] = 1;
 		['AutoPlaceUnitsWave'] = 1;
 		['AutoUpgradeWave'] = 1;
+		['FakeAttackStat'] = 25.4;
+		['FakeRangeStat'] = 11.1;
+		['FakeSPAStat'] = 11.1;
 		['Selected Macro'] = '';
 		['Step Delay'] = 0.7;
 		['Hide Key'] = 'U';
@@ -132,7 +137,9 @@ local portalWorlds = {
     hage_elf_halloween = 'Clover Kingdom (Demonic)',
     marineford_halloween = "Marine's Ford (Midnight)",
     aot_halloween = "Shiganshinu District (Midnight)",
-    Sacred_Planet = 'Sacred Planet'
+	Sacred_Planet = 'Sacred Planet',
+	morioh = 'Bizzare Town'
+    
 }
 
 local Bonuses = {
@@ -414,7 +421,7 @@ local macroMapList = {
 		'Hidden Sand Village',
 		'Shiganshinu District',
 		'Undead Tomb',
-        'Sacred Planet'
+		'Sacred Planet'
 
 	};
 
@@ -431,17 +438,17 @@ local macroMapList = {
         'Port Agency Portal',
 		'Noble Portal',
 		'Alien Spaceship (Final)',
-		'Puppet Island (Birdcage)'
-
-	};
-
-	['Other'] = {
-        'Magic Town (Haunted)',
+		'Magic Town (Haunted)',
         'Clover Kingdom (Demonic)',
         "Marine's Ford (Midnight)",
         'Bizzare Town (Haunted)',
         'Planet Namak (Haunted)',
         'Shiganshinu District (Midnight)',
+		'Puppet Island (Birdcage)'
+
+	};
+
+	['Other'] = {
 		'Cursed Womb'
 	}
 }
@@ -1478,6 +1485,7 @@ local selectedSkinsDDL = MakeDDL(Main_SellSkinsSubPage, 'Select Skins', 0.517)
 -----------------------
 local Main_EventSubPage = MakeNewSubPage('Main', 'Right', 0.212, 0.05, 0.05, 0.02)
 MakeTitle(Main_EventSubPage, 'Event', 0.195)
+local AutoJoinHalloween = MakeCheckbox(Main_EventSubPage, 'Auto Join Halloween', 0.162)
 local AutoBuyCapsule = MakeCheckbox(Main_EventSubPage, 'Auto Buy Event Capsule', 0.162)
 -----------------------
 
@@ -1498,9 +1506,7 @@ SelectIgnoreBonusDelete = MakeDDL(Main_DeletePortalsSubPage, "Select Ignore DMG 
 SelectIgnoreWorldsDelete = MakeDDL(Main_DeletePortalsSubPage, "Select Ignore Worlds", 0.14)
 AutoDeletePortals = MakeCheckbox(Main_DeletePortalsSubPage, "Auto Delete Portals", 0.05)
 
------------------------
-
----------------------------------------------------------------------
+---------------------------------------------------------
 
 Farm_AutoJoinInfStory = MakeNewSubPage('Farm', 'Left', 0.347, 0.03, 0.02, 0.02)
 MakeTitle(Farm_AutoJoinInfStory, 'Auto Join Story / Infinite', 0.115)
@@ -1508,6 +1514,14 @@ StoryInf_SelectWorld = MakeDDL(Farm_AutoJoinInfStory, 'Selected World', 0.28)
 StoryInf_SelectLevel = MakeDDL(Farm_AutoJoinInfStory, 'Selected Level', 0.28)
 StoryInf_Hard = MakeCheckbox(Farm_AutoJoinInfStory, 'Hard Difficulty', 0.105)
 StoryInf_AutoJoin = MakeCheckbox(Farm_AutoJoinInfStory, 'Auto Join Story/INF', 0.105)
+
+-----------------------
+
+Farm_AutoJoinRaid = MakeNewSubPage('Farm', 'Left', 0.347, 0.03, 0.02, 0.02)
+MakeTitle(Farm_AutoJoinRaid, 'Auto Join Raids', 0.115)
+Raid_SelectWorld = MakeDDL(Farm_AutoJoinRaid, 'Selected Raid', 0.28)
+Raid_SelectLevel = MakeDDL(Farm_AutoJoinRaid, 'Selected Act', 0.28)
+Raid_AutoJoin = MakeCheckbox(Farm_AutoJoinRaid, 'Auto Join Raids', 0.105)
 
 -----------------------
 
@@ -1538,6 +1552,13 @@ MakeTitle(Farm_InfCastleSubPage, 'Auto Join Inf Castle', 0.162)
 InfCastleMaxRoom = MakeTextBox(Farm_InfCastleSubPage, 'Room Number', 'Auto Join Until Room:', 0.42)
 InfCastleHardDifficulty = MakeCheckbox(Farm_InfCastleSubPage, 'Hard Difficulty', 0.137)
 InfCastleAutoJoin = MakeCheckbox(Farm_InfCastleSubPage, 'Auto Infinity Castle', 0.137)
+
+----------------------------
+
+Farm_AutoCursedSubPage = MakeNewSubPage('Farm', 'Right', 0.157, 0.1, 0.05, 0.08)
+MakeTitle(Farm_AutoCursedSubPage, 'Auto Join Cursed Dungeons', 0.27)
+AutoJoinCursedWomb = MakeCheckbox(Farm_AutoCursedSubPage, 'Auto Join Cursed Womb', 0.23)
+AutoJoinCursedParade = MakeCheckbox(Farm_AutoCursedSubPage, 'Auto Join Cursed Parade', 0.23)
 
 -----------------------
 
@@ -1690,13 +1711,24 @@ local PingUserCHB = MakeCheckbox(Misc_WebhookSubPage, "Ping User", 0.063)
 local PingRareCHB = MakeCheckbox(Misc_WebhookSubPage, "Ping On Secret Drop", 0.063)
 local PingDefeatCHB = MakeCheckbox(Misc_WebhookSubPage, "Ping On Defeat", 0.063)
 
-local TestWebhook = MakeLargeButton(Misc_WebhookSubPage, "Test Webhook", 0.12)
+local checkstatswh = MakeLargeButton(Misc_WebhookSubPage, "Check stats", 0.12)
 
 local Misc_MiscSubPage = MakeNewSubPage('Misc', 'Right', 0.344, 0.03, 0.02, 0.02)
 MakeTitle(Misc_MiscSubPage, 'Misc', 0.13)
 makeUHBigger = MakeCheckbox(Misc_MiscSubPage, 'Large Window', 0.095)
 local hideAdditionalFrame = MakeCheckbox(Misc_MiscSubPage, "Hide Additional Frame", 0.095)
 
+local Other_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.258, 0.06, 0.02, 0.05)
+MakeTitle(Other_MiscSubPage, 'Other', 0.16)
+local RenderingOff = MakeCheckbox(Other_MiscSubPage, 'Disable 3d Rendering', 0.13)
+local creditsButton = MakeLargeButton(Other_MiscSubPage, 'Copy Discord link', 0.155)
+
+local FakeStats_MiscSubPage = MakeNewSubPage('Misc', 'Left', 0.532, 0.03, 0.02, 0.02)
+MakeTitle(FakeStats_MiscSubPage, 'Fake Stats', 0.082)
+local AttackTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Attack %', 'Attack', 0.17)
+local spaTextBox = MakeTextBox(FakeStats_MiscSubPage, 'SPA %', 'SPA', 0.17)
+local rangeTextBox = MakeTextBox(FakeStats_MiscSubPage, 'Range %', 'Range', 0.17)
+local FakeStatsButton = MakeLargeButton(FakeStats_MiscSubPage, 'Use Fake Stats', 0.155)
 ---------------------------------------------------------------------
 
 
@@ -1872,6 +1904,73 @@ SelectIgnoreWorlds.MouseButton1Click:Connect(function()
 
 end)
 DDLlabel(SelectIgnoreWorlds, GetSave('PortalUSE Worlds Ignore'))
+
+Raid_SelectWorld.MouseButton1Click:Connect(function()
+	local items = {}
+
+	for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
+		if not worldModule:IsA('ModuleScript') then continue end
+
+		for _,worldAbout in pairs(require(worldModule)) do
+			if worldAbout.name ~= 'Hero City (Hero Slayer)' and worldAbout.name ~= 'Sacred Planet' and worldAbout.name ~= 'Bizzare Town' and worldAbout.name ~= '' and worldAbout.name ~= "Marine's Ford (Buddha)" and worldAbout.name ~= 'Entertainment District' and worldAbout.name ~= "West City (Freezo's Invasion)" and worldAbout.name ~= 'West City' and worldAbout.name ~= 'Storm Hideout' and worldAbout.name ~= 'Infinity Train' and worldAbout.name ~= 'Hidden Sand Village' and worldAbout.name ~= 'Shiganshinu District' then continue end
+
+			local worldName = worldAbout.name
+
+			table.insert(items, worldName)
+		end
+
+	end
+
+	GetDDL(Raid_SelectWorld, items, false, 'Raid_World')
+
+	Save('Raid_Level', '')
+	DDLlabel(Raid_SelectLevel, '')
+end)
+DDLlabel(Raid_SelectWorld, GetSave('Raid_World'))
+
+Raid_SelectLevel.MouseButton1Click:Connect(function()
+	local items = {}
+	local selectedWorld = GetSave('Raid_World')
+	if selectedWorld == '' then return end
+
+	local levelsInWorld = {}
+	for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
+		if not worldModule:IsA('ModuleScript') or #levelsInWorld > 0 then continue end
+
+		for _,worldAbout in pairs(require(worldModule)) do
+			if selectedWorld == worldAbout.name then
+				local amountOfLevels = 0
+				for _,_ in pairs(worldAbout.levels) do amountOfLevels+=1 end
+
+				for levelOrder = 1,amountOfLevels do
+					levelsInWorld[#levelsInWorld+1] = worldAbout.levels[tostring(levelOrder)].id
+				end
+
+				break 
+			end
+		end
+
+	end
+
+	for _, levelModule in ipairs(RS.src.Data.Levels:GetDescendants()) do
+		if not levelModule:IsA('ModuleScript') then continue end
+
+		local levelsModule = require(levelModule)
+
+		if not levelsModule[levelsInWorld[1]] then continue end
+
+		for _, levelId in ipairs(levelsInWorld) do
+			table.insert(items, levelsModule[levelId].name)
+		end
+
+	end
+
+
+
+	GetDDL(Raid_SelectLevel, items, false, 'Raid_Level')
+
+end)
+DDLlabel(Raid_SelectLevel, GetSave('Raid_Level'))
 
 
 StoryInf_SelectWorld.MouseButton1Click:Connect(function()
@@ -2232,6 +2331,27 @@ webhookPingBox.FocusLost:Connect(function(enterPressed)
 end)
 webhookPingBox.Text = GetSave("Discord UserID")
 
+AttackTextBox.FocusLost:Connect(function()
+	if AttackTextBox.Text == '' or not tonumber(AttackTextBox.Text) then AttackTextBox.Text = GetSave('FakeAttackStat') return end
+
+	Save("FakeAttackStat", tonumber(AttackTextBox.Text) )
+end)
+AttackTextBox.Text = GetSave("FakeAttackStat")
+
+spaTextBox.FocusLost:Connect(function()
+	if spaTextBox.Text == '' or not tonumber(spaTextBox.Text) then spaTextBox.Text = GetSave('FakeSPAStat') return end
+
+	Save("FakeSPAStat", tonumber(spaTextBox.Text) )
+end)
+spaTextBox.Text = GetSave("FakeSPAStat")
+
+rangeTextBox.FocusLost:Connect(function()
+	if rangeTextBox.Text == '' or not tonumber(rangeTextBox.Text) then rangeTextBox.Text = GetSave('FakeRangeStat') return end
+
+	Save("FakeRangeStat", tonumber(rangeTextBox.Text) )
+end)
+rangeTextBox.Text = GetSave("FakeRangeStat")
+
 AutoUpgradeStartWave.FocusLost:Connect(function()
 	if AutoUpgradeStartWave.Text == '' or not tonumber(AutoUpgradeStartWave.Text) then AutoUpgradeStartWave.Text = GetSave('AutoUpgradeWave') return end
 
@@ -2313,29 +2433,35 @@ AutoPlaceWave.FocusLost:Connect(function()
 end)
 AutoPlaceWave.Text = GetSave("AutoPlaceUnitsWave")
 
-
-TestWebhook.MouseButton1Click:Connect(function()
+checkstatswh.MouseButton1Click:Connect(function()
 	local Time = os.date("%X")
 	local willBePinged = GetSave(PingDefeatCHB.Name) or GetSave(PingRareCHB.Name) or GetSave(PingUserCHB.Name)
 	local userID = "" if GetSave("Discord UserID") ~= "" and willBePinged then userID = string.format("<@%s>", GetSave("Discord UserID")) end
 	local discordUrl = GetSave("Discord Url")
 
+	local User = string.format("**User :** ||%s (@%s)||", player.Name, player.DisplayName)
+
+	local TotalGems = makeComma(player._stats.gem_amount.Value)
+	local TotalGold = makeComma(player._stats.gold_amount.Value)
+	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
+
 	local data = {
 		["content"] = userID,
 		["embeds"] = {
 			{
-				["title"] = 'Script Adventures',
+				["title"] = 'Anime Adventures',
 				['color'] = 6684927,
 				['footer'] = {
-					['text'] = string.format("// By Skele HUB (%s)", Time), 
-				},
-				['image'] = {
-					['url'] = 'https://i.ytimg.com/vi/vQFr7fqXqIE/maxresdefault.jpg'
+					['text'] = string.format( "By Skele HUB (%s)", Time),
 				},
 				['fields'] = {
 					{
-						['name'] = 'Test Webhook',
-						['value'] = '```+Dio OH```'
+						['name'] = '',
+						['value'] = User
+					},
+					{
+						['name'] = 'Your stats',
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s", TotalGems, TotalGold, TotalCandy),
 					}
 				}
 			}
@@ -2346,7 +2472,7 @@ TestWebhook.MouseButton1Click:Connect(function()
 	local headers = {["content-type"] = "application/json"}
 	local request = http_request or request or HttpPost or syn.request or http.request
 	local dataSend = {Url = discordUrl, Body = data, Method = "POST", Headers = headers}
-	warn("Sending test webhook...")
+	warn("Sending stats...")
 
 	pcall(function() request(dataSend) end)
 
@@ -2512,10 +2638,10 @@ local function RecordMacroFunc ()
 		local pos = workspace:Raycast(child:WaitForChild('_shadow').Position, Vector3.new(0,-10,0), unitParams) 
 
 		Steps[tostring(Step)] = {
-			['money'] = child._stats.total_spent.Value;
-			['type'] = 'spawn_unit';
-			['cframe'] = tostring(CFrame.new(pos.Position));
-			['unit'] = unitName
+			['money'] = child._stats.total_spent.Value ;
+			['type'] = '\nspawn_unit';
+			['cframe'] = '\n' .. tostring(CFrame.new(pos.Position));
+			['unit'] = '\n' .. unitName
 		}
 
 		Macro_ActionTXT.Text = string.format('Action: %s', Step)
@@ -2533,9 +2659,9 @@ local function RecordMacroFunc ()
 
 			Steps[tostring(Step)] = {
 				['money'] = 0;
-				['type'] = 'cycle_priority';
-				['pos'] = tostring(child._shadow.CFrame);
-				['unit'] = unitName
+				['type'] = '\ncycle_priority';
+				['pos'] = '\n' .. tostring(child._shadow.CFrame);
+				['unit'] = '\n' .. unitName
 			}
 
 			Macro_ActionTXT.Text = string.format('Action: %s', Step)
@@ -2551,8 +2677,8 @@ local function RecordMacroFunc ()
 
 			Steps[tostring(Step)] = {
 				['money'] = value - lastSpent;
-				['type'] = 'upgrade_unit_ingame';
-				['pos'] = tostring(child._shadow.CFrame);
+				['type'] = '\nupgrade_unit_ingame';
+				['pos'] = '\n' .. tostring(child._shadow.CFrame);
 			}
 
 			Macro_ActionTXT.Text = string.format('Action: %s', Step)
@@ -2585,8 +2711,8 @@ local function RecordMacroFunc ()
 
 		Steps[tostring(Step)] = {
 			['money'] = player._stats.resource.Value;
-			['type'] = 'sell_unit_ingame';
-			['pos'] = tostring(child._shadow.CFrame);
+			['type'] = '\nsell_unit_ingame';
+			['pos'] = '\n' .. tostring(child._shadow.CFrame);
 		}
 
 		Macro_ActionTXT.Text = string.format('Action: %s', Step)
@@ -3097,40 +3223,99 @@ selectedSkinsDDL.MouseButton1Click:Connect(function()
 
 end)
 
-local function AutoBuyCapsuleFunc ()
+creditsButton.MouseButton1Click:Connect(function()
+	setclipboard("https://discord.gg/Qvz4aGExCG")
+end)
 
+local function AutoJoinCursedParadeFunc ()
+	if not IsLobby then return end
+
+	while GetSave(AutoJoinCursedParade.Name) do
+		repeat task.wait(3) until game:IsLoaded()
+
+		local args = {
+			[1] = "_lobbytemplate_event23",
+			[2] = {
+				["selected_key"] = "key_jjk_map"
+			}
+		}
+		
+		game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
+	end
+end
+
+local function AutoJoinCursedWombFunc ()
+	if not IsLobby then return end
+
+	while GetSave(AutoJoinCursedWomb.Name) do
+		repeat task.wait(3) until game:IsLoaded()
+
+		local args = {
+			[1] = "_lobbytemplate_event222",
+			[2] = {
+				["selected_key"] = "key_jjk_finger"
+			}
+		}
+		
+		game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))		
+	end
+end
+
+
+local function AutoJoinHalloweenFunc ()
+	if not IsLobby then return end
+
+	while GetSave(AutoJoinHalloween.Name) do
+		repeat task.wait(5) until game:IsLoaded()
+
+		local args = {
+    		[1] = "_lobbytemplate_event321"
+		}
+
+		game:GetService("ReplicatedStorage").endpoints.client_to_server.request_join_lobby:InvokeServer(unpack(args))
+	end
+end
+
+
+local function AutoBuyCapsuleFunc()
     local Candy = player._stats._resourceCandies.Value
 
     if not IsLobby then return end
 
-    if Candy <= 149 then return end
+    while GetSave(AutoBuyCapsule.Name) do
+        if Candy <= 149 then break end
 
-    local args
-    if Candy >= 15000 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "100"
-        }
-    elseif Candy >= 1500 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "10"
-        }
-    elseif Candy >= 150 then
-        args = {
-            [1] = "capsule_halloween2",
-            [2] = "event",
-            [3] = "event_shop",
-            [4] = "1"
-        }
-    end
+        local args
+        if Candy >= 15000 then
+            args = {
+                [1] = "capsule_halloween2",
+                [2] = "event",
+                [3] = "event_shop",
+                [4] = "100"
+            }
+        elseif Candy >= 1500 then
+            args = {
+                [1] = "capsule_halloween2",
+                [2] = "event",
+                [3] = "event_shop",
+                [4] = "10"
+            }
+        elseif Candy >= 150 then
+            args = {
+                [1] = "capsule_halloween2",
+                [2] = "event",
+                [3] = "event_shop",
+                [4] = "1"
+            }
+        end
 
-    if args then
-        game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+        if args then
+            game:GetService("ReplicatedStorage").endpoints.client_to_server.buy_item_generic:InvokeServer(unpack(args))
+            
+            wait(1)
+        else
+            break
+        end
     end
 end
 
@@ -3711,7 +3896,7 @@ end
 
 autoUseAbilityUnitsTable = {'jotaro', 'eren_final', 'ainz_evolved', 'kisuke_evolved',
 	'yamamoto_evolved', 'dio_heaven', 'aki_evolved', 'law_2_evolved', 'brook_evolved', 'gojo_evolved', 'pucci_heaven',
-	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin', 'alucard_evolved', 'dazai_evolved', 'hidan_unit_evolved', 'kira_evolved'
+	'jotaro_p6_evolved', 'homura_evolved', 'diavolo', 'armin', 'alucard_evolved', 'dazai_evolved', 'hidan_unit_evolved', 'kira_evolved', 'goku_ssj3_evolved','vegeta_majin_evolved'
 
 }
 usedAutoSkillTime = nil
@@ -3789,6 +3974,7 @@ local function autoGamePLUS ()
 
 		if AutoL and tonumber(AutoLWave) <= workspace._wave_num.Value then
 			TPLobby()
+			webhook()
 		end
 
 		if (AutoPL or AutoUP) and not (AutoSU and tonumber(AutoSUWave) <= workspace._wave_num.Value) then
@@ -3958,6 +4144,21 @@ makeUHBigger.MouseButton1Click:Connect(function()
 end)
 
 if GetSave(makeUHBigger.Name) then MainFrame.Size = UDim2.new(1,0,1,0) MainFrame.Position = UDim2.new(0.614, 0, 0, 0) additionalFrame.Size = UDim2.new(0.390, 0, 0.124, 0) makeUHBigger.Parent.BackgroundColor3 = checkBoxColors[true] end
+
+local function fakestat()
+    local FakeAttack = GetSave('FakeAttackStat')
+    local FakeCD = GetSave('FakeSPAStat')
+    local FakeRange = GetSave('FakeRangeStat')
+
+    player.PlayerGui.StatReroll.grid.UnitStats.Attack.Main.TextLabel.Text = FakeAttack ..'%'
+    player.PlayerGui.StatReroll.grid.UnitStats.Cooldown.Main.TextLabel.Text = FakeCD ..'%'
+    player.PlayerGui.StatReroll.grid.UnitStats.Range.Main.TextLabel.Text = FakeRange ..'%'
+end
+
+FakeStatsButton.MouseButton1Click:Connect(function()
+	fakestat()
+end)
+
 
 local function TakedownMark (newParent, clrID)
 	local takedownColor = Color3.fromRGB(255,255,255)
@@ -4273,6 +4474,7 @@ AutoSkillSelectedUnits.MouseButton1Click:Connect(function()
 end)
 DDLlabel(AutoSkillSelectedUnits, GetSave('AutoSkillUnits'))
 
+checkBoxFunc(Raid_AutoJoin)
 checkBoxFunc(StoryInf_AutoJoin)
 checkBoxFunc(StoryInf_Hard, false, false, 'Hard_StoryInf')
 checkBoxFunc(InfCastleAutoJoin)
@@ -4301,6 +4503,9 @@ checkBoxFunc(AutoStartPortal)
 checkBoxFunc(AutoUsePortal)
 checkBoxFunc(AutoDeleteSkins, AutoDeleteSkinsFunc)
 checkBoxFunc(AutoBuyCapsule, AutoBuyCapsuleFunc)
+checkBoxFunc(AutoJoinHalloween, AutoJoinHalloweenFunc)
+checkBoxFunc(AutoJoinCursedWomb, AutoJoinCursedWombFunc)
+checkBoxFunc(AutoJoinCursedParade, AutoJoinCursedParadeFunc)
 checkBoxFunc(AutoClaimQuests, ClaimQuestsFunc)
 checkBoxFunc(AutoTakeNamiQuests, AutoTakeNamiQuestsFunc)
 checkBoxFunc(AutoTakeDailyQuests, AutoTakeDailyQuestFunc)
@@ -4332,7 +4537,7 @@ local function getMapName (result)
 		mapName = "Infinity Tower Mode - " .. mapName .. string.format("\n(%s - Room %s)", LevelData._location_name, LevelData.floor_num)
 
 	elseif LevelData._gamemode ~= 'infinite' then
-		mapName = LevelData.name .. ' - ' .. mapName
+		mapName = LevelData.name .. ' - ' .. mapName .. '\nMAP: ' .. LevelData._location_name
 	end
 
 	local minutes = math.floor( (os.time() - StartTime) / 60 )
@@ -4342,6 +4547,29 @@ local function getMapName (result)
 
 	return mapName
 end
+
+local function Rend3dOffFunc (enabled)
+	if IsLobby then return end
+
+	if enabled then
+		game.RunService:Set3dRenderingEnabled(false)
+	else
+		game.RunService:Set3dRenderingEnabled(true)
+	end
+end
+
+RenderingOff.MouseButton1Click:Connect(function()
+
+	local enabled = not GetSave(RenderingOff.Name)
+	Save(RenderingOff.Name, enabled)
+
+	RenderingOff.Parent.BackgroundColor3 = checkBoxColors[enabled]
+
+	Rend3dOffFunc(enabled)
+
+end)
+
+if GetSave('Disable 3d Rendering') then Rend3dOffFunc(true) RenderingOff.Parent.BackgroundColor3 = checkBoxColors[true] end
 
 local function Hide_Map (enabled)
 	if IsLobby then return end
@@ -4390,7 +4618,7 @@ local contentNewSecretItem = ""
 
 local function newSecretItemFunc (itemName, Amount)
 	if contentNewSecretItem == "" then
-		contentNewSecretItem = string.format("You have got ```diff\n+%s (%s)```", itemName, Amount)
+		contentNewSecretItem = string.format("You have got %s (x%s)", itemName, Amount)
 	else
 		contentNewSecretItem = contentNewSecretItem .. string.format(", %s (%s)", itemName, Amount)
 
@@ -4406,7 +4634,7 @@ local function webhook ()
 		{name = 'XP', amount = player._stats.player_xp.Value - oldPlayerStats.PlayerXP},
 		{name = 'Gems', amount = player._stats.gem_amount.Value - oldPlayerStats.Gems},
 		{name = 'Gold', amount = player._stats.gold_amount.Value - oldPlayerStats.Gold},
-		{name = 'Candy', amount = player._stats._resourceCandies.Value - oldPlayerStats.Candy},
+		{name = 'Candies', amount = player._stats._resourceCandies.Value - oldPlayerStats.Candy},
 
 	}
 
@@ -4437,6 +4665,7 @@ local function webhook ()
 	local TotalGold = makeComma(player._stats.gold_amount.Value)
 	local TotalCandy = makeComma(player._stats._resourceCandies.Value)
 	local TotalKills = makeComma(player._stats.kills.Value)
+	local TotalDamage = makeComma(math.floor(player._stats.damage_dealt.Value + 0.5))
 	local BattlePass = ''
 	local reachedTier = 0
 	local reachedTierExp = 0
@@ -4486,7 +4715,7 @@ local function webhook ()
 			local comma = ""
 	
 			if itemData.Name == itemName then
-				newItems = newItems .. string.format("+%s (%s), Total: (Only Beta) \n", itemName, itemAmount) .. comma
+				newItems = newItems .. string.format("+%s (%s) [%s] Total: (x%s) \n", itemName, itemAmount, itemData.Rarity, itemData.Amount) .. comma
 			end
 		end
 	end
@@ -4508,7 +4737,7 @@ local function webhook ()
 				['fields'] = {
 					{
 						['name'] = "Player Stats",
-						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :broken_heart:Kills: Buy beta for this💲\n Damage: Buy beta for this💲", TotalGems, TotalGold, TotalCandy, BattlePass),
+						['value'] = string.format( "<:Gems:1148368507029950515> %s\n<:Gold:1148368511463338074> %s\n<:Candy:1179714718613651456> %s\n:tickets: Tier: %s\n :broken_heart:Kills: %s\n :crossed_swords:Damage: %s", TotalGems, TotalGold, TotalCandy, BattlePass, TotalKills, TotalDamage),
 						['inline'] = true
 					},
 
@@ -4691,6 +4920,64 @@ if IsLobby then
 
 					task.wait(1)
 					Event['request_start_game']:InvokeServer(StoryRoom.Name)
+
+					task.wait(10)
+					break
+				end
+
+			end
+
+
+		end
+
+		local RaidNeed = false
+
+		if GetSave(Raid_AutoJoin.Name) and not challengeNeed then
+
+			local Raid_World = GetSave('Raid_World')
+			local Raid_Level = GetSave('Raid_Level')
+			local HardDifficulty = 'Hard'
+
+			if Raid_Level == 'Infinite Mode' then
+
+				for _, worldModule in ipairs(RS.src.Data.Worlds:GetChildren()) do
+					if not worldModule:IsA('ModuleScript') or RaidNeed then continue end
+
+					for _, worldAbout in pairs(require(worldModule)) do
+						if not worldAbout.name or worldAbout.name ~= Raid_World or not worldAbout.infinite then continue end
+						RaidNeed = true
+						break
+					end	
+				end
+			else
+				for _, levelModule in ipairs(RS.src.Data.Levels:GetDescendants()) do
+					if not levelModule:IsA('ModuleScript') or RaidNeed then continue end
+
+
+					for levelId, levelAbout in pairs(require(levelModule)) do
+
+						if levelAbout.name == Raid_Level then
+							Raid_Level = levelId
+							RaidNeed = true
+							break
+						end
+
+					end
+				end
+			end
+
+			if RaidNeed and Raid_Level ~= '' then
+
+				for _, RaidRoom in ipairs(workspace._RAID.Raid:GetChildren()) do
+					if #RaidRoom.Players:GetChildren() >0 or RaidRoom.Active.Value then continue end
+					Event['request_join_lobby']:InvokeServer(RaidRoom.Name)
+					player.Character:SetPrimaryPartCFrame(CFrame.new(Vector3.new(255.16964721679688, 196.8419189453125, -820.8120727539062)))
+
+					task.wait(1)
+					Event['request_lock_level']:InvokeServer(RaidRoom.Name, Raid_Level, true, HardDifficulty)
+
+					task.wait(1)
+					Event['request_start_game']:InvokeServer(RaidRoom.Name)
 
 					task.wait(10)
 					break
